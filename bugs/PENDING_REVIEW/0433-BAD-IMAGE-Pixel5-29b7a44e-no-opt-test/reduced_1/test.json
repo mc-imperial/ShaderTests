@@ -1,0 +1,72 @@
+{
+  "binaries": [
+    {
+      "name": "glslangValidator",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "386b4fcb28e5cc2987c26c1250f0ba8200eed8fa"
+    },
+    {
+      "name": "spirv-dis",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "c91a25af13e112729be7272d58b0df25e772c3e0"
+    },
+    {
+      "name": "spirv-val",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "c91a25af13e112729be7272d58b0df25e772c3e0"
+    },
+    {
+      "name": "amber",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "0db8af9f6be1f7abb8030eaa593409d74476133b"
+    },
+    {
+      "name": "amber_apk",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "0db8af9f6be1f7abb8030eaa593409d74476133b"
+    },
+    {
+      "name": "amber_apk_test",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "0db8af9f6be1f7abb8030eaa593409d74476133b"
+    }
+  ],
+  "common_spirv_args": [],
+  "crash_regex_override": "",
+  "crash_signature": "bad_image",
+  "derived_from": "stable_sampler_polar_warp",
+  "device": {
+    "android": {
+      "build_fingerprint": "google/redfin/redfin:11/RQ1A.210105.003/7005429:user/release-keys",
+      "model": "Pixel_5",
+      "serial": "0B021FDD4001WZ"
+    },
+    "binaries": [],
+    "device_properties": "  apiVersion: 1.1.128\n  driverVersion: 2149490688\n  vendorID: 20803\n  deviceID: 100794368\n  deviceType: integrated gpu\n  deviceName: Adreno (TM) 620\n  driverName: Qualcomm Technologies Inc. Adreno Vulkan Driver\n  driverInfo: Driver Build: 35605c3, Ia11ce2d146, 1599101106\nDate: 09/02/20\nCompiler Version: EV031.31.04.00\nDriver Branch: gfx-adreno.lnx.2.0\n\n  minSubgroupSize: 64\n  maxSubgroupSize: 128\n  maxComputeWorkgroupSubgroups: 16\n  requiredSubgroupSizeStages: comp\n",
+    "ignored_crash_signatures": [],
+    "name": "Pixel_5_0B021FDD4001WZ"
+  },
+  "expected_status": "CRASH",
+  "glsl": {
+    "spirv_opt_args": []
+  },
+  "skip_validation": false
+}
