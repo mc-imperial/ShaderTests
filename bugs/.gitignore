@@ -1,0 +1,11 @@
+*.log
+*.ppm
+*_image.png
+*.dot
+spirv-opt
+glslangValidator
+vulkan_worker-debug.apk
+*.apk
+*.zip
+amber_ndk
+reduction/

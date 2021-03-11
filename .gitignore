@@ -1,0 +1,10 @@
+generated
+*~
+*.cstr
+__pycache__
+/artifacts/
+
+/binaries/
+binaries
+.vscode
+ROOT

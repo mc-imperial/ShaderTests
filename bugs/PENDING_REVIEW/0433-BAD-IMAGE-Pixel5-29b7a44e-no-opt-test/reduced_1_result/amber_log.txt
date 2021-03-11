@@ -1,0 +1,845 @@
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'get-state']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'wait-for-device']
+RETURNCODE: 0
+Checking if boot animation has finished.
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'shell', 'getprop init.svc.bootanim']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'shell', 'getprop service.bootanim.exit']
+RETURNCODE: 0
+Boot animation is not running.
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'shell', 'settings get global stay_on_while_plugged_in']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'shell', 'dumpsys nfc']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'shell', 'rm -rf /sdcard/Android/data/com.google.amber/cache/graphicsfuzz && mkdir /sdcard/Android/data/com.google.amber/cache/graphicsfuzz && mkdir /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result']
+RETURNCODE: 0
+Clearing logcat.
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'logcat', '-c']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'logcat', '-d', '-T', '1']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'push', 'reports/crashes/bad_image/29b7a44e_no_opt_test_Pixel_5_0B021FDD4001WZ/summary/reduced_1_result/test.amber', '/data/local/tmp/test.amber']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'shell', 'mv', '/data/local/tmp/test.amber', '/sdcard/Android/data/com.google.amber/cache/graphicsfuzz']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'shell', 'am force-stop com.google.amber']
+RETURNCODE: 0
+Exec (verbose):['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'shell', 'am instrument -w -e stdout /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/amber_stdout.txt -e stderr /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/amber_stderr.txt -e arg1 -d -e arg2 /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/test.amber -e arg3 --log-graphics-calls-time -e arg4 --disable-spirv-val -e arg5 -I -e arg6 variant_framebuffer -e arg7 -i -e arg8 /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/variant.png -e arg9 -I -e arg10 reference_framebuffer -e arg11 -i -e arg12 /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/reference.png com.google.amber.test/androidx.test.runner.AndroidJUnitRunner']
+RETURNCODE: 0
+STDOUT:
+
+com.google.amber.AmberLauncher:INSTRUMENTATION_RESULT: shortMsg=Process crashed.
+INSTRUMENTATION_CODE: 0
+
+
+STDERR:
+
+
+Exec:['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'pull', '/sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/.', 'reports/crashes/bad_image/29b7a44e_no_opt_test_Pixel_5_0B021FDD4001WZ/summary/reduced_1_result']
+RETURNCODE: 0
+Logging the contents of reports/crashes/bad_image/29b7a44e_no_opt_test_Pixel_5_0B021FDD4001WZ/summary/reduced_1_result/amber_stdout.txt
+Loading Vulkan Pointers
+vkGetPhysicalDeviceProperties
+time vkGetPhysicalDeviceProperties                    729 ns
+vkGetPhysicalDeviceMemoryProperties
+time vkGetPhysicalDeviceMemoryProperties              365 ns
+vkCreateCommandPool
+time vkCreateCommandPool                              781 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            3125 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            3229 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties             2656 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                       67187 ns
+vkCreateFence
+time vkCreateFence                                   1041 ns
+vkCreateRenderPass
+time vkCreateRenderPass                              2813 ns
+vkCreateImage
+time vkCreateImage                                   7969 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     521 ns
+vkAllocateMemory
+time vkAllocateMemory                               23490 ns
+vkBindImageMemory
+time vkBindImageMemory                                885 ns
+vkCreateImageView
+time vkCreateImageView                              12448 ns
+vkCreateBuffer
+time vkCreateBuffer                                  2865 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    468 ns
+vkAllocateMemory
+time vkAllocateMemory                               21458 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               521 ns
+vkMapMemory
+time vkMapMemory                                      520 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                           105156 ns
+vkCreateShaderModule
+time vkCreateShaderModule                             729 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            1355 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties             1094 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                       26562 ns
+vkCreateFence
+time vkCreateFence                                    521 ns
+vkCreateRenderPass
+time vkCreateRenderPass                              1406 ns
+vkCreateImage
+time vkCreateImage                                   4479 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     313 ns
+vkAllocateMemory
+time vkAllocateMemory                               21563 ns
+vkBindImageMemory
+time vkBindImageMemory                                365 ns
+vkCreateImageView
+time vkCreateImageView                                937 ns
+vkCreateBuffer
+time vkCreateBuffer                                  1406 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    261 ns
+vkAllocateMemory
+time vkAllocateMemory                               20156 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               364 ns
+vkMapMemory
+time vkMapMemory                                      365 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                            53541 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            1041 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            1198 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties              729 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                       32968 ns
+vkCreateFence
+time vkCreateFence                                    573 ns
+vkCreateRenderPass
+time vkCreateRenderPass                              5521 ns
+vkCreateImage
+time vkCreateImage                                   2031 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     313 ns
+vkAllocateMemory
+time vkAllocateMemory                               21302 ns
+vkBindImageMemory
+time vkBindImageMemory                                416 ns
+vkCreateImageView
+time vkCreateImageView                                937 ns
+vkCreateBuffer
+time vkCreateBuffer                                  5573 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    261 ns
+vkAllocateMemory
+time vkAllocateMemory                               19948 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               364 ns
+vkMapMemory
+time vkMapMemory                                      313 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                            61042 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                           31979 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1250 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         65781 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             782 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             208 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            6302 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                          40781 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              7136 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             833 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                         31094 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             365 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                             11042 ns
+vkResetFences
+time vkResetFences                                    469 ns
+vkQueueSubmit
+time vkQueueSubmit                                 260469 ns
+vkWaitForFences
+time vkWaitForFences                               635417 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           18698 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3177 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               937 ns
+vkResetFences
+time vkResetFences                                    625 ns
+vkQueueSubmit
+time vkQueueSubmit                                  91719 ns
+vkWaitForFences
+time vkWaitForFences                               159791 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            2396 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            2604 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               781 ns
+vkResetFences
+time vkResetFences                                    521 ns
+vkQueueSubmit
+time vkQueueSubmit                                  21666 ns
+vkWaitForFences
+time vkWaitForFences                               125208 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1927 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                          1771 ns
+vkCreateGraphicsPipelines
+time vkCreateGraphicsPipelines                    3687552 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            9271 ns
+vkCreateBuffer
+time vkCreateBuffer                                  6146 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    469 ns
+vkAllocateMemory
+time vkAllocateMemory                               13281 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               990 ns
+vkMapMemory
+time vkMapMemory                                      469 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1511 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             573 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         46667 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             417 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             260 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            6562 ns
+vkCmdBindPipeline
+time vkCmdBindPipeline                                729 ns
+vkCmdBindVertexBuffers
+time vkCmdBindVertexBuffers                          1094 ns
+vkCmdDraw
+time vkCmdDraw                                       4688 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              3854 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             312 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                         31406 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             417 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              9531 ns
+vkResetFences
+time vkResetFences                                   1302 ns
+vkQueueSubmit
+time vkQueueSubmit                                 128541 ns
+vkWaitForFences
+time vkWaitForFences                               902032 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           34948 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3177 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               833 ns
+vkResetFences
+time vkResetFences                                    417 ns
+vkQueueSubmit
+time vkQueueSubmit                                  77136 ns
+vkWaitForFences
+time vkWaitForFences                               998073 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            5625 ns
+vkDestroyPipeline
+time vkDestroyPipeline                              37916 ns
+vkDestroyPipelineLayout
+time vkDestroyPipelineLayout                         1510 ns
+vkDestroyBufferView
+time vkDestroyBufferView                              625 ns
+vkUnmapMemory
+time vkUnmapMemory                                    313 ns
+vkFreeMemory
+time vkFreeMemory                                    5469 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                 1198 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            5990 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             521 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         41094 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             521 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             260 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            8385 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                          19531 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              4270 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             261 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                         45990 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             416 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              7447 ns
+vkResetFences
+time vkResetFences                                    678 ns
+vkQueueSubmit
+time vkQueueSubmit                                  82864 ns
+vkWaitForFences
+time vkWaitForFences                              1066406 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           26875 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            4115 ns
+vkCreateImage
+time vkCreateImage                                   5313 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     573 ns
+vkAllocateMemory
+time vkAllocateMemory                               34010 ns
+vkBindImageMemory
+time vkBindImageMemory                                833 ns
+vkCreateImageView
+time vkCreateImageView                               3073 ns
+vkCreateBuffer
+time vkCreateBuffer                                  2344 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    417 ns
+vkAllocateMemory
+time vkAllocateMemory                               21094 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               365 ns
+vkMapMemory
+time vkMapMemory                                      469 ns
+vkCreateSampler
+time vkCreateSampler                                 1459 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1302 ns
+vkResetFences
+time vkResetFences                                    937 ns
+vkQueueSubmit
+time vkQueueSubmit                                  96094 ns
+vkWaitForFences
+time vkWaitForFences                               874948 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            4948 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3697 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             521 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         51563 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             573 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             313 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              2708 ns
+vkResetFences
+time vkResetFences                                   1198 ns
+vkQueueSubmit
+time vkQueueSubmit                                  90677 ns
+vkWaitForFences
+time vkWaitForFences                               232865 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           22396 ns
+vkCreateDescriptorSetLayout
+time vkCreateDescriptorSetLayout                     2187 ns
+vkCreateDescriptorPool
+time vkCreateDescriptorPool                         40000 ns
+vkAllocateDescriptorSets
+time vkAllocateDescriptorSets                        1614 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                          5104 ns
+vkCreateGraphicsPipelines
+time vkCreateGraphicsPipelines                    5923074 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                          4114 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            7605 ns
+vkCreateBuffer
+time vkCreateBuffer                                  6458 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    573 ns
+vkAllocateMemory
+time vkAllocateMemory                               15312 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               729 ns
+vkMapMemory
+time vkMapMemory                                      469 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1302 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             625 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         51563 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             469 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             313 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            6407 ns
+vkCmdBindDescriptorSets
+time vkCmdBindDescriptorSets                         1771 ns
+vkCmdBindPipeline
+time vkCmdBindPipeline                                782 ns
+vkCmdBindVertexBuffers
+time vkCmdBindVertexBuffers                          1041 ns
+vkCmdDraw
+time vkCmdDraw                                       4219 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              3646 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             313 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                         31302 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             364 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              8958 ns
+vkResetFences
+time vkResetFences                                   1458 ns
+vkQueueSubmit
+time vkQueueSubmit                                 127969 ns
+vkWaitForFences
+time vkWaitForFences                               985208 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           35625 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3178 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               989 ns
+vkResetFences
+time vkResetFences                                    469 ns
+vkQueueSubmit
+time vkQueueSubmit                                  79375 ns
+vkWaitForFences
+time vkWaitForFences                               305469 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            2239 ns
+vkDestroyImageView
+time vkDestroyImageView                              1094 ns
+vkDestroyImage
+time vkDestroyImage                                  2240 ns
+vkFreeMemory
+time vkFreeMemory                                   12291 ns
+vkUnmapMemory
+time vkUnmapMemory                                    365 ns
+vkFreeMemory
+time vkFreeMemory                                   54063 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                 1250 ns
+vkDestroyPipeline
+time vkDestroyPipeline                              33906 ns
+vkDestroyPipelineLayout
+time vkDestroyPipelineLayout                         1979 ns
+vkDestroyBufferView
+time vkDestroyBufferView                              313 ns
+vkUnmapMemory
+time vkUnmapMemory                                    313 ns
+vkFreeMemory
+time vkFreeMemory                                    7812 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                 9687 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            4739 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             625 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         42708 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             520 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             208 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            8958 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                          20729 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              4687 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             313 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                         31615 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             469 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              8385 ns
+vkResetFences
+time vkResetFences                                    573 ns
+vkQueueSubmit
+time vkQueueSubmit                                  79063 ns
+vkWaitForFences
+time vkWaitForFences                               355052 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           16458 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            2865 ns
+vkCreateImage
+time vkCreateImage                                   5105 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     468 ns
+vkAllocateMemory
+time vkAllocateMemory                               25677 ns
+vkBindImageMemory
+time vkBindImageMemory                                730 ns
+vkCreateImageView
+time vkCreateImageView                               3125 ns
+vkCreateBuffer
+time vkCreateBuffer                                  1979 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    417 ns
+vkAllocateMemory
+time vkAllocateMemory                               21979 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               365 ns
+vkMapMemory
+time vkMapMemory                                      521 ns
+vkCreateSampler
+time vkCreateSampler                                 1458 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1042 ns
+vkResetFences
+time vkResetFences                                    521 ns
+vkQueueSubmit
+time vkQueueSubmit                                  78489 ns
+vkWaitForFences
+time vkWaitForFences                               145313 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            2032 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            2760 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             417 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         37604 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             834 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             260 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              2240 ns
+vkResetFences
+time vkResetFences                                    989 ns
+vkQueueSubmit
+time vkQueueSubmit                                  66771 ns
+vkWaitForFences
+time vkWaitForFences                               232031 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           19844 ns
+vkCreateDescriptorSetLayout
+time vkCreateDescriptorSetLayout                     2344 ns
+vkCreateDescriptorPool
+time vkCreateDescriptorPool                         25937 ns
+vkAllocateDescriptorSets
+time vkAllocateDescriptorSets                        1667 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                          5000 ns
+vkCreateGraphicsPipelines
+time vkCreateGraphicsPipelines                    8635938 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                          4219 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            8072 ns
+vkCreateBuffer
+time vkCreateBuffer                                  6615 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    677 ns
+vkAllocateMemory
+time vkAllocateMemory                               13907 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               937 ns
+vkMapMemory
+time vkMapMemory                                      469 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1406 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             417 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         54635 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             521 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             260 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            6041 ns
+vkCmdBindDescriptorSets
+time vkCmdBindDescriptorSets                         1719 ns
+vkCmdBindPipeline
+time vkCmdBindPipeline                                573 ns
+vkCmdBindVertexBuffers
+time vkCmdBindVertexBuffers                          1094 ns
+vkCmdDraw
+time vkCmdDraw                                       4427 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              4010 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             313 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                         33073 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             365 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              9531 ns
+vkResetFences
+time vkResetFences                                   1042 ns
+vkQueueSubmit
+time vkQueueSubmit                                 128177 ns
+vkWaitForFences
+time vkWaitForFences                               944427 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           25469 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            2865 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               782 ns
+vkResetFences
+time vkResetFences                                    469 ns
+vkQueueSubmit
+time vkQueueSubmit                                  78229 ns
+vkWaitForFences
+time vkWaitForFences                               261042 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1980 ns
+vkDestroyImageView
+time vkDestroyImageView                              1250 ns
+vkDestroyImage
+time vkDestroyImage                                  1719 ns
+vkFreeMemory
+time vkFreeMemory                                   15834 ns
+vkUnmapMemory
+time vkUnmapMemory                                    260 ns
+vkFreeMemory
+time vkFreeMemory                                   52396 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                 2031 ns
+vkDestroyPipeline
+time vkDestroyPipeline                              28750 ns
+vkDestroyPipelineLayout
+time vkDestroyPipelineLayout                         1771 ns
+vkDestroyBufferView
+time vkDestroyBufferView                              313 ns
+vkUnmapMemory
+time vkUnmapMemory                                    312 ns
+vkFreeMemory
+time vkFreeMemory                                    7657 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  729 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                           5937 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                           1198 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                           1146 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                            729 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                           1666 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                            625 ns
+vkDestroyRenderPass
+time vkDestroyRenderPass                             3802 ns
+vkDestroyFramebuffer
+time vkDestroyFramebuffer                           68854 ns
+vkDestroyImageView
+time vkDestroyImageView                              1562 ns
+vkDestroyImage
+time vkDestroyImage                                  2291 ns
+vkFreeMemory
+time vkFreeMemory                                    5885 ns
+vkUnmapMemory
+time vkUnmapMemory                                    417 ns
+vkFreeMemory
+time vkFreeMemory                                   36250 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                 1510 ns
+vkDestroyFence
+time vkDestroyFence                                 17448 ns
+vkFreeCommandBuffers
+time vkFreeCommandBuffers                           37240 ns
+vkDestroyRenderPass
+time vkDestroyRenderPass                             2395 ns
+vkDestroyFramebuffer
+time vkDestroyFramebuffer                           20156 ns
+vkDestroyImageView
+time vkDestroyImageView                               625 ns
+vkDestroyImage
+time vkDestroyImage                                  1771 ns
+vkFreeMemory
+time vkFreeMemory                                    5000 ns
+vkUnmapMemory
+time vkUnmapMemory                                    260 ns
+vkFreeMemory
+time vkFreeMemory                                   44427 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                 1719 ns
+vkDestroyFence
+time vkDestroyFence                                   625 ns
+vkFreeCommandBuffers
+time vkFreeCommandBuffers                           13541 ns
+vkDestroyDescriptorSetLayout
+time vkDestroyDescriptorSetLayout                    2136 ns
+vkDestroyDescriptorPool
+time vkDestroyDescriptorPool                        40469 ns
+vkDestroySampler
+time vkDestroySampler                                1041 ns
+vkDestroyRenderPass
+time vkDestroyRenderPass                             1614 ns
+vkDestroyFramebuffer
+time vkDestroyFramebuffer                           14740 ns
+vkDestroyImageView
+time vkDestroyImageView                               417 ns
+vkDestroyImage
+time vkDestroyImage                                  1146 ns
+vkFreeMemory
+time vkFreeMemory                                    4166 ns
+vkUnmapMemory
+time vkUnmapMemory                                    209 ns
+vkFreeMemory
+time vkFreeMemory                                   43698 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  990 ns
+vkDestroyFence
+time vkDestroyFence                                  4323 ns
+vkFreeCommandBuffers
+time vkFreeCommandBuffers                            6354 ns
+vkDestroyDescriptorSetLayout
+time vkDestroyDescriptorSetLayout                    1198 ns
+vkDestroyDescriptorPool
+time vkDestroyDescriptorPool                         6771 ns
+vkDestroySampler
+time vkDestroySampler                                 469 ns
+vkDestroyCommandPool
+time vkDestroyCommandPool                           43594 ns
+
+Summary of Failures:
+  /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/test.amber
+
+Summary: 0 pass, 1 fail
+
+Logging the contents of reports/crashes/bad_image/29b7a44e_no_opt_test_Pixel_5_0B021FDD4001WZ/summary/reduced_1_result/amber_stderr.txt
+/sdcard/Android/data/com.google.amber/cache/graphicsfuzz/test.amber: Histogram EMD value of 0.125033 is greater than tolerance of 0.005000
+
+Exec (verbose):['/usr/bin/adb', '-s', '0B021FDD4001WZ', 'logcat', '-d']
+RETURNCODE: 0
+STDOUT:
+--------- beginning of system
+02-08 15:37:36.836  1529  6249 I ActivityManager: Force stopping com.google.amber appid=10276 user=0: from pid 7195
+--------- beginning of main
+02-08 15:37:36.840  7195  7197 I cmd     : oneway function results will be dropped but finished with status OK and parcel size 4
+02-08 15:37:36.842  2729  2729 E PhoneInterfaceManager: [PhoneIntfMgr] getCarrierPackageNamesForIntentAndPhone: No UICC
+02-08 15:37:36.842  2729  2729 D CarrierSvcBindHelper: No carrier app for: 0
+02-08 15:37:36.846  6799  7198 I EuiccGoogle: [140727] EuiccServiceImpl.onGetEuiccProfileInfoList: onGetEuiccProfileInfoList: slotId = -1
+02-08 15:37:36.848  3521  3521 D RegisteredNfcFServicesCache: Service unchanged, not updating
+02-08 15:37:36.849  6799  7198 W EuiccGoogle: [140727] EuiccServiceImpl.onGetEuiccProfileInfoList: slotId=-1. No eUICC is active. Return null.
+02-08 15:37:36.959  7199  7199 W app_process: type=1400 audit(0.0:79687): avc: denied { read } for name="u:object_r:device_config_runtime_native_boot_prop:s0" dev="tmpfs" ino=8888 scontext=u:r:shell:s0 tcontext=u:object_r:device_config_runtime_native_boot_prop:s0 tclass=file permissive=0
+02-08 15:37:36.959  7199  7199 I chatty  : uid=1036(auditd) app_process identical 2 lines
+02-08 15:37:36.959  7199  7199 W app_process: type=1400 audit(0.0:79690): avc: denied { read } for name="u:object_r:device_config_runtime_native_boot_prop:s0" dev="tmpfs" ino=8888 scontext=u:r:shell:s0 tcontext=u:object_r:device_config_runtime_native_boot_prop:s0 tclass=file permissive=0
+02-08 15:37:36.959  7199  7199 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+02-08 15:37:36.962  7199  7199 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+02-08 15:37:36.962  7199  7199 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+02-08 15:37:36.962  7199  7199 I AndroidRuntime: Using default boot image
+02-08 15:37:36.962  7199  7199 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+02-08 15:37:36.962  7199  7199 I AndroidRuntime: Leaving lock profiling enabled
+02-08 15:37:36.962  7199  7199 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+02-08 15:37:37.027  7199  7199 D app_process: Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+02-08 15:37:37.027  7199  7199 D app_process: I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt66l.dat
+02-08 15:37:37.034  7199  7199 I app_process: The ClassLoaderContext is a special shared library.
+02-08 15:37:37.044  7199  7199 W app_process: JNI RegisterNativeMethods: attempt to register 0 native methods for android.media.AudioAttributes
+02-08 15:37:37.048  7199  7199 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+02-08 15:37:37.056  1529  4611 I ActivityManager: Force stopping com.google.amber appid=10276 user=0: start instr
+02-08 15:37:37.059  1529  4611 D CompatibilityChangeReporter: Compat change id reported: 135634846; UID 10276; state: DISABLED
+02-08 15:37:37.059  1529  4611 D CompatibilityChangeReporter: Compat change id reported: 135754954; UID 10276; state: DISABLED
+02-08 15:37:37.060  1529  1675 D CompatibilityChangeReporter: Compat change id reported: 143937733; UID 10276; state: DISABLED
+02-08 15:37:37.067   930   930 D Zygote  : Forked child process 7215
+02-08 15:37:37.068  1529  1675 I ActivityManager: Start proc 7215:com.google.amber/u0a276 for added application com.google.amber
+02-08 15:37:37.073  7215  7215 I libc    : SetHeapTaggingLevel: tag level set to 0
+02-08 15:37:37.077  7215  7215 I om.google.ambe: Late-enabling -Xcheck:jni
+02-08 15:37:37.106  7215  7215 I om.google.ambe: Unquickening 12 vdex files!
+02-08 15:37:37.115  1221  1280 I adbd    : jdwp connection from 7215
+02-08 15:37:37.162  7215  7215 W ActivityThread: Package uses different ABI(s) than its instrumentation: package[com.google.amber]: arm64-v8a, null instrumentation[com.google.amber.test]: null, null
+02-08 15:37:37.165  7215  7215 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+02-08 15:37:37.167  7215  7215 I om.google.ambe: The ClassLoaderContext is a special shared library.
+02-08 15:37:37.169  7215  7215 I chatty  : uid=10276(com.google.amber) identical 1 line
+02-08 15:37:37.170  7215  7215 I om.google.ambe: The ClassLoaderContext is a special shared library.
+02-08 15:37:37.288  7215  7215 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+02-08 15:37:37.288  7215  7215 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+02-08 15:37:37.291  7215  7215 I om.google.ambe: The ClassLoaderContext is a special shared library.
+02-08 15:37:37.294  7215  7215 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+02-08 15:37:37.294  7215  7215 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+02-08 15:37:37.295  7215  7215 I om.google.ambe: The ClassLoaderContext is a special shared library.
+02-08 15:37:37.301  7215  7215 I chatty  : uid=10276(com.google.amber) identical 2 lines
+02-08 15:37:37.302  7215  7215 I om.google.ambe: The ClassLoaderContext is a special shared library.
+02-08 15:37:37.347  7215  7215 W om.google.ambe: Accessing hidden method Landroid/app/Instrumentation;->execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Landroid/app/Activity;Landroid/content/Intent;ILandroid/os/Bundle;)Landroid/app/Instrumentation$ActivityResult; (greylist, linking, allowed)
+02-08 15:37:37.347  7215  7215 W om.google.ambe: Accessing hidden method Landroid/app/Instrumentation;->execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Ljava/lang/String;Landroid/content/Intent;ILandroid/os/Bundle;)Landroid/app/Instrumentation$ActivityResult; (greylist, linking, allowed)
+02-08 15:37:37.350  7215  7215 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+02-08 15:37:37.351  7215  7215 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+02-08 15:37:37.355  7215  7215 I MonitoringInstr: Instrumentation started!
+02-08 15:37:37.356  7215  7215 I MonitoringInstr: Setting context classloader to 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk", zip file "/data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/base.apk"],nativeLibraryDirectories=[/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/lib/arm64, /data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/lib/arm64, /data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk!/lib/arm64-v8a, /data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/base.apk!/lib/arm64-v8a, /system/lib64, /system_ext/lib64]]]', Original: 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk", zip file "/data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/base.apk"],nativeLibraryDirectories=[/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/lib/arm64, /data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/lib/arm64, /data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk!/lib/arm64-v8a, /data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/base.apk!/lib/arm64-v8a, /system/lib64, /system_ext/lib64]]]'
+02-08 15:37:37.358  7215  7215 I MonitoringInstr: No JSBridge.
+02-08 15:37:37.360  7215  7237 I MonitoringInstr: Setting context classloader to 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk", zip file "/data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/base.apk"],nativeLibraryDirectories=[/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/lib/arm64, /data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/lib/arm64, /data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk!/lib/arm64-v8a, /data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/base.apk!/lib/arm64-v8a, /system/lib64, /system_ext/lib64]]]', Original: 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk", zip file "/data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/base.apk"],nativeLibraryDirectories=[/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/lib/arm64, /data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/lib/arm64, /data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk!/lib/arm64-v8a, /data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/base.apk!/lib/arm64-v8a, /system/lib64, /system_ext/lib64]]]'
+02-08 15:37:37.385  7215  7237 D InfraTrack: Tracking disabled due to lack of internet permissions
+02-08 15:37:37.385  7215  7237 I UsageTrackerFacilitator: Usage tracking disabled
+02-08 15:37:37.389  7215  7237 I TestRequestBuilder: Scanning classpath to find tests in paths [/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk]
+02-08 15:37:37.391  7215  7237 W om.google.ambe: Opening an oat file without a class loader. Are you using the deprecated DexFile APIs?
+02-08 15:37:37.573  7215  7237 D TestExecutor: Adding listener androidx.test.internal.runner.listener.LogRunListener
+02-08 15:37:37.574  7215  7237 D TestExecutor: Adding listener androidx.test.internal.runner.listener.InstrumentationResultPrinter
+02-08 15:37:37.574  7215  7237 D TestExecutor: Adding listener androidx.test.internal.runner.listener.ActivityFinisherRunListener
+02-08 15:37:37.574  7215  7237 I TestRunner: run started: 1 tests
+02-08 15:37:37.577  7215  7237 I TestRunner: started: LaunchAmber(com.google.amber.AmberLauncher)
+02-08 15:37:37.579  7215  7215 I MonitoringInstr: Activities that are still in CREATED to STOPPED: 0
+02-08 15:37:37.588  7215  7237 D vulkan  : searching for layers in '/data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/lib/arm64'
+02-08 15:37:37.588  7215  7237 D vulkan  : searching for layers in '/data/app/~~KxUguHbCzqx8uM5A-jLWCg==/com.google.amber.test-oqgoLq2RLtTunsq4mb-4sA==/base.apk!/lib/arm64-v8a'
+02-08 15:37:37.588  7215  7237 D vulkan  : searching for layers in '/data/app/~~ZNpHk2454MBxrvF33dRrRw==/com.google.amber-mQOYR5dAm6r3dJSJgsBdGQ==/base.apk!/lib/arm64-v8a'
+02-08 15:37:37.592  7215  7237 E Adreno-AppProfiles: Could not find QSPM HAL service
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: ===== BEGIN DUMP OF OVERRIDDEN SETTINGS =====
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: ===== END DUMP OF OVERRIDDEN SETTINGS =====
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: QUALCOMM build          : 35605c3, Ia11ce2d146
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: Build Date              : 09/02/20
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: Shader Compiler Version : EV031.31.04.00
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: Local Branch            : gfx-adreno.lnx.2.0
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: Remote Branch           : 
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: Remote Branch           : 
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: Reconstruct Branch      : 
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: Build Config            : S P 10.0.4 AArch64
+02-08 15:37:37.593  7215  7237 I AdrenoVK-0: Driver Path             : /vendor/lib64/hw/vulkan.adreno.so
+02-08 15:37:37.798  7215  7237 I om.google.ambe: System.exit called, status: 1
+02-08 15:37:37.798  7215  7237 I AndroidRuntime: VM exiting with result code 1, cleanup skipped.
+02-08 15:37:37.836  1529  8736 I ActivityManager: Process com.google.amber (pid 7215) has died: fg  FGS 
+02-08 15:37:37.838   930   930 I Zygote  : Process 7215 exited cleanly (1)
+02-08 15:37:37.838  1529  1676 I libprocessgroup: Successfully killed process cgroup uid 10276 pid 7215 in 0ms
+02-08 15:37:37.839  1529  8736 W ActivityManager: Crash of app com.google.amber running instrumentation ComponentInfo{com.google.amber.test/androidx.test.runner.AndroidJUnitRunner}
+02-08 15:37:37.839  1529  8736 I ActivityManager: Force stopping com.google.amber appid=10276 user=0: finished inst
+02-08 15:37:37.842  7199  7199 D AndroidRuntime: Shutting down VM
+02-08 15:37:38.153  1529  2094 D ConnectivityService: NetReassign [no changes]
+
+
+STDERR:
+
+
+
+STATUS CRASH
+
