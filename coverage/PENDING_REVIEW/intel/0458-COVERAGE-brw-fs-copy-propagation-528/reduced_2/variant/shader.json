@@ -1,0 +1,10 @@
+{
+  "GLF_dead3injectionSwitch": {
+    "func": "glUniform2f",
+    "args": [
+      0.17761713,
+      0.43526953
+    ],
+    "binding": 0
+  }
+}
