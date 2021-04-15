@@ -1,0 +1,19 @@
+{
+  "resolution": {
+    "func": "glUniform2f",
+    "args": [
+      256.0,
+      256.0
+    ],
+    "binding": 1
+  },
+  "GLF_dead3polynomial": {
+    "func": "glUniform3f",
+    "args": [
+      0.47921413,
+      0.9433394,
+      0.06115395
+    ],
+    "binding": 0
+  }
+}
