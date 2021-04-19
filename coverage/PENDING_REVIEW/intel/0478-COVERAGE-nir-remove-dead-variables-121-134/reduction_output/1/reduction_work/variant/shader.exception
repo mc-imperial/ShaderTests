@@ -1,0 +1,9 @@
+com.graphicsfuzz.common.util.GlslParserException: Syntax errors occurred during parsing.
+	at com.graphicsfuzz.common.util.ParseHelper.slowParse(ParseHelper.java:171)
+	at com.graphicsfuzz.common.util.ParseHelper.parseInputStream(ParseHelper.java:110)
+	at com.graphicsfuzz.common.util.ParseHelper.parse(ParseHelper.java:67)
+	at com.graphicsfuzz.common.util.ParseHelper.maybeParseShader(ParseHelper.java:61)
+	at com.graphicsfuzz.common.util.ShaderJobFileOperations.readShaderJobFile(ShaderJobFileOperations.java:502)
+	at com.graphicsfuzz.reducer.tool.GlslReduce.doReductionHelper(GlslReduce.java:522)
+	at com.graphicsfuzz.reducer.tool.GlslReduce.mainHelper(GlslReduce.java:460)
+	at com.graphicsfuzz.reducer.tool.GlslReduce.main(GlslReduce.java:229)
