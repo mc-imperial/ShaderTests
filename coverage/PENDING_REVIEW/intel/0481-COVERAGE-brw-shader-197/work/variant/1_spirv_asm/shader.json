@@ -1,0 +1,7 @@
+{
+  "five": {
+    "func": "glUniform1f",
+    "args": [ 5.0 ],
+    "push_constant": true
+  }
+}
