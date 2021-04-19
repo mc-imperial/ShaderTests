@@ -1,0 +1,28 @@
+Running test on device:
+host
+Copying reduction_output/1/reduction_work/variant/shader_reduced_0001.json to reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.json
+Copying reduction_output/1/reduction_work/variant/shader_reduced_0001.frag to reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.frag
+Finding path of binary:
+name: "glslangValidator"
+tags: "Debug"
+version: "c0bcfaf3bae917c57bca49897eb7430cdf256c70"
+
+Copying reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.json to reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv/shader_reduced_0001.json
+Exec:['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-glslang-c0bcfaf3bae917c57bca49897eb7430cdf256c70-Linux_x64_Debug/glslang/bin/glslangValidator', '-V', '-o', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv/shader_reduced_0001.frag.spv', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.frag']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+Command failed: ['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-glslang-c0bcfaf3bae917c57bca49897eb7430cdf256c70-Linux_x64_Debug/glslang/bin/glslangValidator', '-V', '-o', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv/shader_reduced_0001.frag.spv', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.frag']
+RETURNCODE: 2
+STDOUT:
+reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.frag
+ERROR: reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.frag:27: 'non-constant global initializer (needs GL_EXT_shader_non_constant_global_initializers)' : not supported for this version or the enabled extensions 
+ERROR: 1 compilation errors.  No code generated.
+
+
+ERROR: Linking fragment stage: Missing entry point: Each stage requires one entry point
+
+SPIR-V is not generated for failed compile or link
+
+
+STDERR:
+
+
