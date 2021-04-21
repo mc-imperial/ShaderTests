@@ -1,0 +1,1 @@
+Like the previous tests with lots of nested loops this one causes an out of memory situation for the Intel driver. Still this test makes sense as it verifies a global loop limiter works correctly in a nested loop case.
