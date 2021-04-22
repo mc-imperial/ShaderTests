@@ -1,0 +1,439 @@
+Exec (verbose):['/usr/bin/catchsegv', '/home/ari/fuzz/binaries/built_in/gfbuild-amber-0eee2d45d053dfc566baa58442a9b1b708e4f2a7-Linux_x64_Debug/amber/bin/amber', 'reports/crashes/llvmAPFloatBaseopStatus_llvmdetailIEEEFloatconvert/5e318890_no_opt_test_host/summary/reduced_1_result/test.amber', '--log-graphics-calls-time', '--disable-spirv-val', '-d', '-I', 'variant_framebuffer', '-i', 'reports/crashes/llvmAPFloatBaseopStatus_llvmdetailIEEEFloatconvert/5e318890_no_opt_test_host/summary/reduced_1_result/variant.png', '-I', 'reference_framebuffer', '-i', 'reports/crashes/llvmAPFloatBaseopStatus_llvmdetailIEEEFloatconvert/5e318890_no_opt_test_host/summary/reduced_1_result/reference.png']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 134
+STDOUT:
+Loading Vulkan Pointers
+vkGetPhysicalDeviceProperties
+time vkGetPhysicalDeviceProperties                   3196 ns
+vkGetPhysicalDeviceMemoryProperties
+time vkGetPhysicalDeviceMemoryProperties             1052 ns
+vkCreateCommandPool
+time vkCreateCommandPool                             5330 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            7124 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            2835 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties            12123 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                        7464 ns
+vkCreateFence
+time vkCreateFence                                  13045 ns
+vkCreateRenderPass
+time vkCreateRenderPass                              3536 ns
+vkCreateImage
+time vkCreateImage                                   2726 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                   36429 ns
+vkAllocateMemory
+time vkAllocateMemory                              130345 ns
+vkBindImageMemory
+time vkBindImageMemory                               1002 ns
+vkCreateImageView
+time vkCreateImageView                               2074 ns
+vkCreateBuffer
+time vkCreateBuffer                                  5360 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    891 ns
+vkAllocateMemory
+time vkAllocateMemory                              167354 ns
+vkBindBufferMemory
+time vkBindBufferMemory                              1052 ns
+vkMapMemory
+time vkMapMemory                                      672 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                             2605 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1192 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           53330 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                          4949 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            9007 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1654 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            7073 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                           3356 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              1994 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1703 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          6963 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1844 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1233 ns
+vkResetFences
+time vkResetFences                                   3657 ns
+vkQueueSubmit
+time vkQueueSubmit                                  22071 ns
+vkWaitForFences
+time vkWaitForFences                                 7504 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            6743 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                           30578 ns
+vkCreateBuffer
+time vkCreateBuffer                                  3827 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    831 ns
+vkAllocateMemory
+time vkAllocateMemory                                4468 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               732 ns
+vkMapMemory
+time vkMapMemory                                      350 ns
+vkCreateBuffer
+time vkCreateBuffer                                  1272 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    491 ns
+vkAllocateMemory
+time vkAllocateMemory                                1543 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               531 ns
+vkMapMemory
+time vkMapMemory                                      531 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               551 ns
+vkResetFences
+time vkResetFences                                   1743 ns
+vkQueueSubmit
+time vkQueueSubmit                                  11792 ns
+vkWaitForFences
+time vkWaitForFences                                43702 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                             461 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                             461 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3957 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1833 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               481 ns
+vkResetFences
+time vkResetFences                                   1172 ns
+vkQueueSubmit
+time vkQueueSubmit                                   5640 ns
+vkWaitForFences
+time vkWaitForFences                                26339 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1573 ns
+vkCreateDescriptorSetLayout
+time vkCreateDescriptorSetLayout                     2254 ns
+vkCreateDescriptorPool
+time vkCreateDescriptorPool                          2214 ns
+vkAllocateDescriptorSets
+time vkAllocateDescriptorSets                        3817 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                          2154 ns
+vkCreateGraphicsPipelines
+COV: SpirvOptConstFoldingRules956
+COV: SpirvOptConstFoldingRules918
+COV: SpirvOptSimplificationPass145
+time vkCreateGraphicsPipelines                  626943105 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                          4769 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                           962 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1373 ns
+vkCreateBuffer
+time vkCreateBuffer                                  4158 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                   1222 ns
+vkAllocateMemory
+time vkAllocateMemory                                4899 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               982 ns
+vkMapMemory
+time vkMapMemory                                      401 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            5300 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1442 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                          4018 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1523 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1443 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            4378 ns
+vkCmdBindDescriptorSets
+time vkCmdBindDescriptorSets                         4819 ns
+vkCmdBindPipeline
+time vkCmdBindPipeline                               2355 ns
+vkCmdBindVertexBuffers
+time vkCmdBindVertexBuffers                          2205 ns
+vkCmdDraw
+time vkCmdDraw                                       3156 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              2334 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            2174 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          2435 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1803 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               581 ns
+vkResetFences
+time vkResetFences                                   2836 ns
+vkQueueSubmit
+time vkQueueSubmit                               34471973 ns
+vkWaitForFences
+COV: LLVMAPFloat2108
+*** Aborted
+Register dump:
+
+ RAX: 0000000000000000   RBX: 00007f5dbcff9700   RCX: 00007f5de9a913eb
+ RDX: 0000000000000000   RSI: 00007f5dbcff5940   RDI: 0000000000000002
+ RBP: 00007f5de9c04fb8   R8 : 0000000000000000   R9 : 00007f5dbcff5940
+ R10: 0000000000000008   R11: 0000000000000246   R12: 00007f5de80ba060
+ R13: 000000000000083c   R14: 00007f5de80bab71   R15: 00007f5dbcff8f40
+ RSP: 00007f5dbcff5940
+
+ RIP: 00007f5de9a913eb   EFLAGS: 00000246
+
+ CS: 0033   FS: 0000   GS: 0000
+
+ Trap: 00000000   Error: 00000000   OldMask: 00000000   CR2: 00000000
+
+ FPUCW: 0000037f   FPUSW: 00000000   TAG: 00000000
+ RIP: 00000000   RDP: 00000000
+
+ ST(0) 0000 0000000000000000   ST(1) 0000 0000000000000000
+ ST(2) 0000 0000000000000000   ST(3) 0000 0000000000000000
+ ST(4) 0000 0000000000000000   ST(5) ffff c000000000000000
+ ST(6) ffff c000000000000000   ST(7) b800 b800000000000000
+ mxcsr: 1fa0
+ XMM0:  000000000000000000000000ffffffff XMM1:  000000000000000000000000ffffffff
+ XMM2:  000000000000000000000000ffffffff XMM3:  000000000000000000000000ffffffff
+ XMM4:  000000000000000000000000ffffffff XMM5:  000000000000000000000000ffffffff
+ XMM6:  000000000000000000000000ffffffff XMM7:  000000000000000000000000ffffffff
+ XMM8:  000000000000000000000000ffffffff XMM9:  000000000000000000000000ffffffff
+ XMM10: 000000000000000000000000ffffffff XMM11: 000000000000000000000000ffffffff
+ XMM12: 000000000000000000000000ffffffff XMM13: 000000000000000000000000ffffffff
+ XMM14: 000000000000000000000000ffffffff XMM15: 000000000000000000000000ffffffff
+
+Backtrace:
+/lib/x86_64-linux-gnu/libc.so.6(gsignal+0xcb)[0x7f5de9a913eb]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0x12b)[0x7f5de9a70899]
+/lib/x86_64-linux-gnu/libc.so.6(+0x25769)[0x7f5de9a70769]
+/lib/x86_64-linux-gnu/libc.so.6(+0x37006)[0x7f5de9a82006]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x9b4ecd)[0x7f5de66ceecd]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x9b4fc5)[0x7f5de66cefc5]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x648ba5)[0x7f5de6362ba5]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x9bfaeb)[0x7f5de66d9aeb]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x138721f)[0x7f5de70a121f]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x77dacb)[0x7f5de6497acb]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x77ec3c)[0x7f5de6498c3c]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x77dd9a)[0x7f5de6497d9a]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x1386f70)[0x7f5de70a0f70]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x77dacb)[0x7f5de6497acb]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x77ec3c)[0x7f5de6498c3c]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x77dd9a)[0x7f5de6497d9a]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x360628)[0x7f5de607a628]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x369391)[0x7f5de6083391]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x366356)[0x7f5de6080356]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x34e5c4)[0x7f5de60685c4]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x37c8d7)[0x7f5de60968d7]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x28dd44)[0x7f5de5fa7d44]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x2673cb)[0x7f5de5f813cb]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x266f43)[0x7f5de5f80f43]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x2928ec)[0x7f5de5fac8ec]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x292614)[0x7f5de5fac614]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x292fc3)[0x7f5de5facfc3]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x29262f)[0x7f5de5fac62f]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x292fc3)[0x7f5de5facfc3]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x29262f)[0x7f5de5fac62f]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x266ead)[0x7f5de5f80ead]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x1fc256)[0x7f5de5f16256]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x200057)[0x7f5de5f1a057]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x1d85f4)[0x7f5de5ef25f4]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x1d5b2b)[0x7f5de5eefb2b]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x1d3ce6)[0x7f5de5eedce6]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x1da315)[0x7f5de5ef4315]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x2e1170)[0x7f5de5ffb170]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x2e12ec)[0x7f5de5ffb2ec]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x2e4a4d)[0x7f5de5ffea4d]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x3282d4)[0x7f5de60422d4]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x3284e4)[0x7f5de60424e4]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x32a16f)[0x7f5de604416f]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x3292b4)[0x7f5de60432b4]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x32cd7f)[0x7f5de6046d7f]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x32cd05)[0x7f5de6046d05]
+/home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/./libvk_swiftshader.so(+0x32ccd6)[0x7f5de6046cd6]
+/lib/x86_64-linux-gnu/libstdc++.so.6(+0xd6f74)[0x7f5de9e7df74]
+/lib/x86_64-linux-gnu/libpthread.so.0(+0x9669)[0x7f5de9f9e669]
+/lib/x86_64-linux-gnu/libc.so.6(clone+0x43)[0x7f5de9b6d2b3]
+
+Memory map:
+
+00400000-01598000 r-xp 00000000 08:01 8522712 /home/ari/fuzz/binaries/built_in/gfbuild-amber-0eee2d45d053dfc566baa58442a9b1b708e4f2a7-Linux_x64_Debug/amber/bin/amber
+01798000-017e6000 r--p 01198000 08:01 8522712 /home/ari/fuzz/binaries/built_in/gfbuild-amber-0eee2d45d053dfc566baa58442a9b1b708e4f2a7-Linux_x64_Debug/amber/bin/amber
+017e6000-017e9000 rw-p 011e6000 08:01 8522712 /home/ari/fuzz/binaries/built_in/gfbuild-amber-0eee2d45d053dfc566baa58442a9b1b708e4f2a7-Linux_x64_Debug/amber/bin/amber
+017e9000-017f6000 rw-p 00000000 00:00 0
+030d6000-03409000 rw-p 00000000 00:00 0 [heap]
+7f5d92dd9000-7f5d98000000 rw-p 00000000 00:00 0
+7f5d98000000-7f5d981a5000 rw-p 00000000 00:00 0
+7f5d981a5000-7f5d981a6000 r-xp 00000000 00:00 0
+7f5d981a6000-7f5d981ab000 rw-p 00000000 00:00 0
+7f5d981ab000-7f5d981ac000 r-xp 00000000 00:00 0
+7f5d981ac000-7f5d981de000 rw-p 00000000 00:00 0
+7f5d981de000-7f5d981df000 r-xp 00000000 00:00 0
+7f5d981df000-7f5d981fa000 rw-p 00000000 00:00 0
+7f5d981fa000-7f5d981fb000 r-xp 00000000 00:00 0
+7f5d981fb000-7f5d982b6000 rw-p 00000000 00:00 0
+7f5d982b6000-7f5d9c000000 ---p 00000000 00:00 0
+7f5d9c000000-7f5d9c021000 rw-p 00000000 00:00 0
+7f5d9c021000-7f5da0000000 ---p 00000000 00:00 0
+7f5da0000000-7f5da0021000 rw-p 00000000 00:00 0
+7f5da0021000-7f5da4000000 ---p 00000000 00:00 0
+7f5da4000000-7f5da4021000 rw-p 00000000 00:00 0
+7f5da4021000-7f5da8000000 ---p 00000000 00:00 0
+7f5da8000000-7f5da8021000 rw-p 00000000 00:00 0
+7f5da8021000-7f5dac000000 ---p 00000000 00:00 0
+7f5dac000000-7f5dac021000 rw-p 00000000 00:00 0
+7f5dac021000-7f5db0000000 ---p 00000000 00:00 0
+7f5db0000000-7f5db0021000 rw-p 00000000 00:00 0
+7f5db0021000-7f5db4000000 ---p 00000000 00:00 0
+7f5db4000000-7f5db4021000 rw-p 00000000 00:00 0
+7f5db4021000-7f5db8000000 ---p 00000000 00:00 0
+7f5db8000000-7f5db8021000 rw-p 00000000 00:00 0
+7f5db8021000-7f5dbc000000 ---p 00000000 00:00 0
+7f5dbc7f9000-7f5dbc7fa000 ---p 00000000 00:00 0
+7f5dbc7fa000-7f5dbcffa000 rwxp 00000000 00:00 0
+7f5dbcffa000-7f5dbcffb000 ---p 00000000 00:00 0
+7f5dbcffb000-7f5dbd7fb000 rwxp 00000000 00:00 0
+7f5dbd7fb000-7f5dbd7fc000 ---p 00000000 00:00 0
+7f5dbd7fc000-7f5dbdffc000 rwxp 00000000 00:00 0
+7f5dbdffc000-7f5dbdffd000 ---p 00000000 00:00 0
+7f5dbdffd000-7f5dbe7fd000 rwxp 00000000 00:00 0
+7f5dbe7fd000-7f5dbe7fe000 ---p 00000000 00:00 0
+7f5dbe7fe000-7f5dbeffe000 rwxp 00000000 00:00 0
+7f5dbeffe000-7f5dbefff000 ---p 00000000 00:00 0
+7f5dbefff000-7f5dbf7ff000 rwxp 00000000 00:00 0
+7f5dbf7ff000-7f5dbf800000 ---p 00000000 00:00 0
+7f5dbf800000-7f5dc0000000 rwxp 00000000 00:00 0
+7f5dc0000000-7f5dc0021000 rw-p 00000000 00:00 0
+7f5dc0021000-7f5dc4000000 ---p 00000000 00:00 0
+7f5dc4000000-7f5dc4021000 rw-p 00000000 00:00 0
+7f5dc4021000-7f5dc8000000 ---p 00000000 00:00 0
+7f5dc8000000-7f5dc8021000 rw-p 00000000 00:00 0
+7f5dc8021000-7f5dcc000000 ---p 00000000 00:00 0
+7f5dcc000000-7f5dcc021000 rw-p 00000000 00:00 0
+7f5dcc021000-7f5dd0000000 ---p 00000000 00:00 0
+7f5dd0000000-7f5dd0021000 rw-p 00000000 00:00 0
+7f5dd0021000-7f5dd4000000 ---p 00000000 00:00 0
+7f5dd4000000-7f5dd4021000 rw-p 00000000 00:00 0
+7f5dd4021000-7f5dd8000000 ---p 00000000 00:00 0
+7f5dd8000000-7f5dd8021000 rw-p 00000000 00:00 0
+7f5dd8021000-7f5ddc000000 ---p 00000000 00:00 0
+7f5ddc7f9000-7f5ddc7fa000 ---p 00000000 00:00 0
+7f5ddc7fa000-7f5ddcffa000 rwxp 00000000 00:00 0
+7f5ddcffa000-7f5ddcffb000 ---p 00000000 00:00 0
+7f5ddcffb000-7f5ddd7fb000 rwxp 00000000 00:00 0
+7f5ddd7fb000-7f5ddd7fc000 ---p 00000000 00:00 0
+7f5ddd7fc000-7f5dddffc000 rwxp 00000000 00:00 0
+7f5dddffc000-7f5dddffd000 ---p 00000000 00:00 0
+7f5dddffd000-7f5dde7fd000 rwxp 00000000 00:00 0
+7f5dde7fd000-7f5dde7fe000 ---p 00000000 00:00 0
+7f5dde7fe000-7f5ddeffe000 rwxp 00000000 00:00 0
+7f5ddeffe000-7f5ddefff000 ---p 00000000 00:00 0
+7f5ddefff000-7f5ddf7ff000 rwxp 00000000 00:00 0
+7f5ddf7ff000-7f5ddf800000 ---p 00000000 00:00 0
+7f5ddf800000-7f5de0000000 rwxp 00000000 00:00 0
+7f5de0000000-7f5de0021000 rw-p 00000000 00:00 0
+7f5de0021000-7f5de4000000 ---p 00000000 00:00 0
+7f5de4517000-7f5de4518000 ---p 00000000 00:00 0
+7f5de4518000-7f5de4d18000 rwxp 00000000 00:00 0
+7f5de4d18000-7f5de4d19000 ---p 00000000 00:00 0
+7f5de4d19000-7f5de5519000 rwxp 00000000 00:00 0
+7f5de5519000-7f5de551a000 ---p 00000000 00:00 0
+7f5de551a000-7f5de5d1a000 rwxp 00000000 00:00 0
+7f5de5d1a000-7f5de5ec4000 r--p 00000000 08:01 5767769 /home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/libvk_swiftshader.so
+7f5de5ec4000-7f5de7e53000 r-xp 001aa000 08:01 5767769 /home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/libvk_swiftshader.so
+7f5de7e53000-7f5de975d000 r--p 02139000 08:01 5767769 /home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/libvk_swiftshader.so
+7f5de975d000-7f5de975e000 ---p 03a43000 08:01 5767769 /home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/libvk_swiftshader.so
+7f5de975e000-7f5de9901000 r--p 03a43000 08:01 5767769 /home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/libvk_swiftshader.so
+7f5de9901000-7f5de990a000 rw-p 03be6000 08:01 5767769 /home/ari/git/swiftshader/cmake-build-debug-gcc8/Linux/libvk_swiftshader.so
+7f5de990a000-7f5de9a45000 rw-p 00000000 00:00 0
+7f5de9a45000-7f5de9a46000 r--p 00000000 08:01 4204657 /usr/lib/x86_64-linux-gnu/libdl-2.30.so
+7f5de9a46000-7f5de9a48000 r-xp 00001000 08:01 4204657 /usr/lib/x86_64-linux-gnu/libdl-2.30.so
+7f5de9a48000-7f5de9a49000 r--p 00003000 08:01 4204657 /usr/lib/x86_64-linux-gnu/libdl-2.30.so
+7f5de9a49000-7f5de9a4a000 r--p 00003000 08:01 4204657 /usr/lib/x86_64-linux-gnu/libdl-2.30.so
+7f5de9a4a000-7f5de9a4b000 rw-p 00004000 08:01 4204657 /usr/lib/x86_64-linux-gnu/libdl-2.30.so
+7f5de9a4b000-7f5de9a70000 r--p 00000000 08:01 4204653 /usr/lib/x86_64-linux-gnu/libc-2.30.so
+7f5de9a70000-7f5de9be8000 r-xp 00025000 08:01 4204653 /usr/lib/x86_64-linux-gnu/libc-2.30.so
+7f5de9be8000-7f5de9c32000 r--p 0019d000 08:01 4204653 /usr/lib/x86_64-linux-gnu/libc-2.30.so
+7f5de9c32000-7f5de9c35000 r--p 001e6000 08:01 4204653 /usr/lib/x86_64-linux-gnu/libc-2.30.so
+7f5de9c35000-7f5de9c38000 rw-p 001e9000 08:01 4204653 /usr/lib/x86_64-linux-gnu/libc-2.30.so
+7f5de9c38000-7f5de9c3c000 rw-p 00000000 00:00 0
+7f5de9c3c000-7f5de9c3f000 r--p 00000000 08:01 4202731 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5de9c3f000-7f5de9c50000 r-xp 00003000 08:01 4202731 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5de9c50000-7f5de9c54000 r--p 00014000 08:01 4202731 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5de9c54000-7f5de9c55000 r--p 00017000 08:01 4202731 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5de9c55000-7f5de9c56000 rw-p 00018000 08:01 4202731 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f5de9c56000-7f5de9c58000 rw-p 00000000 00:00 0
+7f5de9c58000-7f5de9c67000 r--p 00000000 08:01 4204659 /usr/lib/x86_64-linux-gnu/libm-2.30.so
+7f5de9c67000-7f5de9d0e000 r-xp 0000f000 08:01 4204659 /usr/lib/x86_64-linux-gnu/libm-2.30.so
+7f5de9d0e000-7f5de9da5000 r--p 000b6000 08:01 4204659 /usr/lib/x86_64-linux-gnu/libm-2.30.so
+7f5de9da5000-7f5de9da6000 r--p 0014c000 08:01 4204659 /usr/lib/x86_64-linux-gnu/libm-2.30.so
+7f5de9da6000-7f5de9da7000 rw-p 0014d000 08:01 4204659 /usr/lib/x86_64-linux-gnu/libm-2.30.so
+7f5de9da7000-7f5de9e3d000 r--p 00000000 08:01 4203517 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7f5de9e3d000-7f5de9f3a000 r-xp 00096000 08:01 4203517 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7f5de9f3a000-7f5de9f84000 r--p 00193000 08:01 4203517 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7f5de9f84000-7f5de9f8f000 r--p 001dc000 08:01 4203517 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7f5de9f8f000-7f5de9f92000 rw-p 001e7000 08:01 4203517 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7f5de9f92000-7f5de9f95000 rw-p 00000000 00:00 0
+7f5de9f95000-7f5de9f9c000 r--p 00000000 08:01 4204681 /usr/lib/x86_64-linux-gnu/libpthread-2.30.so
+7f5de9f9c000-7f5de9fad000 r-xp 00007000 08:01 4204681 /usr/lib/x86_64-linux-gnu/libpthread-2.30.so
+7f5de9fad000-7f5de9fb2000 r--p 00018000 08:01 4204681 /usr/lib/x86_64-linux-gnu/libpthread-2.30.so
+7f5de9fb2000-7f5de9fb3000 r--p 0001c000 08:01 4204681 /usr/lib/x86_64-linux-gnu/libpthread-2.30.so
+7f5de9fb3000-7f5de9fb4000 rw-p 0001d000 08:01 4204681 /usr/lib/x86_64-linux-gnu/libpthread-2.30.so
+7f5de9fb4000-7f5de9fb8000 rw-p 00000000 00:00 0
+7f5de9fb8000-7f5de9fbb000 r--p 00000000 08:01 4204685 /usr/lib/x86_64-linux-gnu/librt-2.30.so
+7f5de9fbb000-7f5de9fbf000 r-xp 00003000 08:01 4204685 /usr/lib/x86_64-linux-gnu/librt-2.30.so
+7f5de9fbf000-7f5de9fc1000 r--p 00007000 08:01 4204685 /usr/lib/x86_64-linux-gnu/librt-2.30.so
+7f5de9fc1000-7f5de9fc2000 r--p 00008000 08:01 4204685 /usr/lib/x86_64-linux-gnu/librt-2.30.so
+7f5de9fc2000-7f5de9fc3000 rw-p 00009000 08:01 4204685 /usr/lib/x86_64-linux-gnu/librt-2.30.so
+7f5de9fc3000-7f5dea018000 r-xp 00000000 08:01 4212171 /usr/lib/x86_64-linux-gnu/libvulkan.so.1.1.130
+7f5dea018000-7f5dea217000 ---p 00055000 08:01 4212171 /usr/lib/x86_64-linux-gnu/libvulkan.so.1.1.130
+7f5dea217000-7f5dea218000 r--p 00054000 08:01 4212171 /usr/lib/x86_64-linux-gnu/libvulkan.so.1.1.130
+7f5dea218000-7f5dea219000 rw-p 00055000 08:01 4212171 /usr/lib/x86_64-linux-gnu/libvulkan.so.1.1.130
+7f5dea22c000-7f5dea22d000 r--p 00000000 08:01 4204649 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7f5dea22d000-7f5dea230000 r-xp 00001000 08:01 4204649 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7f5dea230000-7f5dea231000 r--p 00004000 08:01 4204649 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7f5dea231000-7f5dea232000 r--p 00004000 08:01 4204649 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7f5dea232000-7f5dea233000 rw-p 00005000 08:01 4204649 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7f5dea233000-7f5dea235000 rw-p 00000000 00:00 0
+7f5dea235000-7f5dea236000 r--p 00000000 08:01 4204645 /usr/lib/x86_64-linux-gnu/ld-2.30.so
+7f5dea236000-7f5dea258000 r-xp 00001000 08:01 4204645 /usr/lib/x86_64-linux-gnu/ld-2.30.so
+7f5dea258000-7f5dea260000 r--p 00023000 08:01 4204645 /usr/lib/x86_64-linux-gnu/ld-2.30.so
+7f5dea260000-7f5dea261000 rw-p 00000000 00:00 0
+7f5dea261000-7f5dea262000 r--p 0002b000 08:01 4204645 /usr/lib/x86_64-linux-gnu/ld-2.30.so
+7f5dea262000-7f5dea263000 rw-p 0002c000 08:01 4204645 /usr/lib/x86_64-linux-gnu/ld-2.30.so
+7f5dea263000-7f5dea264000 rw-p 00000000 00:00 0
+7ffedf107000-7ffedf126000 rwxp 00000000 00:00 0 [stack]
+7ffedf126000-7ffedf129000 rw-p 00000000 00:00 0
+7ffedf1ed000-7ffedf1f0000 r--p 00000000 00:00 0 [vvar]
+7ffedf1f0000-7ffedf1f1000 r-xp 00000000 00:00 0 [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0 [vsyscall]
+
+
+STDERR:
+/home/ari/git/swiftshader/src/Vulkan/VkStringify.cpp:466 WARNING: Stringify(VkStructureType v) is out of date. Please update it to match vulkan/vulkan_core.h
+/home/ari/git/swiftshader/src/Vulkan/libVulkan.cpp:2731 WARNING: pFeatures->pNext sType = 1000225002
+amber: /home/ari/git/swiftshader/third_party/llvm-7.0/llvm/lib/Support/APFloat.cpp:2108: llvm::APFloatBase::opStatus llvm::detail::IEEEFloat::convertToSignExtendedInteger(llvm::MutableArrayRef<long unsigned int>, unsigned int, bool, llvm::APFloatBase::roundingMode, bool*) const: Assertion `false && "LLVMAPFloat2108"' failed.
+Aborted (core dumped)
+
+
+
+STATUS CRASH
+
