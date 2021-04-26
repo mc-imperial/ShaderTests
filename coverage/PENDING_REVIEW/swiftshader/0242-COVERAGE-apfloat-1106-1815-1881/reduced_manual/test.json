@@ -1,0 +1,65 @@
+{
+  "binaries": [
+    {
+      "name": "glslangValidator",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "bd97b6f9f2132fa8df90431415e32dbab5c76db8"
+    },
+    {
+      "name": "spirv-dis",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "9215c1b7df0029f27807e8c8d7ec80532ce90a87"
+    },
+    {
+      "name": "spirv-val",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "9215c1b7df0029f27807e8c8d7ec80532ce90a87"
+    },
+    {
+      "name": "amber",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "5acb622459aa850d63f345ab4b8220468dce035b"
+    },
+    {
+      "name": "amber_apk",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "5acb622459aa850d63f345ab4b8220468dce035b"
+    },
+    {
+      "name": "amber_apk_test",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "5acb622459aa850d63f345ab4b8220468dce035b"
+    }
+  ],
+  "crash_signature": "llvmlostFraction_llvmdetailIEEEFloatdivideSignific",
+  "crash_regex_override": ".*COV: LLVMAPFloat1106.*COV: LLVMAPFloat1815.*COV: LLVMAPFloat1881.*",
+  "device": {
+    "binaries": [],
+    "device_properties": "  apiVersion: 1.1.96\n  driverVersion: 79691784\n  vendorID: 32902\n  deviceID: 6422\n  deviceType: integrated gpu\n  deviceName: Intel(R) HD Graphics 520 (Skylake GT2)\n  driverName: Intel open-source Mesa driver\n  driverInfo: Mesa 19.0.8\n",
+    "host": {},
+    "ignored_crash_signatures": [],
+    "name": "host"
+  },
+  "expected_status": "CRASH",
+  "glsl": {
+    "spirv_opt_args": []
+  }
+}
