@@ -1,0 +1,79 @@
+{
+  "time": {
+    "func": "glUniform1f",
+    "args": [
+      0.0
+    ],
+    "binding": 8
+  },
+  "resolution": {
+    "func": "glUniform2f",
+    "args": [
+      256.0,
+      256.0
+    ],
+    "binding": 9
+  },
+  "injectionSwitch": {
+    "func": "glUniform2f",
+    "args": [
+      0.0,
+      1.0
+    ],
+    "binding": 0
+  },
+  "GLF_live7injectionSwitch": {
+    "func": "glUniform2f",
+    "args": [
+      0.9733471,
+      0.8072889
+    ],
+    "binding": 1
+  },
+  "GLF_live5one": {
+    "func": "glUniform1f",
+    "args": [
+      0.7480059
+    ],
+    "binding": 2
+  },
+  "GLF_live4time": {
+    "func": "glUniform1f",
+    "args": [
+      0.40912318
+    ],
+    "binding": 3
+  },
+  "GLF_live4resolution": {
+    "func": "glUniform2f",
+    "args": [
+      0.34341842,
+      0.9095041
+    ],
+    "binding": 4
+  },
+  "GLF_live0one": {
+    "func": "glUniform1f",
+    "args": [
+      0.3230285
+    ],
+    "binding": 5
+  },
+  "GLF_live1injectionSwitch": {
+    "func": "glUniform2f",
+    "args": [
+      0.98409516,
+      0.34932417
+    ],
+    "binding": 6
+  },
+  "GLF_live3polynomial": {
+    "func": "glUniform3f",
+    "args": [
+      0.3433367,
+      0.76533794,
+      0.91839004
+    ],
+    "binding": 7
+  }
+}
