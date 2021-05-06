@@ -1,0 +1,67 @@
+{
+  "binaries": [
+    {
+      "name": "spirv-dis",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "77eb2b608e0c598899f6f7cf08c369a7a4925aef"
+    },
+    {
+      "name": "spirv-val",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "77eb2b608e0c598899f6f7cf08c369a7a4925aef"
+    },
+    {
+      "name": "amber",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "dd917bb97dd1a2957ca3e5d2d75f463e5ac91caa"
+    },
+    {
+      "name": "amber_apk",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "dd917bb97dd1a2957ca3e5d2d75f463e5ac91caa"
+    },
+    {
+      "name": "amber_apk_test",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "dd917bb97dd1a2957ca3e5d2d75f463e5ac91caa"
+    }
+  ],
+  "common_spirv_args": [],
+  "crash_regex_override": "",
+  "crash_signature": "libllvmglnextso_00008f34d14d29b24549b833abd13872ae",
+  "derived_from": "stable_maze-O",
+  "device": {
+    "android": {
+      "build_fingerprint": "google/redfin/redfin:S/SPP1.210122.022/7158812:user/release-keys",
+      "model": "Pixel_5",
+      "serial": "0B021FDD4001WZ"
+    },
+    "binaries": [],
+    "device_properties": "  apiVersion: 1.1.128\n  driverVersion: 2149490688\n  vendorID: 20803\n  deviceID: 100794368\n  deviceType: integrated gpu\n  deviceName: Adreno (TM) 620\n  driverName: Qualcomm Technologies Inc. Adreno Vulkan Driver\n  driverInfo: Driver Build: 4783c89, I46ff5fc46f, 1606807783\nDate: 11/30/20\nCompiler Version: EV031.31.04.01\nDriver Branch: QPR2\n\n  minSubgroupSize: 64\n  maxSubgroupSize: 128\n  maxComputeWorkgroupSubgroups: 16\n  requiredSubgroupSizeStages: comp\n",
+    "ignored_crash_signatures": [
+      "compile_error",
+      "libllvmglnextso_0000e996c91808ee26a66525968cb74e1e"
+    ],
+    "name": "Pixel_5_0B021FDD4001WZ"
+  },
+  "expected_status": "CRASH",
+  "skip_validation": false,
+  "spirv_fuzz": {
+    "spirv_opt_args": []
+  }
+}
