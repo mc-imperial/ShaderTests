@@ -1,0 +1,18 @@
+{
+  "one": {
+    "func": "glUniform1i",
+    "args": [
+      1
+    ],
+    "binding": 1
+  },
+  "_GLF_uniform_int_values": {
+    "func": "glUniform1iv",
+    "args": [
+      1,
+      0
+    ],
+    "count": 0,
+    "binding": 0
+  }
+}
