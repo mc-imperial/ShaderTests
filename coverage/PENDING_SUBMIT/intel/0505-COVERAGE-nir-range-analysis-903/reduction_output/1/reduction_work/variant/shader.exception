@@ -1,0 +1,12 @@
+java.lang.NumberFormatException: For input string: "ffc00000"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:583)
+	at com.graphicsfuzz.common.ast.expr.IntConstantExpr.getNumericValue(IntConstantExpr.java:46)
+	at com.graphicsfuzz.reducer.reductionopportunities.LiteralToUniformReductionOpportunity.applyReductionImpl(LiteralToUniformReductionOpportunity.java:70)
+	at com.graphicsfuzz.reducer.reductionopportunities.AbstractReductionOpportunity.applyReduction(AbstractReductionOpportunity.java:39)
+	at com.graphicsfuzz.reducer.glslreducers.SystematicReductionPass.tryApplyReduction(SystematicReductionPass.java:77)
+	at com.graphicsfuzz.reducer.glslreducers.SystematicReductionPassManager.applyReduction(SystematicReductionPassManager.java:78)
+	at com.graphicsfuzz.reducer.ReductionDriver.doReduction(ReductionDriver.java:286)
+	at com.graphicsfuzz.reducer.tool.GlslReduce.doReductionHelper(GlslReduce.java:537)
+	at com.graphicsfuzz.reducer.tool.GlslReduce.mainHelper(GlslReduce.java:460)
+	at com.graphicsfuzz.reducer.tool.GlslReduce.main(GlslReduce.java:229)
