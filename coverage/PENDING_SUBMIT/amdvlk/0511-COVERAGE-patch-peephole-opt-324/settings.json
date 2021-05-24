@@ -1,0 +1,197 @@
+{
+  "_comment": "https://github.com/google/graphicsfuzz/blob/master/gfauto/gfauto/settings.proto",
+  "common_spirv_args": [],
+  "custom_binaries": [],
+  "device_list": {
+    "active_device_names": [
+      "host_preprocessor",
+      "swift_shader",
+      "host"
+    ],
+    "devices": [
+      {
+        "binaries": [],
+        "device_properties": "",
+        "ignored_crash_signatures": [],
+        "name": "host_preprocessor",
+        "preprocess": {}
+      },
+      {
+        "binaries": [
+          {
+            "name": "swift_shader_icd",
+            "path": "",
+            "tags": [
+              "Debug"
+            ],
+            "version": "b46b97c10c10fbd5dc0ff1d1d101839cbc76a995"
+          }
+        ],
+        "device_properties": "  apiVersion: 1.2.0\n  driverVersion: 20971520\n  vendorID: 6880\n  deviceID: 49374\n  deviceType: cpu\n  deviceName: SwiftShader Device (LLVM 10.0.0)\n  driverName: SwiftShader driver\n  driverInfo: \n",
+        "ignored_crash_signatures": [],
+        "name": "swift_shader",
+        "swift_shader": {}
+      },
+      {
+        "binaries": [],
+        "device_properties": "  apiVersion: 1.2.174\n  driverVersion: 8388792\n  vendorID: 4098\n  deviceID: 29471\n  deviceType: discrete gpu\n  deviceName: AMD Radeon RX 5700 XT\n  driverName: AMD open-source driver\n  driverInfo: \n  minSubgroupSize: 32\n  maxSubgroupSize: 64\n  maxComputeWorkgroupSubgroups: 4294967295\n  requiredSubgroupSizeStages: \n",
+        "host": {
+          "custom_launcher": []
+        },
+        "ignored_crash_signatures": [],
+        "name": "host"
+      },
+      {
+        "binaries": [
+          {
+            "name": "amdllpc",
+            "path": "",
+            "tags": [
+              "Debug"
+            ],
+            "version": "8acc216dbfa3f9e5034cbdfaf073a1495965edcf"
+          }
+        ],
+        "device_properties": "",
+        "ignored_crash_signatures": [],
+        "name": "amdllpc",
+        "shader_compiler": {
+          "args": [
+            "-val=false",
+            "-gfxip=9.0.0",
+            "-verify-ir",
+            "-auto-layout-desc"
+          ],
+          "binary": "amdllpc"
+        }
+      }
+    ]
+  },
+  "extra_graphics_fuzz_generate_args": [],
+  "extra_graphics_fuzz_reduce_args": [],
+  "extra_spirv_fuzz_generate_args": [],
+  "extra_spirv_fuzz_shrink_args": [],
+  "extra_spirv_reduce_args": [],
+  "keep_reduction_work": false,
+  "latest_binary_versions": [
+    {
+      "name": "glslangValidator",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "6fe560f74f472726027e4059692c6eb1e7d972dc"
+    },
+    {
+      "name": "spirv-opt",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "0afe1f2b3fa2e71b3b426dcf9a2a378fbf24c45c"
+    },
+    {
+      "name": "spirv-dis",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "0afe1f2b3fa2e71b3b426dcf9a2a378fbf24c45c"
+    },
+    {
+      "name": "spirv-as",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "0afe1f2b3fa2e71b3b426dcf9a2a378fbf24c45c"
+    },
+    {
+      "name": "spirv-val",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "0afe1f2b3fa2e71b3b426dcf9a2a378fbf24c45c"
+    },
+    {
+      "name": "spirv-fuzz",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "0afe1f2b3fa2e71b3b426dcf9a2a378fbf24c45c"
+    },
+    {
+      "name": "spirv-reduce",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "0afe1f2b3fa2e71b3b426dcf9a2a378fbf24c45c"
+    },
+    {
+      "name": "swift_shader_icd",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "b46b97c10c10fbd5dc0ff1d1d101839cbc76a995"
+    },
+    {
+      "name": "amber",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "8797ee109e7a6ea4d1f58f387f757545fa35325b"
+    },
+    {
+      "name": "amber_apk",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "8797ee109e7a6ea4d1f58f387f757545fa35325b"
+    },
+    {
+      "name": "amber_apk_test",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "8797ee109e7a6ea4d1f58f387f757545fa35325b"
+    },
+    {
+      "name": "amber_vulkan_loader",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "8797ee109e7a6ea4d1f58f387f757545fa35325b"
+    },
+    {
+      "name": "graphicsfuzz-tool",
+      "path": "",
+      "tags": [],
+      "version": "5baf89421137e3854363f0af885dcd2ed3cad1cb"
+    },
+    {
+      "name": "amdllpc",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "8acc216dbfa3f9e5034cbdfaf073a1495965edcf"
+    }
+  ],
+  "legacy_graphics_fuzz_vulkan_arg": false,
+  "maximum_duplicate_crashes": 3,
+  "maximum_fuzz_failures": 10,
+  "only_reduce_signature_regex": "",
+  "reduce_bad_images": true,
+  "reduce_crashes": true,
+  "reduce_tool_crashes": true,
+  "skip_semantics_changing_reduction": false,
+  "spirv_opt_just_o": false
+}
