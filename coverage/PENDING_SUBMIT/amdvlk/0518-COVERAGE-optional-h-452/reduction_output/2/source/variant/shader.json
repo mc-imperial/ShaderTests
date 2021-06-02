@@ -1,0 +1,39 @@
+{
+  "three": {
+    "func": "glUniform1i",
+    "args": [
+      3
+    ],
+    "count": 0,
+    "binding": 3
+  },
+  "_GLF_uniform_int_values": {
+    "func": "glUniform1iv",
+    "args": [
+      20,
+      1,
+      0,
+      2
+    ],
+    "count": 0,
+    "binding": 2
+  },
+  "_GLF_uniform_float_values": {
+    "func": "glUniform1fv",
+    "args": [
+      1.0,
+      0.0,
+      1.7
+    ],
+    "count": 0,
+    "binding": 1
+  },
+  "_GLF_uniform_uint_values": {
+    "func": "glUniform1uiv",
+    "args": [
+      60433
+    ],
+    "count": 0,
+    "binding": 0
+  }
+}
