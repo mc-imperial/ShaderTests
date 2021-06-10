@@ -19,7 +19,7 @@ void main()
     int a = 0;
 
     // Always true.
-    if (arr[_int_1] == _int_1)
+    if (arr[_int_1] == 2)
     {
         // An empty for loop doing nothing.
         for(int i = _int_0; i < _int_10; i++) {}
