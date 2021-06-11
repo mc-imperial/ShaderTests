@@ -1,0 +1,30 @@
+{
+  "two": {
+    "func": "glUniform1f",
+    "args": [
+      2.0
+    ],
+    "binding": 2
+  },
+  "_GLF_uniform_float_values": {
+    "func": "glUniform1fv",
+    "args": [
+      1.0,
+      0.0,
+      3.0
+    ],
+    "count": 0,
+    "binding": 1
+  },
+  "_GLF_uniform_int_values": {
+    "func": "glUniform1iv",
+    "args": [
+      1,
+      0,
+      2,
+      3
+    ],
+    "count": 0,
+    "binding": 0
+  }
+}
