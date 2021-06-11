@@ -1,0 +1,70 @@
+{
+  "binaries": [
+    {
+      "name": "glslangValidator",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "c0bcfaf3bae917c57bca49897eb7430cdf256c70"
+    },
+    {
+      "name": "spirv-dis",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "a0370efd589be33d5d9a85cfde2f85841b3755af"
+    },
+    {
+      "name": "spirv-val",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "a0370efd589be33d5d9a85cfde2f85841b3755af"
+    },
+    {
+      "name": "amber",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "cc1dec6104f5e0e656d8439296265a19393628df"
+    },
+    {
+      "name": "amber_apk",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "cc1dec6104f5e0e656d8439296265a19393628df"
+    },
+    {
+      "name": "amber_apk_test",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "cc1dec6104f5e0e656d8439296265a19393628df"
+    }
+  ],
+  "common_spirv_args": [],
+  "crash_regex_override": ".*CfgH170.*LoopInfoH985.*",
+  "crash_signature": "bool_llvmcontainsIrreducibleCFGRPOTraversalT_const",
+  "derived_from": "colorgrid_modulo",
+  "device": {
+    "binaries": [],
+    "device_properties": "  apiVersion: 1.2.145\n  driverVersion: 83898368\n  vendorID: 32902\n  deviceID: 16024\n  deviceType: integrated gpu\n  deviceName: Intel(R) UHD Graphics 630 (CFL GT2)\n  driverName: Intel open-source Mesa driver\n  driverInfo: Mesa 20.3.0-rc1 (git-f44896c12a)\n  minSubgroupSize: 8\n  maxSubgroupSize: 32\n  maxComputeWorkgroupSubgroups: 56\n  requiredSubgroupSizeStages: comp\n",
+    "host": {
+      "custom_launcher": []
+    },
+    "ignored_crash_signatures": [],
+    "name": "host"
+  },
+  "expected_status": "CRASH",
+  "glsl": {
+    "spirv_opt_args": []
+  },
+  "skip_validation": false
+}
