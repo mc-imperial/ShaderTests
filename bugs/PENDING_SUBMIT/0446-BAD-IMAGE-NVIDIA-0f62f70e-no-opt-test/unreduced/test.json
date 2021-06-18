@@ -1,0 +1,72 @@
+{
+  "binaries": [
+    {
+      "name": "glslangValidator",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "2e99822c148ce2cd3c2420041c13c17010a3e77c"
+    },
+    {
+      "name": "spirv-dis",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "ef3290bbea35935ba8fd623970511ed9f045bbd7"
+    },
+    {
+      "name": "spirv-val",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "ef3290bbea35935ba8fd623970511ed9f045bbd7"
+    },
+    {
+      "name": "amber",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "dabae26164714abf951c6815a2b4513260f7c6a4"
+    },
+    {
+      "name": "amber_apk",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "dabae26164714abf951c6815a2b4513260f7c6a4"
+    },
+    {
+      "name": "amber_apk_test",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "dabae26164714abf951c6815a2b4513260f7c6a4"
+    }
+  ],
+  "common_spirv_args": [],
+  "crash_regex_override": "",
+  "crash_signature": "bad_image",
+  "derived_from": "stable_sampler_loop",
+  "device": {
+    "android": {
+      "build_fingerprint": "NVIDIA/mdarcy/mdarcy:9/PPR1.180610.011/5485876_2426.5720:user/release-keys",
+      "model": "SHIELD_Android_TV",
+      "serial": "SHIELDTV1:5555"
+    },
+    "binaries": [],
+    "device_properties": "  apiVersion: 1.1.85\n  driverVersion: 1753219072\n  vendorID: 4318\n  deviceID: 2464875479\n  deviceType: integrated gpu\n  deviceName: NVIDIA Tegra X1 (rev B) (nvgpu)\n  driverName: NVIDIA\n  driverInfo: 418.00\n",
+    "ignored_crash_signatures": [],
+    "name": "SHIELD_Android_TV_SHIELDTV1:5555"
+  },
+  "expected_status": "CRASH",
+  "glsl": {
+    "spirv_opt_args": []
+  },
+  "skip_validation": false
+}
