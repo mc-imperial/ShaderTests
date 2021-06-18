@@ -1,0 +1,324 @@
+#!amber
+
+# Optimized using spirv-opt with the following arguments:
+# '-O'
+# spirv-opt commit hash: 1f2fcddd3963b9c29bf360daf7656c5977c2aadd
+
+
+
+SET ENGINE_DATA fence_timeout_ms 60000
+
+SHADER vertex texgen_vert PASSTHROUGH
+
+SHADER fragment texgen_frag GLSL
+#version 430
+precision highp float;
+
+layout(location = 0) out vec4 _GLF_color;
+
+void main()
+{
+ _GLF_color = vec4(
+ gl_FragCoord.x * (1.0 / 256.0),
+ (int(gl_FragCoord.x) ^ int(gl_FragCoord.y)) * (1.0 / 256.0),
+ gl_FragCoord.y * (1.0 / 256.0),
+ 1.0);
+}
+END
+BUFFER default_texture FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics texgen_pipeline
+  ATTACH texgen_vert
+  ATTACH texgen_frag
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER default_texture AS color LOCATION 0
+END
+
+CLEAR_COLOR texgen_pipeline 0 0 0 255
+CLEAR texgen_pipeline
+RUN texgen_pipeline DRAW_RECT POS 0 0  SIZE 256 256
+
+SHADER vertex reference_vertex_shader PASSTHROUGH
+
+# reference_fragment_shader is derived from the following GLSL:
+# #version 320 es
+# precision highp float;
+#
+# layout(location = 0) out vec4 _GLF_color;
+#
+# layout(set = 0, binding = 0) uniform sampler2D tex;
+#
+# void main()
+# {
+#  int i = 0;
+#  vec2 uvstep = vec2(1.0) * (1.0 / 256.0);
+#  float slope = 2.0 / 256.0;
+#  vec2 coord = gl_FragCoord.xy * (1.0 / 256.0);
+#  float refh = texture(tex, coord).y;
+#  coord -= uvstep;
+#  refh += slope;
+#  float h = texture(tex, coord).y;
+#  while(h < refh && i < 32)
+#   {
+#    coord -= uvstep;
+#    refh += slope;
+#    h = texture(tex, coord).y;
+#    i ++;
+#   }
+#  _GLF_color = vec4(vec3(float(i) * (1.0 / 32.0)), 1.0);
+# }
+SHADER fragment reference_fragment_shader SPIRV-ASM TARGET_ENV spv1.0
+; SPIR-V
+; Version: 1.0
+; Generator: Khronos Glslang Reference Front End; 10
+; Bound: 91
+; Schema: 0
+               OpCapability Shader
+          %1 = OpExtInstImport "GLSL.std.450"
+               OpMemoryModel Logical GLSL450
+               OpEntryPoint Fragment %4 "main" %22 %75
+               OpExecutionMode %4 OriginUpperLeft
+               OpSource ESSL 320
+               OpName %4 "main"
+               OpName %22 "gl_FragCoord"
+               OpName %30 "tex"
+               OpName %75 "_GLF_color"
+               OpDecorate %22 BuiltIn FragCoord
+               OpDecorate %30 RelaxedPrecision
+               OpDecorate %30 DescriptorSet 0
+               OpDecorate %30 Binding 0
+               OpDecorate %31 RelaxedPrecision
+               OpDecorate %33 RelaxedPrecision
+               OpDecorate %36 RelaxedPrecision
+               OpDecorate %46 RelaxedPrecision
+               OpDecorate %47 RelaxedPrecision
+               OpDecorate %69 RelaxedPrecision
+               OpDecorate %70 RelaxedPrecision
+               OpDecorate %73 RelaxedPrecision
+               OpDecorate %75 Location 0
+               OpDecorate %89 RelaxedPrecision
+          %2 = OpTypeVoid
+          %3 = OpTypeFunction %2
+          %6 = OpTypeInt 32 1
+          %9 = OpConstant %6 0
+         %10 = OpTypeFloat 32
+         %11 = OpTypeVector %10 2
+         %14 = OpConstant %10 0.00390625
+         %15 = OpConstantComposite %11 %14 %14
+         %18 = OpConstant %10 0.0078125
+         %20 = OpTypeVector %10 4
+         %21 = OpTypePointer Input %20
+         %22 = OpVariable %21 Input
+         %27 = OpTypeImage %10 2D 0 0 0 1 Unknown
+         %28 = OpTypeSampledImage %27
+         %29 = OpTypePointer UniformConstant %28
+         %30 = OpVariable %29 UniformConstant
+         %55 = OpTypeBool
+         %58 = OpConstant %6 32
+         %72 = OpConstant %6 1
+         %74 = OpTypePointer Output %20
+         %75 = OpVariable %74 Output
+         %78 = OpConstant %10 0.03125
+         %82 = OpConstant %10 1
+          %4 = OpFunction %2 None %3
+          %5 = OpLabel
+         %23 = OpLoad %20 %22
+         %24 = OpVectorShuffle %11 %23 %23 0 1
+         %25 = OpVectorTimesScalar %11 %24 %14
+         %31 = OpLoad %28 %30
+         %33 = OpImageSampleImplicitLod %20 %31 %25
+         %36 = OpCompositeExtract %10 %33 1
+         %39 = OpFSub %11 %25 %15
+         %42 = OpFAdd %10 %36 %18
+         %46 = OpImageSampleImplicitLod %20 %31 %39
+         %47 = OpCompositeExtract %10 %46 1
+               OpBranch %48
+         %48 = OpLabel
+         %90 = OpPhi %11 %39 %5 %63 %49
+         %89 = OpPhi %6 %9 %5 %73 %49
+         %88 = OpPhi %10 %42 %5 %66 %49
+         %87 = OpPhi %10 %47 %5 %70 %49
+         %56 = OpFOrdLessThan %55 %87 %88
+         %59 = OpSLessThan %55 %89 %58
+         %60 = OpLogicalAnd %55 %56 %59
+               OpLoopMerge %50 %49 None
+               OpBranchConditional %60 %49 %50
+         %49 = OpLabel
+         %63 = OpFSub %11 %90 %15
+         %66 = OpFAdd %10 %88 %18
+         %69 = OpImageSampleImplicitLod %20 %31 %63
+         %70 = OpCompositeExtract %10 %69 1
+         %73 = OpIAdd %6 %89 %72
+               OpBranch %48
+         %50 = OpLabel
+         %77 = OpConvertSToF %10 %89
+         %79 = OpFMul %10 %77 %78
+         %86 = OpCompositeConstruct %20 %79 %79 %79 %82
+               OpStore %75 %86
+               OpReturn
+               OpFunctionEnd
+END
+
+# uniforms for reference
+
+# tex
+SAMPLER reference_tex
+
+
+BUFFER reference_framebuffer FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics reference_pipeline
+  ATTACH reference_vertex_shader
+  ATTACH reference_fragment_shader
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER reference_framebuffer AS color LOCATION 0
+  BIND BUFFER default_texture AS combined_image_sampler SAMPLER reference_tex DESCRIPTOR_SET 0 BINDING 0
+END
+CLEAR_COLOR reference_pipeline 0 0 0 255
+
+CLEAR reference_pipeline
+RUN reference_pipeline DRAW_RECT POS 0 0 SIZE 256 256
+
+
+SHADER vertex variant_vertex_shader PASSTHROUGH
+
+# variant_fragment_shader is derived from the following GLSL:
+# #version 320 es
+#
+# precision highp float;
+#
+# layout(location = 0) out vec4 _GLF_color;
+#
+# layout(set = 0, binding = 0) uniform sampler2D tex;
+#
+# void main()
+# {
+#  int i = 0;
+#  vec2 uvstep = vec2(1.0) * (1.0 / 256.0);
+#  float slope = 2.0 / 256.0;
+#  vec2 coord = gl_FragCoord.xy * (1.0 / 256.0);
+#  float refh = texture(tex, coord).y;
+#  coord -= uvstep;
+#  refh += slope;
+#  float h = (mix(vec4((true ? texture(tex, coord) : (vec4(1.0)))[0], 1.0, 1.0, 1.0), vec4(1.0, (true ? texture(tex, coord) : _GLF_color)[1], (true ? texture(tex, coord) : (vec4(1.0)))[2], (true ? texture(tex, coord) : (vec4(1.0)))[3]), bvec4(false, true, true, true))).y;
+#  while(h < refh && i < 32)
+#   {
+#    coord -= uvstep;
+#    refh += slope;
+#    h = texture(tex, coord).y;
+#    i ++;
+#   }
+#  _GLF_color = vec4(vec3(float(i) * (1.0 / 32.0)), 1.0);
+# }
+SHADER fragment variant_fragment_shader SPIRV-ASM TARGET_ENV spv1.0
+; SPIR-V
+; Version: 1.0
+; Generator: Khronos Glslang Reference Front End; 10
+; Bound: 141
+; Schema: 0
+               OpCapability Shader
+          %1 = OpExtInstImport "GLSL.std.450"
+               OpMemoryModel Logical GLSL450
+               OpEntryPoint Fragment %4 "main" %22 %68
+               OpExecutionMode %4 OriginUpperLeft
+               OpSource ESSL 320
+               OpName %4 "main"
+               OpName %22 "gl_FragCoord"
+               OpName %30 "tex"
+               OpName %68 "_GLF_color"
+               OpDecorate %22 BuiltIn FragCoord
+               OpDecorate %30 RelaxedPrecision
+               OpDecorate %30 DescriptorSet 0
+               OpDecorate %30 Binding 0
+               OpDecorate %31 RelaxedPrecision
+               OpDecorate %33 RelaxedPrecision
+               OpDecorate %36 RelaxedPrecision
+               OpDecorate %52 RelaxedPrecision
+               OpDecorate %68 Location 0
+               OpDecorate %118 RelaxedPrecision
+               OpDecorate %119 RelaxedPrecision
+               OpDecorate %122 RelaxedPrecision
+               OpDecorate %139 RelaxedPrecision
+          %2 = OpTypeVoid
+          %3 = OpTypeFunction %2
+          %6 = OpTypeInt 32 1
+          %9 = OpConstant %6 0
+         %10 = OpTypeFloat 32
+         %11 = OpTypeVector %10 2
+         %14 = OpConstant %10 0.00390625
+         %15 = OpConstantComposite %11 %14 %14
+         %18 = OpConstant %10 0.0078125
+         %20 = OpTypeVector %10 4
+         %21 = OpTypePointer Input %20
+         %22 = OpVariable %21 Input
+         %27 = OpTypeImage %10 2D 0 0 0 1 Unknown
+         %28 = OpTypeSampledImage %27
+         %29 = OpTypePointer UniformConstant %28
+         %30 = OpVariable %29 UniformConstant
+         %44 = OpTypeBool
+         %54 = OpConstant %10 1
+         %67 = OpTypePointer Output %20
+         %68 = OpVariable %67 Output
+        %107 = OpConstant %6 32
+        %121 = OpConstant %6 1
+        %125 = OpConstant %10 0.03125
+          %4 = OpFunction %2 None %3
+          %5 = OpLabel
+         %23 = OpLoad %20 %22
+         %24 = OpVectorShuffle %11 %23 %23 0 1
+         %25 = OpVectorTimesScalar %11 %24 %14
+         %31 = OpLoad %28 %30
+         %33 = OpImageSampleImplicitLod %20 %31 %25
+         %36 = OpCompositeExtract %10 %33 1
+         %39 = OpFSub %11 %25 %15
+         %42 = OpFAdd %10 %36 %18
+         %52 = OpImageSampleImplicitLod %20 %31 %39
+         %71 = OpCompositeExtract %10 %52 1
+               OpBranch %98
+         %98 = OpLabel
+        %140 = OpPhi %11 %39 %5 %112 %99
+        %139 = OpPhi %6 %9 %5 %122 %99
+        %138 = OpPhi %10 %42 %5 %115 %99
+        %137 = OpPhi %10 %71 %5 %119 %99
+        %105 = OpFOrdLessThan %44 %137 %138
+        %108 = OpSLessThan %44 %139 %107
+        %109 = OpLogicalAnd %44 %105 %108
+               OpLoopMerge %100 %99 None
+               OpBranchConditional %109 %99 %100
+         %99 = OpLabel
+        %112 = OpFSub %11 %140 %15
+        %115 = OpFAdd %10 %138 %18
+        %118 = OpImageSampleImplicitLod %20 %31 %112
+        %119 = OpCompositeExtract %10 %118 1
+        %122 = OpIAdd %6 %139 %121
+               OpBranch %98
+        %100 = OpLabel
+        %124 = OpConvertSToF %10 %139
+        %126 = OpFMul %10 %124 %125
+        %132 = OpCompositeConstruct %20 %126 %126 %126 %54
+               OpStore %68 %132
+               OpReturn
+               OpFunctionEnd
+END
+
+# uniforms for variant
+
+# tex
+SAMPLER variant_tex
+
+
+BUFFER variant_framebuffer FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics variant_pipeline
+  ATTACH variant_vertex_shader
+  ATTACH variant_fragment_shader
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER variant_framebuffer AS color LOCATION 0
+  BIND BUFFER default_texture AS combined_image_sampler SAMPLER variant_tex DESCRIPTOR_SET 0 BINDING 0
+END
+CLEAR_COLOR variant_pipeline 0 0 0 255
+
+CLEAR variant_pipeline
+RUN variant_pipeline DRAW_RECT POS 0 0 SIZE 256 256
+
+EXPECT reference_framebuffer EQ_HISTOGRAM_EMD_BUFFER variant_framebuffer TOLERANCE 0.005
