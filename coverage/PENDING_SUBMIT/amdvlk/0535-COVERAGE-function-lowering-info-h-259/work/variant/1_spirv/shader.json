@@ -1,0 +1,35 @@
+{
+  "tex": {
+    "func": "sampler2D",
+    "texture": "DEFAULT",
+    "binding": 2
+  },
+  "one": {
+    "func": "glUniform1f",
+    "args": [
+      1.0
+    ],
+    "push_constant": true
+  },
+  "_GLF_uniform_int_values": {
+    "func": "glUniform1iv",
+    "args": [
+      0,
+      1,
+      4
+    ],
+    "count": 0,
+    "binding": 1
+  },
+  "_GLF_uniform_float_values": {
+    "func": "glUniform1fv",
+    "args": [
+      0.0,
+      1.0,
+      255.0,
+      256.0
+    ],
+    "count": 0,
+    "binding": 0
+  }
+}
