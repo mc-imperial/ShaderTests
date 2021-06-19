@@ -1,0 +1,469 @@
+Running test on device:
+host
+Copying reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced/variant/shader.json to reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/0_glsl/shader.json
+Copying reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced/variant/shader.frag to reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/0_glsl/shader.frag
+Copying reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/0_glsl/shader.json to reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/1_spirv/shader.json
+Exec:['/usr/bin/catchsegv', '/home/kolmio/gfauto_run/binaries/built_in/gfbuild-glslang-2e99822c148ce2cd3c2420041c13c17010a3e77c-Linux_x64_Debug/glslang/bin/glslangValidator', '-V', '-o', 'reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/1_spirv/shader.frag.spv', 'reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/0_glsl/shader.frag']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+Copying reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/1_spirv/shader.json to reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/1_spirv_asm/shader.json
+Exec:['/usr/bin/catchsegv', '/home/kolmio/gfauto_run/binaries/built_in/gfbuild-SPIRV-Tools-ef3290bbea35935ba8fd623970511ed9f045bbd7-Linux_x64_Debug/SPIRV-Tools/bin/spirv-dis', 'reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/1_spirv/shader.frag.spv', '-o', 'reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/1_spirv_asm/shader.frag.asm', '--raw-id']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+Exec:['/usr/bin/catchsegv', '/home/kolmio/gfauto_run/binaries/built_in/gfbuild-SPIRV-Tools-ef3290bbea35935ba8fd623970511ed9f045bbd7-Linux_x64_Debug/SPIRV-Tools/bin/spirv-val', 'reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/1_spirv/shader.frag.spv']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+Amberfy: ['reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant/1_spirv_asm/shader.json'] to reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/test.amber
+Exec (verbose):['/usr/bin/catchsegv', '/home/kolmio/gfauto_run/binaries/built_in/gfbuild-amber-dabae26164714abf951c6815a2b4513260f7c6a4-Linux_x64_Debug/amber/bin/amber', 'reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/test.amber', '--log-graphics-calls-time', '--disable-spirv-val', '-d', '-I', 'variant_framebuffer', '-i', 'reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/variant.png', '-I', 'reference_framebuffer', '-i', 'reports/crashes/void_acoanonymousbegin_divergent_if_elseacoisel_co/4125ce8d_no_opt_test_host/summary/unreduced_result/reference.png']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 134
+STDOUT:
+Loading Vulkan Pointers
+vkGetPhysicalDeviceProperties
+time vkGetPhysicalDeviceProperties                   3442 ns
+vkGetPhysicalDeviceMemoryProperties
+time vkGetPhysicalDeviceMemoryProperties              470 ns
+vkCreateCommandPool
+time vkCreateCommandPool                             3463 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            6905 ns
+vkCreateShaderModule
+time vkCreateShaderModule                          264796 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties             3663 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                       43225 ns
+vkCreateFence
+time vkCreateFence                                   6836 ns
+vkCreateRenderPass
+time vkCreateRenderPass                              1301 ns
+vkCreateImage
+time vkCreateImage                                  24760 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     391 ns
+vkAllocateMemory
+time vkAllocateMemory                               11339 ns
+vkBindImageMemory
+time vkBindImageMemory                                230 ns
+vkCreateImageView
+time vkCreateImageView                               3043 ns
+vkCreateBuffer
+time vkCreateBuffer                                   410 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    181 ns
+vkAllocateMemory
+time vkAllocateMemory                               23379 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               180 ns
+vkMapMemory
+time vkMapMemory                                     3123 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                              480 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                           22729 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3012 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         34909 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             800 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             731 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            1471 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                          16303 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                               821 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             640 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                         11389 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             711 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              3512 ns
+vkResetFences
+time vkResetFences                                   5905 ns
+vkQueueSubmit
+time vkQueueSubmit                                 532345 ns
+vkWaitForFences
+time vkWaitForFences                               348005 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                             621 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                             311 ns
+vkCreateBuffer
+time vkCreateBuffer                                   541 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    160 ns
+vkAllocateMemory
+time vkAllocateMemory                               11309 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               180 ns
+vkMapMemory
+time vkMapMemory                                     3192 ns
+vkCreateBuffer
+time vkCreateBuffer                                   300 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    110 ns
+vkAllocateMemory
+time vkAllocateMemory                                7556 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               100 ns
+vkMapMemory
+time vkMapMemory                                     2552 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1061 ns
+vkResetFences
+time vkResetFences                                   1171 ns
+vkQueueSubmit
+time vkQueueSubmit                                  10299 ns
+vkWaitForFences
+time vkWaitForFences                               421114 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                             721 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                             200 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             960 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             580 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              4014 ns
+vkResetFences
+time vkResetFences                                   1221 ns
+vkQueueSubmit
+time vkQueueSubmit                                   8657 ns
+vkWaitForFences
+time vkWaitForFences                               116446 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                             511 ns
+vkCreateDescriptorSetLayout
+time vkCreateDescriptorSetLayout                     1761 ns
+vkCreateDescriptorPool
+time vkCreateDescriptorPool                         12180 ns
+vkAllocateDescriptorSets
+time vkAllocateDescriptorSets                         590 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                          3593 ns
+vkCreateGraphicsPipelines
+*** Aborted
+Register dump:
+
+ RAX: 0000000000000000   RBX: 00007fa0d86fc740   RCX: 00007fa0d874d18b
+ RDX: 0000000000000000   RSI: 00007ffd8ec6bfd0   RDI: 0000000000000002
+ RBP: 00007fa0d88c2588   R8 : 0000000000000000   R9 : 00007ffd8ec6bfd0
+ R10: 0000000000000008   R11: 0000000000000246   R12: 00007fa0d7f3a4a0
+ R13: 0000000000002677   R14: 00007fa0d7f3e5e2   R15: 00007ffd8ec73300
+ RSP: 00007ffd8ec6bfd0
+
+ RIP: 00007fa0d874d18b   EFLAGS: 00000246
+
+ CS: 0033   FS: 0000   GS: 0000
+
+ Trap: 00000000   Error: 00000000   OldMask: 00000000   CR2: 00000000
+
+ FPUCW: 0000037f   FPUSW: 00000000   TAG: 00000000
+ RIP: 00000000   RDP: 00000000
+
+ ST(0) 0000 0000000000000000   ST(1) 0000 0000000000000000
+ ST(2) 0000 0000000000000000   ST(3) 0000 0000000000000000
+ ST(4) 0000 0000000000000000   ST(5) ffff b000000000000000
+ ST(6) ffff d000000000000000   ST(7) d000 d000000000000000
+ mxcsr: 1fa2
+ XMM0:  000000000000000000000000ffffffff XMM1:  000000000000000000000000ffffffff
+ XMM2:  000000000000000000000000ffffffff XMM3:  000000000000000000000000ffffffff
+ XMM4:  000000000000000000000000ffffffff XMM5:  000000000000000000000000ffffffff
+ XMM6:  000000000000000000000000ffffffff XMM7:  000000000000000000000000ffffffff
+ XMM8:  000000000000000000000000ffffffff XMM9:  000000000000000000000000ffffffff
+ XMM10: 000000000000000000000000ffffffff XMM11: 000000000000000000000000ffffffff
+ XMM12: 000000000000000000000000ffffffff XMM13: 000000000000000000000000ffffffff
+ XMM14: 000000000000000000000000ffffffff XMM15: 000000000000000000000000ffffffff
+
+Backtrace:
+/lib/x86_64-linux-gnu/libc.so.6(gsignal+0xcb)[0x7fa0d874d18b]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0x12b)[0x7fa0d872c859]
+/lib/x86_64-linux-gnu/libc.so.6(+0x25729)[0x7fa0d872c729]
+/lib/x86_64-linux-gnu/libc.so.6(+0x36f36)[0x7fa0d873df36]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6adf71)[0x7fa0d7b7ff71]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6af929)[0x7fa0d7b81929]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6afb21)[0x7fa0d7b81b21]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6af83e)[0x7fa0d7b8183e]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6afb21)[0x7fa0d7b81b21]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6af889)[0x7fa0d7b81889]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6afb21)[0x7fa0d7b81b21]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6acfb2)[0x7fa0d7b7efb2]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6afb76)[0x7fa0d7b81b76]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6af83e)[0x7fa0d7b8183e]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6afb21)[0x7fa0d7b81b21]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6af952)[0x7fa0d7b81952]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6afb21)[0x7fa0d7b81b21]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6af907)[0x7fa0d7b81907]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6afb21)[0x7fa0d7b81b21]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x6bf5cd)[0x7fa0d7b915cd]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x4d72f8)[0x7fa0d79a92f8]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x3e34ca)[0x7fa0d78b54ca]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x3e39cc)[0x7fa0d78b59cc]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x3ca882)[0x7fa0d789c882]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x3d03eb)[0x7fa0d78a23eb]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x3d0957)[0x7fa0d78a2957]
+/home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so(+0x3d0a4f)[0x7fa0d78a2a4f]
+/home/kolmio/vkdev/install/Vulkan-Loader/lib/libvulkan.so.1(vkCreateGraphicsPipelines+0x61)[0x7fa0d8ccdb20]
+/home/runner/work/gfbuild-amber/gfbuild-amber/amber/b_Debug/./vk-wrappers-1-0.inc:999(_ZZN5amber6vulkan6Device18LoadVulkanPointersEPFPFvvEP12VkInstance_TPKcEPNS_8DelegateEENKUlP10VkDevice_TP17VkPipelineCache_TjPK28VkGraphicsPipelineCreateInfoPK21VkAllocationCallbacksPP12VkPipeline_TE57_clESD_SF_jSI_SL_SO_)[0x1310eb7]
+/usr/include/c++/5/functional:1857(_ZNSt17_Function_handlerIF8VkResultP10VkDevice_TP17VkPipelineCache_TjPK28VkGraphicsPipelineCreateInfoPK21VkAllocationCallbacksPP12VkPipeline_TEZN5amber6vulkan6Device18LoadVulkanPointersEPFPFvvEP12VkInstance_TPKcEPNSF_8DelegateEEUlS2_S4_jS7_SA_SD_E57_E9_M_invokeERKSt9_Any_dataOS2_OS4_OjOS7_OSA_OSD_)[0x132e0f2]
+/usr/include/c++/5/functional:2267(_ZNKSt8functionIF8VkResultP10VkDevice_TP17VkPipelineCache_TjPK28VkGraphicsPipelineCreateInfoPK21VkAllocationCallbacksPP12VkPipeline_TEEclES2_S4_jS7_SA_SD_)[0x12e9059]
+/home/runner/work/gfbuild-amber/gfbuild-amber/amber/b_Debug/../src/vulkan/graphics_pipeline.cc:677(_ZN5amber6vulkan16GraphicsPipeline24CreateVkGraphicsPipelineEPKNS_12PipelineDataE19VkPrimitiveTopologyPKNS0_12VertexBufferERKP18VkPipelineLayout_TPP12VkPipeline_T)[0x12e5cdb]
+/home/runner/work/gfbuild-amber/gfbuild-amber/amber/b_Debug/../src/vulkan/graphics_pipeline.cc:844(_ZN5amber6vulkan16GraphicsPipeline4DrawEPKNS_17DrawArraysCommandEPNS0_12VertexBufferE)[0x12e6c27]
+/home/runner/work/gfbuild-amber/gfbuild-amber/amber/b_Debug/../src/vulkan/engine_vulkan.cc:518(_ZN5amber6vulkan12EngineVulkan10DoDrawRectEPKNS_15DrawRectCommandE)[0x12d75b1]
+/home/runner/work/gfbuild-amber/gfbuild-amber/amber/b_Debug/../src/executor.cc:180(_ZN5amber8Executor14ExecuteCommandEPNS_6EngineEPNS_7CommandE)[0xcc46cf]
+/home/runner/work/gfbuild-amber/gfbuild-amber/amber/b_Debug/../src/executor.cc:120(_ZN5amber8Executor7ExecuteEPNS_6EngineEPKNS_6ScriptERKSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorIjSaIjEESt4lessISC_ESaISt4pairIKSC_SF_EEEPNS_7OptionsEPNS_8DelegateE)[0xcc403b]
+/home/runner/work/gfbuild-amber/gfbuild-amber/amber/b_Debug/../src/amber.cc:175(_ZN5amber5Amber21ExecuteWithShaderDataEPKNS_6RecipeEPNS_7OptionsERKSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorIjSaIjEESt4lessISC_ESaISt4pairIKSC_SF_EEE)[0xc6bd6f]
+/home/runner/work/gfbuild-amber/gfbuild-amber/amber/b_Debug/../src/amber.cc:158(_ZN5amber5Amber7ExecuteEPKNS_6RecipeEPNS_7OptionsE)[0xc6bbea]
+/home/runner/work/gfbuild-amber/gfbuild-amber/amber/b_Debug/../samples/amber.cc:606 (discriminator 2)(main)[0xc534bf]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf3)[0x7fa0d872e0b3]
+/home/kolmio/gfauto_run/binaries/built_in/gfbuild-amber-dabae26164714abf951c6815a2b4513260f7c6a4-Linux_x64_Debug/amber/bin/amber(_start+0x29)[0xc50a49]
+
+Memory map:
+
+00400000-01717000 r-xp 00000000 103:05 8523679 /home/kolmio/gfauto_run/binaries/built_in/gfbuild-amber-dabae26164714abf951c6815a2b4513260f7c6a4-Linux_x64_Debug/amber/bin/amber
+01917000-01966000 r--p 01317000 103:05 8523679 /home/kolmio/gfauto_run/binaries/built_in/gfbuild-amber-dabae26164714abf951c6815a2b4513260f7c6a4-Linux_x64_Debug/amber/bin/amber
+01966000-01969000 rw-p 01366000 103:05 8523679 /home/kolmio/gfauto_run/binaries/built_in/gfbuild-amber-dabae26164714abf951c6815a2b4513260f7c6a4-Linux_x64_Debug/amber/bin/amber
+01969000-01976000 rw-p 00000000 00:00 0
+02dde000-03c16000 rw-p 00000000 00:00 0 [heap]
+7fa0bc000000-7fa0bc021000 rw-p 00000000 00:00 0
+7fa0bc021000-7fa0c0000000 ---p 00000000 00:00 0
+7fa0c0000000-7fa0c0021000 rw-p 00000000 00:00 0
+7fa0c0021000-7fa0c4000000 ---p 00000000 00:00 0
+7fa0c4000000-7fa0c4021000 rw-p 00000000 00:00 0
+7fa0c4021000-7fa0c8000000 ---p 00000000 00:00 0
+7fa0cb7ff000-7fa0cb800000 ---p 00000000 00:00 0
+7fa0cb800000-7fa0cc000000 rw-p 00000000 00:00 0
+7fa0cc000000-7fa0cc021000 rw-p 00000000 00:00 0
+7fa0cc021000-7fa0d0000000 ---p 00000000 00:00 0
+7fa0d1069000-7fa0d107d000 rw-s 105c45000 00:05 576 /dev/dri/renderD128
+7fa0d107d000-7fa0d1091000 rw-s 105c31000 00:05 576 /dev/dri/renderD128
+7fa0d1091000-7fa0d10d1000 rw-s 105bdd000 00:05 576 /dev/dri/renderD128
+7fa0d10d1000-7fa0d10d2000 ---p 00000000 00:00 0
+7fa0d10d2000-7fa0d18d2000 rw-p 00000000 00:00 0
+7fa0d18d2000-7fa0d18d3000 ---p 00000000 00:00 0
+7fa0d18d3000-7fa0d20d3000 rw-p 00000000 00:00 0
+7fa0d20d3000-7fa0d20d4000 ---p 00000000 00:00 0
+7fa0d20d4000-7fa0d28d4000 rw-p 00000000 00:00 0
+7fa0d28d4000-7fa0d2a15000 rw-s 00000000 103:05 2883618 /home/kolmio/.cache/mesa_shader_cache/index
+7fa0d2a15000-7fa0d2a19000 r--p 00000000 103:05 8658128 /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7fa0d2a19000-7fa0d2a28000 r-xp 00004000 103:05 8658128 /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7fa0d2a28000-7fa0d2a2b000 r--p 00013000 103:05 8658128 /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7fa0d2a2b000-7fa0d2a2c000 ---p 00016000 103:05 8658128 /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7fa0d2a2c000-7fa0d2a2d000 r--p 00016000 103:05 8658128 /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7fa0d2a2d000-7fa0d2a2e000 rw-p 00017000 103:05 8658128 /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7fa0d2a2e000-7fa0d2a2f000 rw-p 00000000 00:00 0
+7fa0d2a2f000-7fa0d2a31000 r--p 00000000 103:05 8657974 /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7fa0d2a31000-7fa0d2a33000 r-xp 00002000 103:05 8657974 /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7fa0d2a33000-7fa0d2a35000 r--p 00004000 103:05 8657974 /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7fa0d2a35000-7fa0d2a36000 r--p 00005000 103:05 8657974 /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7fa0d2a36000-7fa0d2a37000 rw-p 00006000 103:05 8657974 /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7fa0d2a37000-7fa0d2a38000 r--p 00000000 103:05 8657963 /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7fa0d2a38000-7fa0d2a3a000 r-xp 00001000 103:05 8657963 /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7fa0d2a3a000-7fa0d2a3b000 r--p 00003000 103:05 8657963 /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7fa0d2a3b000-7fa0d2a3c000 r--p 00003000 103:05 8657963 /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7fa0d2a3c000-7fa0d2a3d000 rw-p 00004000 103:05 8657963 /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7fa0d2a3d000-7fa0d2a4b000 r--p 00000000 103:05 8659229 /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
+7fa0d2a4b000-7fa0d2a5a000 r-xp 0000e000 103:05 8659229 /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
+7fa0d2a5a000-7fa0d2a68000 r--p 0001d000 103:05 8659229 /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
+7fa0d2a68000-7fa0d2a6c000 r--p 0002a000 103:05 8659229 /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
+7fa0d2a6c000-7fa0d2a6d000 rw-p 0002e000 103:05 8659229 /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
+7fa0d2a6d000-7fa0d2a75000 r--p 00000000 103:05 8658312 /usr/lib/x86_64-linux-gnu/libedit.so.2.0.63
+7fa0d2a75000-7fa0d2a90000 r-xp 00008000 103:05 8658312 /usr/lib/x86_64-linux-gnu/libedit.so.2.0.63
+7fa0d2a90000-7fa0d2a9e000 r--p 00023000 103:05 8658312 /usr/lib/x86_64-linux-gnu/libedit.so.2.0.63
+7fa0d2a9e000-7fa0d2aa0000 r--p 00030000 103:05 8658312 /usr/lib/x86_64-linux-gnu/libedit.so.2.0.63
+7fa0d2aa0000-7fa0d2aa1000 rw-p 00032000 103:05 8658312 /usr/lib/x86_64-linux-gnu/libedit.so.2.0.63
+7fa0d2aa1000-7fa0d2aa5000 rw-p 00000000 00:00 0
+7fa0d2aa5000-7fa0d2aa7000 r--p 00000000 103:05 8658362 /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7fa0d2aa7000-7fa0d2aad000 r-xp 00002000 103:05 8658362 /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7fa0d2aad000-7fa0d2aae000 r--p 00008000 103:05 8658362 /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7fa0d2aae000-7fa0d2aaf000 ---p 00009000 103:05 8658362 /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7fa0d2aaf000-7fa0d2ab0000 r--p 00009000 103:05 8658362 /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7fa0d2ab0000-7fa0d2ab1000 rw-p 0000a000 103:05 8658362 /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7fa0d2ab1000-7fa0d2ab5000 r--p 00000000 103:05 8659448 /usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4
+7fa0d2ab5000-7fa0d2b47000 r-xp 00004000 103:05 8659448 /usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4
+7fa0d2b47000-7fa0d2b58000 r--p 00096000 103:05 8659448 /usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4
+7fa0d2b58000-7fa0d2b59000 r--p 000a6000 103:05 8659448 /usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4
+7fa0d2b59000-7fa0d2b5a000 rw-p 000a7000 103:05 8659448 /usr/lib/x86_64-linux-gnu/libzstd.so.1.4.4
+7fa0d2b5a000-7fa0d2b5e000 r--p 00000000 103:05 8657808 /usr/lib/x86_64-linux-gnu/libdrm.so.2.4.0
+7fa0d2b5e000-7fa0d2b68000 r-xp 00004000 103:05 8657808 /usr/lib/x86_64-linux-gnu/libdrm.so.2.4.0
+7fa0d2b68000-7fa0d2b6c000 r--p 0000e000 103:05 8657808 /usr/lib/x86_64-linux-gnu/libdrm.so.2.4.0
+7fa0d2b6c000-7fa0d2b6d000 r--p 00011000 103:05 8657808 /usr/lib/x86_64-linux-gnu/libdrm.so.2.4.0
+7fa0d2b6d000-7fa0d2b6e000 rw-p 00012000 103:05 8657808 /usr/lib/x86_64-linux-gnu/libdrm.so.2.4.0
+7fa0d2b6e000-7fa0d2b6f000 r-xp 00000000 103:05 8659434 /usr/lib/x86_64-linux-gnu/libxshmfence.so.1.0.0
+7fa0d2b6f000-7fa0d2d6e000 ---p 00001000 103:05 8659434 /usr/lib/x86_64-linux-gnu/libxshmfence.so.1.0.0
+7fa0d2d6e000-7fa0d2d6f000 r--p 00000000 103:05 8659434 /usr/lib/x86_64-linux-gnu/libxshmfence.so.1.0.0
+7fa0d2d6f000-7fa0d2d70000 rw-p 00001000 103:05 8659434 /usr/lib/x86_64-linux-gnu/libxshmfence.so.1.0.0
+7fa0d2d70000-7fa0d2d73000 r--p 00000000 103:05 8659406 /usr/lib/x86_64-linux-gnu/libxcb-sync.so.1.0.0
+7fa0d2d73000-7fa0d2d76000 r-xp 00003000 103:05 8659406 /usr/lib/x86_64-linux-gnu/libxcb-sync.so.1.0.0
+7fa0d2d76000-7fa0d2d77000 r--p 00006000 103:05 8659406 /usr/lib/x86_64-linux-gnu/libxcb-sync.so.1.0.0
+7fa0d2d77000-7fa0d2d78000 ---p 00007000 103:05 8659406 /usr/lib/x86_64-linux-gnu/libxcb-sync.so.1.0.0
+7fa0d2d78000-7fa0d2d79000 r--p 00007000 103:05 8659406 /usr/lib/x86_64-linux-gnu/libxcb-sync.so.1.0.0
+7fa0d2d79000-7fa0d2d7a000 rw-p 00008000 103:05 8659406 /usr/lib/x86_64-linux-gnu/libxcb-sync.so.1.0.0
+7fa0d2d7a000-7fa0d2d7b000 r--p 00000000 103:05 8659392 /usr/lib/x86_64-linux-gnu/libxcb-present.so.0.0.0
+7fa0d2d7b000-7fa0d2d7c000 r-xp 00001000 103:05 8659392 /usr/lib/x86_64-linux-gnu/libxcb-present.so.0.0.0
+7fa0d2d7c000-7fa0d2d7d000 r--p 00002000 103:05 8659392 /usr/lib/x86_64-linux-gnu/libxcb-present.so.0.0.0
+7fa0d2d7d000-7fa0d2d7e000 r--p 00002000 103:05 8659392 /usr/lib/x86_64-linux-gnu/libxcb-present.so.0.0.0
+7fa0d2d7e000-7fa0d2d7f000 rw-p 00003000 103:05 8659392 /usr/lib/x86_64-linux-gnu/libxcb-present.so.0.0.0
+7fa0d2d7f000-7fa0d2d80000 r--p 00000000 103:05 8651621 /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0
+7fa0d2d80000-7fa0d2d81000 r-xp 00001000 103:05 8651621 /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0
+7fa0d2d81000-7fa0d2d82000 r--p 00002000 103:05 8651621 /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0
+7fa0d2d82000-7fa0d2d83000 r--p 00002000 103:05 8651621 /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0
+7fa0d2d83000-7fa0d2d84000 rw-p 00003000 103:05 8651621 /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0
+7fa0d2d84000-7fa0d2d8f000 r--p 00000000 103:05 8659416 /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7fa0d2d8f000-7fa0d2da3000 r-xp 0000b000 103:05 8659416 /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7fa0d2da3000-7fa0d2dac000 r--p 0001f000 103:05 8659416 /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7fa0d2dac000-7fa0d2dad000 r--p 00027000 103:05 8659416 /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7fa0d2dad000-7fa0d2dae000 rw-p 00028000 103:05 8659416 /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7fa0d2dae000-7fa0d2db2000 r--p 00000000 103:05 8658348 /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7fa0d2db2000-7fa0d2dce000 r-xp 00004000 103:05 8658348 /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7fa0d2dce000-7fa0d2dd8000 r--p 00020000 103:05 8658348 /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7fa0d2dd8000-7fa0d2dd9000 ---p 0002a000 103:05 8658348 /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7fa0d2dd9000-7fa0d2ddb000 r--p 0002a000 103:05 8658348 /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7fa0d2ddb000-7fa0d2ddc000 rw-p 0002c000 103:05 8658348 /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7fa0d2ddc000-7fa0d2dde000 r--p 00000000 103:05 8651805 /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa0d2dde000-7fa0d2def000 r-xp 00002000 103:05 8651805 /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa0d2def000-7fa0d2df5000 r--p 00013000 103:05 8651805 /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa0d2df5000-7fa0d2df6000 ---p 00019000 103:05 8651805 /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa0d2df6000-7fa0d2df7000 r--p 00019000 103:05 8651805 /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa0d2df7000-7fa0d2df8000 rw-p 0001a000 103:05 8651805 /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7fa0d2df8000-7fa0d2dff000 r--p 00000000 103:05 8659394 /usr/lib/x86_64-linux-gnu/libxcb-randr.so.0.1.0
+7fa0d2dff000-7fa0d2e05000 r-xp 00007000 103:05 8659394 /usr/lib/x86_64-linux-gnu/libxcb-randr.so.0.1.0
+7fa0d2e05000-7fa0d2e08000 r--p 0000d000 103:05 8659394 /usr/lib/x86_64-linux-gnu/libxcb-randr.so.0.1.0
+7fa0d2e08000-7fa0d2e09000 ---p 00010000 103:05 8659394 /usr/lib/x86_64-linux-gnu/libxcb-randr.so.0.1.0
+7fa0d2e09000-7fa0d2e0a000 r--p 00010000 103:05 8659394 /usr/lib/x86_64-linux-gnu/libxcb-randr.so.0.1.0
+7fa0d2e0a000-7fa0d2e0b000 rw-p 00011000 103:05 8659394 /usr/lib/x86_64-linux-gnu/libxcb-randr.so.0.1.0
+7fa0d2e0b000-7fa0d2e10000 r--p 00000000 103:05 8659333 /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7fa0d2e10000-7fa0d2e16000 r-xp 00005000 103:05 8659333 /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7fa0d2e16000-7fa0d2e19000 r--p 0000b000 103:05 8659333 /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7fa0d2e19000-7fa0d2e1b000 r--p 0000d000 103:05 8659333 /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7fa0d2e1b000-7fa0d2e1c000 rw-p 0000f000 103:05 8659333 /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7fa0d2e1c000-7fa0d2e1e000 r--p 00000000 103:05 8659382 /usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0.0.0
+7fa0d2e1e000-7fa0d2e1f000 r-xp 00002000 103:05 8659382 /usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0.0.0
+7fa0d2e1f000-7fa0d2e20000 r--p 00003000 103:05 8659382 /usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0.0.0
+7fa0d2e20000-7fa0d2e21000 r--p 00003000 103:05 8659382 /usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0.0.0
+7fa0d2e21000-7fa0d2e22000 rw-p 00004000 103:05 8659382 /usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0.0.0
+7fa0d2e22000-7fa0d2e25000 r--p 00000000 103:05 8658317 /usr/lib/x86_64-linux-gnu/libelf-0.176.so
+7fa0d2e25000-7fa0d2e37000 r-xp 00003000 103:05 8658317 /usr/lib/x86_64-linux-gnu/libelf-0.176.so
+7fa0d2e37000-7fa0d2e3c000 r--p 00015000 103:05 8658317 /usr/lib/x86_64-linux-gnu/libelf-0.176.so
+7fa0d2e3c000-7fa0d2e3d000 r--p 00019000 103:05 8658317 /usr/lib/x86_64-linux-gnu/libelf-0.176.so
+7fa0d2e3d000-7fa0d2e3e000 rw-p 0001a000 103:05 8658317 /usr/lib/x86_64-linux-gnu/libelf-0.176.so
+7fa0d2e3e000-7fa0d6e09000 r-xp 00000000 103:05 8657949 /usr/lib/x86_64-linux-gnu/libLLVM-10.so.1
+7fa0d6e09000-7fa0d72f4000 r--p 03fca000 103:05 8657949 /usr/lib/x86_64-linux-gnu/libLLVM-10.so.1
+7fa0d72f4000-7fa0d747c000 rw-p 044b5000 103:05 8657949 /usr/lib/x86_64-linux-gnu/libLLVM-10.so.1
+7fa0d747c000-7fa0d74d2000 rw-p 00000000 00:00 0
+7fa0d74d2000-7fa0d77c0000 r--p 00000000 103:05 6818892 /home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so
+7fa0d77c0000-7fa0d7e4c000 r-xp 002ee000 103:05 6818892 /home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so
+7fa0d7e4c000-7fa0d8068000 r--p 0097a000 103:05 6818892 /home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so
+7fa0d8068000-7fa0d8069000 ---p 00b96000 103:05 6818892 /home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so
+7fa0d8069000-7fa0d80f8000 r--p 00b96000 103:05 6818892 /home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so
+7fa0d80f8000-7fa0d83cc000 rw-p 00c25000 103:05 6818892 /home/kolmio/mesa/amd/mesa-20.3.4/install/lib/x86_64-linux-gnu/libvulkan_radeon.so
+7fa0d83cc000-7fa0d8634000 rw-p 00000000 00:00 0
+7fa0d8635000-7fa0d8638000 r--p 00000000 103:05 8657851 /usr/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1.0.0
+7fa0d8638000-7fa0d863d000 r-xp 00003000 103:05 8657851 /usr/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1.0.0
+7fa0d863d000-7fa0d863f000 r--p 00008000 103:05 8657851 /usr/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1.0.0
+7fa0d863f000-7fa0d8640000 r--p 00009000 103:05 8657851 /usr/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1.0.0
+7fa0d8640000-7fa0d8641000 rw-p 0000a000 103:05 8657851 /usr/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1.0.0
+7fa0d864b000-7fa0d864c000 rw-p 00000000 00:00 0
+7fa0d864c000-7fa0d8660000 rw-s 105c1d000 00:05 576 /dev/dri/renderD128
+7fa0d8660000-7fa0d8674000 rw-s 10077f000 00:05 576 /dev/dri/renderD128
+7fa0d8674000-7fa0d8688000 rw-s 10076b000 00:05 576 /dev/dri/renderD128
+7fa0d8688000-7fa0d869c000 rw-s 100757000 00:05 576 /dev/dri/renderD128
+7fa0d869c000-7fa0d86dc000 rw-s 100703000 00:05 576 /dev/dri/renderD128
+7fa0d86dc000-7fa0d86df000 r--p 00000000 103:05 8655256 /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7fa0d86df000-7fa0d86e6000 r-xp 00003000 103:05 8655256 /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7fa0d86e6000-7fa0d86e8000 r--p 0000a000 103:05 8655256 /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7fa0d86e8000-7fa0d86e9000 r--p 0000b000 103:05 8655256 /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7fa0d86e9000-7fa0d86ea000 rw-p 0000c000 103:05 8655256 /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7fa0d86ea000-7fa0d86f0000 rw-p 00000000 00:00 0
+7fa0d86f0000-7fa0d86f2000 r--p 00000000 103:05 8651491 /usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so
+7fa0d86f2000-7fa0d86f7000 r-xp 00002000 103:05 8651491 /usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so
+7fa0d86f7000-7fa0d86f9000 r--p 00007000 103:05 8651491 /usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so
+7fa0d86f9000-7fa0d86fa000 ---p 00009000 103:05 8651491 /usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so
+7fa0d86fa000-7fa0d86fb000 r--p 00009000 103:05 8651491 /usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so
+7fa0d86fb000-7fa0d86fc000 rw-p 0000a000 103:05 8651491 /usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so
+7fa0d86fc000-7fa0d8701000 rw-p 00000000 00:00 0
+7fa0d8701000-7fa0d8702000 r--p 00000000 103:05 8655249 /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7fa0d8702000-7fa0d8704000 r-xp 00001000 103:05 8655249 /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7fa0d8704000-7fa0d8705000 r--p 00003000 103:05 8655249 /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7fa0d8705000-7fa0d8706000 r--p 00003000 103:05 8655249 /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7fa0d8706000-7fa0d8707000 rw-p 00004000 103:05 8655249 /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7fa0d8707000-7fa0d872c000 r--p 00000000 103:05 8653851 /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7fa0d872c000-7fa0d88a4000 r-xp 00025000 103:05 8653851 /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7fa0d88a4000-7fa0d88ee000 r--p 0019d000 103:05 8653851 /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7fa0d88ee000-7fa0d88ef000 ---p 001e7000 103:05 8653851 /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7fa0d88ef000-7fa0d88f2000 r--p 001e7000 103:05 8653851 /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7fa0d88f2000-7fa0d88f5000 rw-p 001ea000 103:05 8653851 /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7fa0d88f5000-7fa0d88f9000 rw-p 00000000 00:00 0
+7fa0d88f9000-7fa0d88fc000 r--p 00000000 103:05 8662798 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fa0d88fc000-7fa0d890e000 r-xp 00003000 103:05 8662798 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fa0d890e000-7fa0d8912000 r--p 00015000 103:05 8662798 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fa0d8912000-7fa0d8913000 r--p 00018000 103:05 8662798 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fa0d8913000-7fa0d8914000 rw-p 00019000 103:05 8662798 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fa0d8914000-7fa0d8923000 r--p 00000000 103:05 8655250 /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7fa0d8923000-7fa0d89ca000 r-xp 0000f000 103:05 8655250 /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7fa0d89ca000-7fa0d8a61000 r--p 000b6000 103:05 8655250 /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7fa0d8a61000-7fa0d8a62000 r--p 0014c000 103:05 8655250 /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7fa0d8a62000-7fa0d8a63000 rw-p 0014d000 103:05 8655250 /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7fa0d8a63000-7fa0d8a65000 rw-p 00000000 00:00 0
+7fa0d8a65000-7fa0d8afb000 r--p 00000000 103:05 8665284 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7fa0d8afb000-7fa0d8beb000 r-xp 00096000 103:05 8665284 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7fa0d8beb000-7fa0d8c34000 r--p 00186000 103:05 8665284 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7fa0d8c34000-7fa0d8c35000 ---p 001cf000 103:05 8665284 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7fa0d8c35000-7fa0d8c40000 r--p 001cf000 103:05 8665284 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7fa0d8c40000-7fa0d8c43000 rw-p 001da000 103:05 8665284 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+7fa0d8c43000-7fa0d8c46000 rw-p 00000000 00:00 0
+7fa0d8c46000-7fa0d8c4d000 r--p 00000000 103:05 8655261 /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7fa0d8c4d000-7fa0d8c5e000 r-xp 00007000 103:05 8655261 /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7fa0d8c5e000-7fa0d8c63000 r--p 00018000 103:05 8655261 /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7fa0d8c63000-7fa0d8c64000 r--p 0001c000 103:05 8655261 /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7fa0d8c64000-7fa0d8c65000 rw-p 0001d000 103:05 8655261 /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7fa0d8c65000-7fa0d8c69000 rw-p 00000000 00:00 0
+7fa0d8c69000-7fa0d8c6c000 r--p 00000000 103:05 8655263 /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7fa0d8c6c000-7fa0d8c70000 r-xp 00003000 103:05 8655263 /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7fa0d8c70000-7fa0d8c71000 r--p 00007000 103:05 8655263 /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7fa0d8c71000-7fa0d8c72000 ---p 00008000 103:05 8655263 /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7fa0d8c72000-7fa0d8c73000 r--p 00008000 103:05 8655263 /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7fa0d8c73000-7fa0d8c74000 rw-p 00009000 103:05 8655263 /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7fa0d8c74000-7fa0d8c75000 rw-s 1007da000 00:05 576 /dev/dri/renderD128
+7fa0d8c75000-7fa0d8c76000 rw-s 1007d9000 00:05 576 /dev/dri/renderD128
+7fa0d8c76000-7fa0d8c77000 rw-s 1007d8000 00:05 576 /dev/dri/renderD128
+7fa0d8c77000-7fa0d8c7b000 rw-s 1007d4000 00:05 576 /dev/dri/renderD128
+7fa0d8c7b000-7fa0d8c8f000 rw-s 100743000 00:05 576 /dev/dri/renderD128
+7fa0d8c8f000-7fa0d8ca4000 r--p 00000000 103:05 3146068 /home/kolmio/vkdev/install/Vulkan-Loader/lib/libvulkan.so.1.2.153
+7fa0d8ca4000-7fa0d8ce4000 r-xp 00015000 103:05 3146068 /home/kolmio/vkdev/install/Vulkan-Loader/lib/libvulkan.so.1.2.153
+7fa0d8ce4000-7fa0d8cfc000 r--p 00055000 103:05 3146068 /home/kolmio/vkdev/install/Vulkan-Loader/lib/libvulkan.so.1.2.153
+7fa0d8cfc000-7fa0d8cff000 r--p 0006c000 103:05 3146068 /home/kolmio/vkdev/install/Vulkan-Loader/lib/libvulkan.so.1.2.153
+7fa0d8cff000-7fa0d8d00000 rw-p 0006f000 103:05 3146068 /home/kolmio/vkdev/install/Vulkan-Loader/lib/libvulkan.so.1.2.153
+7fa0d8d00000-7fa0d8d01000 r--p 00000000 103:05 8653849 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7fa0d8d01000-7fa0d8d04000 r-xp 00001000 103:05 8653849 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7fa0d8d04000-7fa0d8d05000 r--p 00004000 103:05 8653849 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7fa0d8d05000-7fa0d8d06000 r--p 00004000 103:05 8653849 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7fa0d8d06000-7fa0d8d07000 rw-p 00005000 103:05 8653849 /usr/lib/x86_64-linux-gnu/libSegFault.so
+7fa0d8d07000-7fa0d8d09000 rw-p 00000000 00:00 0
+7fa0d8d09000-7fa0d8d0a000 r--p 00000000 103:05 8653847 /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7fa0d8d0a000-7fa0d8d2d000 r-xp 00001000 103:05 8653847 /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7fa0d8d2d000-7fa0d8d35000 r--p 00024000 103:05 8653847 /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7fa0d8d35000-7fa0d8d36000 rw-s 100702000 00:05 576 /dev/dri/renderD128
+7fa0d8d36000-7fa0d8d37000 r--p 0002c000 103:05 8653847 /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7fa0d8d37000-7fa0d8d38000 rw-p 0002d000 103:05 8653847 /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7fa0d8d38000-7fa0d8d39000 rw-p 00000000 00:00 0
+7ffd8ec55000-7ffd8ec77000 rw-p 00000000 00:00 0 [stack]
+7ffd8ed19000-7ffd8ed1d000 r--p 00000000 00:00 0 [vvar]
+7ffd8ed1d000-7ffd8ed1f000 r-xp 00000000 00:00 0 [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0 [vsyscall]
+
+
+STDERR:
+amber: ../src/src/amd/compiler/aco_instruction_selection.cpp:9847: void aco::{anonymous}::begin_divergent_if_else(aco::isel_context*, aco::{anonymous}::if_context*): Assertion `!ctx->cf_info.has_branch' failed.
+Aborted (core dumped)
+
+
+
+STATUS CRASH
+

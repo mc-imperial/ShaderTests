@@ -1,0 +1,70 @@
+{
+  "binaries": [
+    {
+      "name": "glslangValidator",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "2e99822c148ce2cd3c2420041c13c17010a3e77c"
+    },
+    {
+      "name": "spirv-dis",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "ef3290bbea35935ba8fd623970511ed9f045bbd7"
+    },
+    {
+      "name": "spirv-val",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "ef3290bbea35935ba8fd623970511ed9f045bbd7"
+    },
+    {
+      "name": "amber",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "dabae26164714abf951c6815a2b4513260f7c6a4"
+    },
+    {
+      "name": "amber_apk",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "dabae26164714abf951c6815a2b4513260f7c6a4"
+    },
+    {
+      "name": "amber_apk_test",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "dabae26164714abf951c6815a2b4513260f7c6a4"
+    }
+  ],
+  "common_spirv_args": [],
+  "crash_regex_override": "",
+  "crash_signature": "void_acoanonymousbegin_divergent_if_elseacoisel_co",
+  "derived_from": "stable_maze",
+  "device": {
+    "binaries": [],
+    "device_properties": "  apiVersion: 1.2.145\n  driverVersion: 83898372\n  vendorID: 4098\n  deviceID: 5592\n  deviceType: integrated gpu\n  deviceName: AMD RADV RAVEN (ACO)\n  driverName: radv\n  driverInfo: Mesa 20.3.4 (git-6d8c68603f) (ACO)\n  minSubgroupSize: 64\n  maxSubgroupSize: 64\n  maxComputeWorkgroupSubgroups: 4294967295\n  requiredSubgroupSizeStages: \n",
+    "host": {
+      "custom_launcher": []
+    },
+    "ignored_crash_signatures": [],
+    "name": "host"
+  },
+  "expected_status": "CRASH",
+  "glsl": {
+    "spirv_opt_args": []
+  },
+  "skip_validation": false
+}
