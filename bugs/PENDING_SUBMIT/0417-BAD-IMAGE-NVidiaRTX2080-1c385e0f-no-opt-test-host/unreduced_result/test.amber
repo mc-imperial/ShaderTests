@@ -1,0 +1,560 @@
+#!amber
+
+SET ENGINE_DATA fence_timeout_ms 60000
+
+SHADER vertex texgen_vert PASSTHROUGH
+
+SHADER fragment texgen_frag GLSL
+#version 430
+precision highp float;
+
+layout(location = 0) out vec4 _GLF_color;
+
+void main()
+{
+ _GLF_color = vec4(
+ gl_FragCoord.x * (1.0 / 256.0),
+ (int(gl_FragCoord.x) ^ int(gl_FragCoord.y)) * (1.0 / 256.0),
+ gl_FragCoord.y * (1.0 / 256.0),
+ 1.0);
+}
+END
+BUFFER default_texture FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics texgen_pipeline
+  ATTACH texgen_vert
+  ATTACH texgen_frag
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER default_texture AS color LOCATION 0
+END
+
+CLEAR_COLOR texgen_pipeline 0 0 0 255
+CLEAR texgen_pipeline
+RUN texgen_pipeline DRAW_RECT POS 0 0  SIZE 256 256
+
+SHADER vertex reference_vertex_shader PASSTHROUGH
+
+# reference_fragment_shader is derived from the following GLSL:
+# #version 320 es
+# precision highp float;
+#
+# layout(location = 0) out vec4 _GLF_color;
+#
+# layout(set = 0, binding = 0) uniform sampler2D tex;
+#
+# void main()
+# {
+#  int i = 0;
+#  vec2 uvstep = vec2(1.0) * (1.0 / 256.0);
+#  float slope = 2.0 / 256.0;
+#  vec2 coord = gl_FragCoord.xy * (1.0 / 256.0);
+#  float refh = texture(tex, coord).y;
+#  coord -= uvstep;
+#  refh += slope;
+#  float h = texture(tex, coord).y;
+#  while(h < refh && i < 32)
+#   {
+#    coord -= uvstep;
+#    refh += slope;
+#    h = texture(tex, coord).y;
+#    i ++;
+#   }
+#  _GLF_color = vec4(vec3(float(i) * (1.0 / 32.0)), 1.0);
+# }
+SHADER fragment reference_fragment_shader SPIRV-ASM TARGET_ENV spv1.0
+; SPIR-V
+; Version: 1.0
+; Generator: Khronos Glslang Reference Front End; 10
+; Bound: 87
+; Schema: 0
+               OpCapability Shader
+          %1 = OpExtInstImport "GLSL.std.450"
+               OpMemoryModel Logical GLSL450
+               OpEntryPoint Fragment %4 "main" %22 %75
+               OpExecutionMode %4 OriginUpperLeft
+               OpSource ESSL 320
+               OpName %4 "main"
+               OpName %8 "i"
+               OpName %13 "uvstep"
+               OpName %17 "slope"
+               OpName %19 "coord"
+               OpName %22 "gl_FragCoord"
+               OpName %26 "refh"
+               OpName %30 "tex"
+               OpName %43 "h"
+               OpName %75 "_GLF_color"
+               OpDecorate %8 RelaxedPrecision
+               OpDecorate %22 BuiltIn FragCoord
+               OpDecorate %30 RelaxedPrecision
+               OpDecorate %30 DescriptorSet 0
+               OpDecorate %30 Binding 0
+               OpDecorate %31 RelaxedPrecision
+               OpDecorate %33 RelaxedPrecision
+               OpDecorate %36 RelaxedPrecision
+               OpDecorate %44 RelaxedPrecision
+               OpDecorate %46 RelaxedPrecision
+               OpDecorate %47 RelaxedPrecision
+               OpDecorate %57 RelaxedPrecision
+               OpDecorate %67 RelaxedPrecision
+               OpDecorate %69 RelaxedPrecision
+               OpDecorate %70 RelaxedPrecision
+               OpDecorate %71 RelaxedPrecision
+               OpDecorate %73 RelaxedPrecision
+               OpDecorate %75 Location 0
+               OpDecorate %76 RelaxedPrecision
+          %2 = OpTypeVoid
+          %3 = OpTypeFunction %2
+          %6 = OpTypeInt 32 1
+          %7 = OpTypePointer Function %6
+          %9 = OpConstant %6 0
+         %10 = OpTypeFloat 32
+         %11 = OpTypeVector %10 2
+         %12 = OpTypePointer Function %11
+         %14 = OpConstant %10 0.00390625
+         %15 = OpConstantComposite %11 %14 %14
+         %16 = OpTypePointer Function %10
+         %18 = OpConstant %10 0.0078125
+         %20 = OpTypeVector %10 4
+         %21 = OpTypePointer Input %20
+         %22 = OpVariable %21 Input
+         %27 = OpTypeImage %10 2D 0 0 0 1 Unknown
+         %28 = OpTypeSampledImage %27
+         %29 = OpTypePointer UniformConstant %28
+         %30 = OpVariable %29 UniformConstant
+         %34 = OpTypeInt 32 0
+         %35 = OpConstant %34 1
+         %55 = OpTypeBool
+         %58 = OpConstant %6 32
+         %72 = OpConstant %6 1
+         %74 = OpTypePointer Output %20
+         %75 = OpVariable %74 Output
+         %78 = OpConstant %10 0.03125
+         %80 = OpTypeVector %10 3
+         %82 = OpConstant %10 1
+          %4 = OpFunction %2 None %3
+          %5 = OpLabel
+          %8 = OpVariable %7 Function
+         %13 = OpVariable %12 Function
+         %17 = OpVariable %16 Function
+         %19 = OpVariable %12 Function
+         %26 = OpVariable %16 Function
+         %43 = OpVariable %16 Function
+               OpStore %8 %9
+               OpStore %13 %15
+               OpStore %17 %18
+         %23 = OpLoad %20 %22
+         %24 = OpVectorShuffle %11 %23 %23 0 1
+         %25 = OpVectorTimesScalar %11 %24 %14
+               OpStore %19 %25
+         %31 = OpLoad %28 %30
+         %32 = OpLoad %11 %19
+         %33 = OpImageSampleImplicitLod %20 %31 %32
+         %36 = OpCompositeExtract %10 %33 1
+               OpStore %26 %36
+         %37 = OpLoad %11 %13
+         %38 = OpLoad %11 %19
+         %39 = OpFSub %11 %38 %37
+               OpStore %19 %39
+         %40 = OpLoad %10 %17
+         %41 = OpLoad %10 %26
+         %42 = OpFAdd %10 %41 %40
+               OpStore %26 %42
+         %44 = OpLoad %28 %30
+         %45 = OpLoad %11 %19
+         %46 = OpImageSampleImplicitLod %20 %44 %45
+         %47 = OpCompositeExtract %10 %46 1
+               OpStore %43 %47
+               OpBranch %48
+         %48 = OpLabel
+               OpLoopMerge %50 %51 None
+               OpBranch %52
+         %52 = OpLabel
+         %53 = OpLoad %10 %43
+         %54 = OpLoad %10 %26
+         %56 = OpFOrdLessThan %55 %53 %54
+         %57 = OpLoad %6 %8
+         %59 = OpSLessThan %55 %57 %58
+         %60 = OpLogicalAnd %55 %56 %59
+               OpBranchConditional %60 %49 %50
+         %49 = OpLabel
+         %61 = OpLoad %11 %13
+         %62 = OpLoad %11 %19
+         %63 = OpFSub %11 %62 %61
+               OpStore %19 %63
+         %64 = OpLoad %10 %17
+         %65 = OpLoad %10 %26
+         %66 = OpFAdd %10 %65 %64
+               OpStore %26 %66
+         %67 = OpLoad %28 %30
+         %68 = OpLoad %11 %19
+         %69 = OpImageSampleImplicitLod %20 %67 %68
+         %70 = OpCompositeExtract %10 %69 1
+               OpStore %43 %70
+         %71 = OpLoad %6 %8
+         %73 = OpIAdd %6 %71 %72
+               OpStore %8 %73
+               OpBranch %51
+         %51 = OpLabel
+               OpBranch %48
+         %50 = OpLabel
+         %76 = OpLoad %6 %8
+         %77 = OpConvertSToF %10 %76
+         %79 = OpFMul %10 %77 %78
+         %81 = OpCompositeConstruct %80 %79 %79 %79
+         %83 = OpCompositeExtract %10 %81 0
+         %84 = OpCompositeExtract %10 %81 1
+         %85 = OpCompositeExtract %10 %81 2
+         %86 = OpCompositeConstruct %20 %83 %84 %85 %82
+               OpStore %75 %86
+               OpReturn
+               OpFunctionEnd
+END
+
+# uniforms for reference
+
+# tex
+SAMPLER reference_tex
+
+
+BUFFER reference_framebuffer FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics reference_pipeline
+  ATTACH reference_vertex_shader
+  ATTACH reference_fragment_shader
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER reference_framebuffer AS color LOCATION 0
+  BIND BUFFER default_texture AS combined_image_sampler SAMPLER reference_tex DESCRIPTOR_SET 0 BINDING 0
+END
+CLEAR_COLOR reference_pipeline 0 0 0 255
+
+CLEAR reference_pipeline
+RUN reference_pipeline DRAW_RECT POS 0 0 SIZE 256 256
+
+
+SHADER vertex variant_vertex_shader PASSTHROUGH
+
+# variant_fragment_shader is derived from the following GLSL:
+# #version 320 es
+#
+# #ifndef REDUCER
+# #define _GLF_ZERO(X, Y)                   (Y)
+# #define _GLF_ONE(X, Y)                    (Y)
+# #define _GLF_FALSE(X, Y)                  (Y)
+# #define _GLF_TRUE(X, Y)                   (Y)
+# #define _GLF_IDENTITY(X, Y)               (Y)
+# #define _GLF_DEAD(X)                      (X)
+# #define _GLF_FUZZED(X)                    (X)
+# #define _GLF_WRAPPED_LOOP(X)              X
+# #define _GLF_WRAPPED_IF_TRUE(X)           X
+# #define _GLF_WRAPPED_IF_FALSE(X)          X
+# #define _GLF_SWITCH(X)                    X
+# #define _GLF_MAKE_IN_BOUNDS_INT(IDX, SZ)  clamp(IDX, 0, SZ - 1)
+# #define _GLF_MAKE_IN_BOUNDS_UINT(IDX, SZ) clamp(IDX, 0u, SZ - 1u)
+# #endif
+#
+# // END OF GENERATED HEADER
+# precision highp float;
+#
+# layout(set = 0, binding = 0) uniform buf0 {
+#  highp vec2 injectionSwitch;
+# };
+# layout(location = 0) out vec4 _GLF_color;
+#
+# layout(set = 0, binding = 1) uniform sampler2D tex;
+#
+# void main()
+# {
+#  int i = 0;
+#  vec2 uvstep = vec2(1.0) * (1.0 / _GLF_IDENTITY(256.0, 1.0 * _GLF_IDENTITY((256.0), clamp(_GLF_IDENTITY((_GLF_IDENTITY(256.0, max(256.0, _GLF_IDENTITY(256.0, (true ? _GLF_IDENTITY(256.0, float(vec2(256.0, 1.0))) : _GLF_FUZZED(-7.5)))))), float(mat3((256.0), 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0))), _GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(256.0, max(256.0, 256.0)), (_GLF_FALSE(false, (gl_FragCoord.y < 0.0)) ? _GLF_FUZZED(-62.37) : _GLF_IDENTITY(256.0, max(_GLF_IDENTITY(256.0, _GLF_IDENTITY(float(mat3(256.0, _GLF_IDENTITY(dot(vec2(0.0, 1.0), vec2(0.0, 1.0)), dot(vec2(0.0, 1.0), vec2(0.0, 1.0))), 1.0, 0.0, 1.0, abs(0.0), 0.0, 0.0, 1.0)), 0.0 + (float(mat3(256.0, _GLF_IDENTITY(dot(vec2(0.0, 1.0), vec2(0.0, 1.0)), dot(vec2(0.0, 1.0), vec2(0.0, 1.0))), 1.0, 0.0, 1.0, abs(0.0), 0.0, 0.0, 1.0))))), 256.0))))), clamp((256.0), (256.0), (256.0))), _GLF_IDENTITY((256.0), (true ? (256.0) : _GLF_FUZZED(-3164.3894)))))));
+#  float slope = 2.0 / 256.0;
+#  vec2 coord = gl_FragCoord.xy * (_GLF_IDENTITY(1.0 / 256.0, float(_GLF_IDENTITY(mat2(_GLF_IDENTITY(1.0 / 256.0, min(_GLF_IDENTITY(1.0 / 256.0, mix(float(_GLF_FUZZED(-4.2)), float(_GLF_IDENTITY(1.0 / 256.0, (false ? _GLF_FUZZED(-1.0) : 1.0 / 256.0))), bool(true))), 1.0 / 256.0)), 0.0, 1.0, 1.0), (mat2(_GLF_IDENTITY(1.0, (true ? _GLF_IDENTITY(1.0, (true ? 1.0 : _GLF_FUZZED(4655.2046))) : _GLF_FUZZED(-6.0))) / 256.0, 0.0, 1.0, 1.0)) / mat2(_GLF_IDENTITY(1.0, mix(float(1.0), float(_GLF_FUZZED(73.99)), bool(false))), 1.0, 1.0, 1.0)))));
+#  float refh = _GLF_IDENTITY(texture(tex, coord), log(vec4(1.0, 1.0, 1.0, 1.0)) + (texture(tex, coord))).y;
+#  coord -= uvstep;
+#  refh += slope;
+#  float h = texture(tex, coord).y;
+#  while(h < refh && i < 32)
+#   {
+#    coord -= uvstep;
+#    _GLF_IDENTITY(refh += slope, (refh += slope) / determinant(mat2(1.0, 0.0, 1.0, 1.0)));
+#    h = texture(tex, coord).y;
+#    i ++;
+#   }
+#  _GLF_color = _GLF_IDENTITY(vec4(vec3(_GLF_IDENTITY(_GLF_IDENTITY(float(i), float(mat4(float(i), 0.0, log(1.0), sin(0.0), abs(0.0), 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, _GLF_ONE(1.0, _GLF_IDENTITY(injectionSwitch.y, min(_GLF_IDENTITY(injectionSwitch.y, max(injectionSwitch.y, injectionSwitch.y)), injectionSwitch.y))), 1.0, abs(round(length(normalize(vec4(1.0, _GLF_IDENTITY(1.0, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-6202.6563, (false ? _GLF_FUZZED(slope) : -6202.6563)))), float(_GLF_IDENTITY(1.0, clamp(1.0, 1.0, _GLF_IDENTITY(1.0, _GLF_IDENTITY(max(_GLF_IDENTITY(1.0, 1.0 * (1.0)), 1.0), (max(1.0, 1.0)) / _GLF_IDENTITY(1.0, max(1.0, 1.0))))))), bool(true))), 1.0, 1.0)))))))), (_GLF_IDENTITY(float(i), mix(float(_GLF_IDENTITY(_GLF_FUZZED((- -6.5)), float(mat3x4(_GLF_IDENTITY(_GLF_FUZZED((- -6.5)), mix(float(_GLF_FUZZED((- -6.5))), float(_GLF_FUZZED(-4.7)), bool(false))), 0.0, 0.0, sqrt(1.0), 1.0, 1.0, 1.0, 1.0, tan(0.0), 1.0, 0.0, 0.0)))), float(float(i)), bool(true)))) / 1.0) * (_GLF_IDENTITY(1.0 / 32.0, min(_GLF_IDENTITY(1.0 / 32.0, (_GLF_IDENTITY(_GLF_IDENTITY(1.0, float(vec3(1.0, length(0.0), 1.0))) / _GLF_IDENTITY(32.0, min(32.0, 32.0)), max(_GLF_IDENTITY(1.0, (false ? _GLF_FUZZED(slope) : _GLF_IDENTITY(1.0, clamp(_GLF_IDENTITY(1.0, 1.0 * _GLF_IDENTITY((1.0), _GLF_IDENTITY(float(mat4((1.0), 1.0, 0.0, determinant(mat4(1.0, 0.0, determinant(_GLF_IDENTITY(mat3(1.0, 0.0, _GLF_IDENTITY(1.0, clamp(1.0, 1.0, _GLF_IDENTITY(1.0, mix(float(_GLF_IDENTITY(1.0, max(1.0, 1.0))), float(_GLF_FUZZED(-5.9)), bool(false))))), 0.0, 1.0, 0.0, _GLF_IDENTITY(0.0, min(0.0, _GLF_IDENTITY(0.0, (true ? 0.0 : _GLF_FUZZED(refh))))), 0.0, 1.0), _GLF_IDENTITY(transpose(transpose(mat3(1.0, 0.0, _GLF_IDENTITY(1.0, clamp(1.0, 1.0, _GLF_IDENTITY(1.0, mix(float(_GLF_IDENTITY(1.0, max(1.0, 1.0))), float(_GLF_FUZZED(-5.9)), bool(false))))), 0.0, 1.0, 0.0, _GLF_IDENTITY(0.0, min(0.0, _GLF_IDENTITY(0.0, (true ? 0.0 : _GLF_FUZZED(refh))))), 0.0, 1.0))), (true ? transpose(transpose(mat3(1.0, 0.0, _GLF_IDENTITY(1.0, clamp(1.0, 1.0, _GLF_IDENTITY(1.0, mix(float(_GLF_IDENTITY(1.0, max(1.0, 1.0))), float(_GLF_FUZZED(-5.9)), bool(false))))), 0.0, 1.0, _GLF_IDENTITY(0.0, (0.0) / 1.0), _GLF_IDENTITY(0.0, min(0.0, _GLF_IDENTITY(0.0, (true ? 0.0 : _GLF_FUZZED(refh))))), 0.0, 1.0))) : _GLF_FUZZED(mat3(2.9, 2.2, -4.3, 8897.6120, 3.9, -38.70, -82.69, 1927.7417, -6582.3183)))))), log(1.0), 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)), sqrt(exp(0.0)), 1.0, 0.0, _GLF_IDENTITY(0.0, round(length(normalize(vec3(1.0, 1.0, 1.0)))) * (0.0)), 0.0, 0.0, 0.0, length(_GLF_IDENTITY(vec2(0.0, 0.0), min(_GLF_IDENTITY(vec2(0.0, 0.0), _GLF_IDENTITY(mat2(1.0) * (vec2(0.0, 0.0)), (false ? _GLF_FUZZED(vec2(-6.5, -3.7)) : mat2(1.0) * (vec2(0.0, 0.0))))), vec2(0.0, 0.0)))), sin(0.0), 0.0, 1.0, 0.0)), min(float(mat4((1.0), 1.0, 0.0, determinant(mat4(1.0, 0.0, determinant(mat3(1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)), log(1.0), 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, _GLF_IDENTITY(0.0, float(mat4x2(0.0, 0.0, _GLF_ONE(1.0, injectionSwitch.y), 1.0, abs(0.0), abs(_GLF_IDENTITY(dot(vec3(1.0, 0.0, 1.0), vec3(_GLF_IDENTITY(0.0, clamp(0.0, _GLF_IDENTITY(0.0, (false ? _GLF_FUZZED(5397.0916) : 0.0)), _GLF_IDENTITY(0.0, max(0.0, 0.0)))), 1.0, 0.0)), dot(vec3(1.0, 0.0, 1.0), vec3(0.0, 1.0, 0.0)))), 1.0, 1.0))), 0.0, 1.0)), sqrt(exp(0.0)), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, length(vec2(0.0, 0.0)), sin(0.0), 0.0, 1.0, 0.0)), float(mat4((1.0), 1.0, 0.0, determinant(mat4(1.0, 0.0, determinant(mat3(1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)), log(1.0), 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)), sqrt(exp(0.0)), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, length(vec2(0.0, 0.0)), sin(0.0), 0.0, 1.0, _GLF_IDENTITY(0.0, _GLF_IDENTITY(0.0, 0.0 + (0.0)) + (_GLF_IDENTITY(0.0, (_GLF_IDENTITY(0.0, mix(float(_GLF_FUZZED(2.5)), float(0.0), bool(true)))) / 1.0))))))))), 1.0, 1.0)))) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, max(1.0, _GLF_IDENTITY(1.0, max(1.0, 1.0)))))) / 32.0))) * 1.0), _GLF_IDENTITY(1.0 / 32.0, _GLF_IDENTITY((true ? _GLF_IDENTITY(1.0, _GLF_IDENTITY((_GLF_TRUE(_GLF_IDENTITY(true, _GLF_IDENTITY(bool(bvec2(_GLF_IDENTITY(_GLF_IDENTITY(true, bool(bvec3(true, false, false))), ! (! (true))), _GLF_TRUE(true, (gl_FragCoord.x >= 0.0)))), false || (bool(bvec2(_GLF_IDENTITY(true, ! (! (true))), _GLF_TRUE(true, (gl_FragCoord.x >= 0.0))))))), _GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, float(_GLF_IDENTITY(mat2x4(_GLF_IDENTITY(gl_FragCoord, (gl_FragCoord) - vec4(0.0, 0.0, 0.0, 0.0)).y, 1.0, _GLF_IDENTITY(dot(vec4(0.0, 0.0, 1.0, 1.0), vec4(1.0, 1.0, 0.0, sqrt(0.0))), dot(vec4(0.0, 0.0, 1.0, 1.0), vec4(1.0, 1.0, 0.0, sqrt(0.0)))), 1.0, _GLF_IDENTITY(dot(vec4(0.0, 1.0, 0.0, 0.0), vec4(1.0, 0.0, exp(0.0), 1.0)), dot(_GLF_IDENTITY(vec4(0.0, 1.0, _GLF_IDENTITY(0.0, (0.0) - abs(0.0)), 0.0), max(_GLF_IDENTITY(vec4(0.0, 1.0, _GLF_IDENTITY(0.0, (0.0) - abs(0.0)), 0.0), vec4(_GLF_IDENTITY(mat2x4(vec4(0.0, 1.0, _GLF_IDENTITY(0.0, (0.0) - abs(0.0)), 0.0), 1.0, 1.0, 1.0, _GLF_IDENTITY(dot(vec3(1.0, 0.0, 0.0), vec3(1.0, 0.0, 0.0)), dot(vec3(1.0, 0.0, 0.0), vec3(1.0, 0.0, 0.0)))), (false ? _GLF_FUZZED(mat2x4(-1.2, 2.9, -989.909, 2705.0357, -135.685, -383.915, 665.357, -48.53)) : mat2x4(vec4(0.0, 1.0, _GLF_IDENTITY(0.0, (0.0) - abs(0.0)), 0.0), 1.0, 1.0, 1.0, _GLF_IDENTITY(dot(vec3(1.0, 0.0, 0.0), vec3(1.0, 0.0, 0.0)), dot(vec3(1.0, 0.0, 0.0), vec3(1.0, 0.0, 0.0)))))))), vec4(0.0, 1.0, _GLF_IDENTITY(0.0, (0.0) - abs(0.0)), 0.0))), vec4(1.0, 0.0, exp(0.0), 1.0))), 0.0, 0.0, 1.0), transpose(transpose(mat2x4(gl_FragCoord.y, 1.0, _GLF_IDENTITY(dot(vec4(0.0, 0.0, 1.0, 1.0), vec4(1.0, 1.0, 0.0, _GLF_IDENTITY(sqrt(0.0), (false ? _GLF_FUZZED(mix(slope, h, false)) : _GLF_IDENTITY(sqrt(0.0), max(sqrt(0.0), sqrt(0.0))))))), dot(vec4(0.0, 0.0, _GLF_IDENTITY(1.0, clamp(_GLF_IDENTITY(1.0, (1.0) / 1.0), 1.0, 1.0)), 1.0), vec4(1.0, 1.0, 0.0, sqrt(0.0)))), 1.0, _GLF_IDENTITY(dot(vec4(0.0, 1.0, 0.0, 0.0), vec4(1.0, 0.0, exp(0.0), 1.0)), dot(vec4(0.0, 1.0, 0.0, 0.0), _GLF_IDENTITY(_GLF_IDENTITY(vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, mix(float(1.0), float(_GLF_FUZZED(-513.961)), bool(false))), 1.0)), 1.0)), 0.0, exp(0.0), 1.0), clamp(_GLF_IDENTITY(vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, mix(float(1.0), float(_GLF_FUZZED(-513.961)), bool(false))), 1.0)), 1.0)), 0.0, exp(0.0), 1.0), clamp(vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, mix(float(1.0), float(_GLF_FUZZED(-513.961)), bool(false))), 1.0)), 1.0)), 0.0, exp(0.0), 1.0), vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, mix(float(1.0), float(_GLF_FUZZED(-513.961)), bool(false))), 1.0)), 1.0)), 0.0, exp(0.0), 1.0), _GLF_IDENTITY(vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, mix(float(1.0), float(_GLF_FUZZED(-513.961)), bool(false))), 1.0)), 1.0)), 0.0, exp(0.0), 1.0), (false ? _GLF_FUZZED(vec4(76.62, 5.0, -164.130, 1503.2909)) : vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, mix(float(1.0), float(_GLF_FUZZED(-513.961)), bool(false))), 1.0)), 1.0)), 0.0, exp(0.0), 1.0))))), vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, mix(float(1.0), float(_GLF_FUZZED(-513.961)), bool(false))), 1.0)), 1.0)), 0.0, exp(0.0), 1.0), vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, mix(float(1.0), float(_GLF_FUZZED(-513.961)), bool(false))), 1.0)), 1.0)), 0.0, exp(0.0), 1.0))), max(vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)), 1.0)), 0.0, exp(0.0), _GLF_IDENTITY(1.0, clamp(1.0, 1.0, 1.0))), _GLF_IDENTITY(vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, _GLF_IDENTITY(max(1.0, 1.0), max(max(1.0, 1.0), max(1.0, 1.0)))), 1.0)), 0.0, exp(0.0), 1.0), (_GLF_IDENTITY(vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)), 1.0)), 0.0, exp(0.0), 1.0), vec4(0.0, 0.0, 0.0, 0.0) + (vec4(_GLF_IDENTITY(1.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)), 1.0)), 0.0, exp(0.0), 1.0)))) - vec4(0.0, 0.0, 0.0, 0.0)))))), 0.0, 0.0, 1.0)))))), mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), (_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, 0.0 + (_GLF_IDENTITY(gl_FragCoord.y, (gl_FragCoord.y) - sin(0.0))))), bool(true))) >= 0.0), bool(bool((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, 0.0 + (_GLF_IDENTITY(gl_FragCoord.y, (gl_FragCoord.y) - sin(0.0))))), bool(true))) >= 0.0, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, 0.0 + (_GLF_IDENTITY(gl_FragCoord.y, (gl_FragCoord.y) - sin(0.0))))), bool(true))) >= 0.0) && _GLF_IDENTITY(true, bool(bool(true))))))))) || false), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), clamp(float(_GLF_FUZZED(-9.8)), float(_GLF_FUZZED(-9.8)), float(_GLF_FUZZED(-9.8)))), float(_GLF_IDENTITY(gl_FragCoord.y, max(gl_FragCoord.y, _GLF_IDENTITY(gl_FragCoord.y, (true ? gl_FragCoord.y : _GLF_IDENTITY(_GLF_FUZZED(h), (_GLF_FUZZED(h)) - determinant(mat3(0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0)))))))), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_IDENTITY(_GLF_FUZZED(-9.8), min(_GLF_FUZZED(-9.8), _GLF_FUZZED(-9.8)))), float(gl_FragCoord.y), bool(true))) >= _GLF_IDENTITY(0.0, (0.0) + tan(0.0)))) || _GLF_IDENTITY(false, bool(bvec3(false, true, _GLF_FALSE(false, (injectionSwitch.x > injectionSwitch.y)))))), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, clamp(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, _GLF_IDENTITY(vec4(_GLF_IDENTITY(mat4x3(_GLF_IDENTITY(gl_FragCoord, min(gl_FragCoord, gl_FragCoord)), 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0), (false ? _GLF_FUZZED(mat4x3(-7.3, -84.39, 95.34, -21.20, -9600.2567, 83.76, -6.2, 6.1, 43.66, -5070.2795, 241.099, 3.6)) : mat4x3(_GLF_IDENTITY(gl_FragCoord, min(gl_FragCoord, gl_FragCoord)), 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0)))), (false ? _GLF_FUZZED(_GLF_color) : vec4(_GLF_IDENTITY(mat4x3(_GLF_IDENTITY(gl_FragCoord, min(gl_FragCoord, gl_FragCoord)), 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0), (false ? _GLF_FUZZED(mat4x3(-7.3, -84.39, 95.34, -21.20, -9600.2567, 83.76, -6.2, 6.1, 43.66, -5070.2795, 241.099, 3.6)) : mat4x3(_GLF_IDENTITY(gl_FragCoord, min(gl_FragCoord, gl_FragCoord)), 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0))))))).y, 0.0 + (gl_FragCoord.y)), _GLF_IDENTITY(gl_FragCoord.y, mix(float(gl_FragCoord.y), float(_GLF_FUZZED(-1.5)), bool(false))), _GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-7.2)), float(gl_FragCoord.y), bool(true)))))), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), true))), false, false)))))) ? 1.0 : _GLF_FUZZED(-927.049)), _GLF_IDENTITY(min((_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), _GLF_IDENTITY(bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), _GLF_IDENTITY(float(gl_FragCoord.y), 0.0 + (float(gl_FragCoord.y))), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), true))), false, false)))), false || (bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), _GLF_IDENTITY(float(gl_FragCoord.y), 0.0 + (float(gl_FragCoord.y))), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), true))), false, false)))))))) ? 1.0 : _GLF_FUZZED(-927.049)), (_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), (true ? _GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, (gl_FragCoord.y) / 1.0)), bool(true))) : _GLF_FUZZED(slope))) >= 0.0), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, (-9.8) - 0.0))), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, (true ? gl_FragCoord : _GLF_FUZZED((3.0 * _GLF_color)))).y), bool(true))) >= 0.0)) || false), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= _GLF_IDENTITY(0.0, float(mat3x4(_GLF_IDENTITY(0.0, mix(float(_GLF_FUZZED(float(88938u))), float(0.0), bool(true))), 1.0, 0.0, _GLF_IDENTITY(1.0, max(1.0, 1.0)), 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0))))) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(_GLF_IDENTITY(mat4x3(gl_FragCoord, 0.0, sin(0.0), determinant(mat3(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0)), 1.0, 1.0, 0.0, 1.0, 1.0), (true ? mat4x3(gl_FragCoord, 0.0, sin(0.0), determinant(mat3(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0)), 1.0, 1.0, 0.0, 1.0, 1.0) : _GLF_FUZZED(mat4x3(-9.5, 8.1, -87.52, -1.7, 8.1, 5222.0533, -50.39, 611.579, -8320.6566, -4.5, -8.8, -561.373)))))).y), _GLF_IDENTITY(bool(true), bool(bvec2(bool(true), false))))) >= 0.0), _GLF_IDENTITY(((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)), false || (((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)))) || false), false), true))), false, false)))))) ? 1.0 : _GLF_FUZZED(-927.049))), clamp(min((_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0, bool(bool(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, max(_GLF_IDENTITY(gl_FragCoord.y, min(gl_FragCoord.y, gl_FragCoord.y)), gl_FragCoord.y)), mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)))), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, _GLF_IDENTITY((gl_FragCoord) * mat4(1.0), min((gl_FragCoord) * mat4(1.0), _GLF_IDENTITY((gl_FragCoord) * mat4(1.0), (false ? _GLF_FUZZED(_GLF_color) : (gl_FragCoord) * mat4(1.0)))))).y, mix(float(_GLF_FUZZED(float(-39583))), float(gl_FragCoord.y), bool(_GLF_TRUE(true, (gl_FragCoord.x >= 0.0))))), mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED(-9.3)), bool(_GLF_FALSE(false, (gl_FragCoord.x < 0.0))))))), float(gl_FragCoord.y), bool(true))) >= 0.0), _GLF_IDENTITY(((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)), ! (! (((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))))) || false), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), min(float(_GLF_FUZZED(-9.8)), float(_GLF_FUZZED(-9.8)))), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), _GLF_IDENTITY(float(vec4(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)).y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), abs(_GLF_IDENTITY(1.0, (1.0) / 1.0)), 1.0, 1.0)), (false ? _GLF_FUZZED(slope) : float(vec4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), abs(1.0), 1.0, 1.0))))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED(1.8)), bool(false))))), float(_GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mat4(1.0) * (gl_FragCoord)) : _GLF_FUZZED(_GLF_color))).y), bool(true))) >= _GLF_IDENTITY(0.0, float(mat3x2(0.0, _GLF_ONE(1.0, injectionSwitch.y), sqrt(determinant(mat3(1.0, 0.0, _GLF_IDENTITY(0.0, (true ? 0.0 : _GLF_FUZZED(length(vec3(84.49, -747.502, -3.1))))), 0.0, 1.0, 0.0, _GLF_IDENTITY(0.0, float(mat4(0.0, 0.0, 1.0, 1.0, exp(0.0), 0.0, exp(0.0), 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, _GLF_IDENTITY(dot(vec2(0.0, 1.0), vec2(0.0, 1.0)), _GLF_IDENTITY(dot(vec2(0.0, 1.0), vec2(0.0, 1.0)), clamp(dot(vec2(0.0, 1.0), vec2(0.0, 1.0)), dot(vec2(0.0, 1.0), vec2(0.0, 1.0)), dot(vec2(0.0, 1.0), vec2(0.0, 1.0))))), 0.0, cos(0.0)))), 0.0, 1.0))), 1.0, _GLF_ONE(1.0, injectionSwitch.y), _GLF_ONE(1.0, injectionSwitch.y))))), ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0 + (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), clamp(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), mix(float(_GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), float(mat2(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), 0.0, 0.0, 1.0)))), float(_GLF_FUZZED(5160.7562)), bool(false)))))), clamp(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), _GLF_IDENTITY(bool(true), (bool(true)) && true))), _GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)))) * 1.0), _GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(_GLF_IDENTITY(true, false || (_GLF_IDENTITY(true, bool(bvec4(true, _GLF_FALSE(false, (gl_FragCoord.x < 0.0)), true, false)))))))))))) >= _GLF_IDENTITY(_GLF_IDENTITY(0.0, mix(float(_GLF_FUZZED(8.6)), float(0.0), bool(true))), _GLF_IDENTITY(float(_GLF_IDENTITY(mat3(_GLF_IDENTITY(0.0, mix(float(_GLF_FUZZED(8.6)), float(0.0), bool(true))), 0.0, abs(1.0), 1.0, 0.0, abs(0.0), tan(0.0), 0.0, 1.0), (true ? mat3(_GLF_IDENTITY(0.0, mix(float(_GLF_FUZZED(8.6)), float(0.0), bool(true))), 0.0, abs(1.0), 1.0, 0.0, abs(0.0), tan(0.0), 0.0, 1.0) : _GLF_FUZZED(mat3(-8.7, 74.07, 697.046, -9805.8789, -9.2, 66.04, 6.3, 73.19, -74.88))))), (true ? float(_GLF_IDENTITY(mat3(_GLF_IDENTITY(0.0, mix(float(_GLF_FUZZED(8.6)), float(0.0), bool(true))), 0.0, abs(1.0), 1.0, 0.0, abs(0.0), tan(0.0), 0.0, 1.0), (true ? mat3(_GLF_IDENTITY(0.0, mix(float(_GLF_FUZZED(8.6)), float(0.0), bool(true))), 0.0, abs(1.0), 1.0, 0.0, abs(0.0), tan(0.0), 0.0, 1.0) : _GLF_FUZZED(mat3(-8.7, 74.07, 697.046, -9805.8789, -9.2, 66.04, 6.3, 73.19, -74.88))))) : _GLF_FUZZED(refh)))))) || false), false), true))), false, false)))))) ? 1.0 : _GLF_FUZZED(-927.049)), (_GLF_TRUE(true, _GLF_IDENTITY(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(_GLF_IDENTITY(mat3(_GLF_IDENTITY(gl_FragCoord, vec4(vec4(gl_FragCoord))), 0.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sqrt(1.0), 1.0, 1.0, 0.0)), 0.0, 1.0, 1.0), (mat3(_GLF_IDENTITY(gl_FragCoord, vec4(vec4(gl_FragCoord))), 0.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sqrt(1.0), 1.0, 1.0, 0.0)), 0.0, 1.0, 1.0)) + mat3(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)))).y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), _GLF_IDENTITY(float(mat2x4(float(_GLF_FUZZED(-9.8)), 1.0, 1.0, abs(1.0), 0.0, 0.0, 1.0, 1.0)), (float(mat2x4(float(_GLF_FUZZED(-9.8)), 1.0, 1.0, abs(1.0), 0.0, 0.0, 1.0, 1.0))) + 0.0)), float(gl_FragCoord.y), bool(true))) >= 0.0)) && _GLF_IDENTITY(true, bool(bvec3(true, false, false)))), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, (-9.8) * _GLF_ONE(1.0, injectionSwitch.y)))), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), min(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, min(gl_FragCoord, gl_FragCoord)).y), bool(true))), _GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), _GLF_IDENTITY(float(gl_FragCoord.y), (false ? _GLF_FUZZED(refh) : float(gl_FragCoord.y))), bool(true))))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), _GLF_IDENTITY(true, (true) && true)))), false, _GLF_IDENTITY(false, true && _GLF_IDENTITY((false), false || ((_GLF_IDENTITY(false, true && (_GLF_IDENTITY(false, bool(bvec4(false, _GLF_FALSE(false, (gl_FragCoord.x < 0.0)), true, true))))))))))))))) ? 1.0 : _GLF_FUZZED(-927.049))), min((_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, float(mat3x2(_GLF_IDENTITY(-9.8, clamp(-9.8, -9.8, -9.8)), 1.0, 1.0, 0.0, 1.0, 1.0))))), float(gl_FragCoord.y), bool(true))) >= 0.0), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), min(float(_GLF_FUZZED(-9.8)), float(_GLF_FUZZED(-9.8)))), float(gl_FragCoord.y), bool(true))) >= 0.0), _GLF_IDENTITY(((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)), bool(bvec4(((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), _GLF_IDENTITY(bool(true), (bool(true)) || false))) >= 0.0)), true, _GLF_TRUE(true, (injectionSwitch.x < injectionSwitch.y)), false))) || false), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, min(gl_FragCoord.y, gl_FragCoord.y))), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), true))), false, false)))))) ? 1.0 : _GLF_FUZZED(-927.049)), (_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ! (_GLF_IDENTITY(! ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)), (! ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))) && true))), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ! (! ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)))), _GLF_IDENTITY(((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)), true && (_GLF_IDENTITY(((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)), (((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))) && true))) || false), false), _GLF_IDENTITY(true, ! (_GLF_IDENTITY(! (_GLF_IDENTITY(true, ! (! (true)))), ! (! (_GLF_IDENTITY(! (_GLF_IDENTITY(true, ! (! (true)))), true && (! (_GLF_IDENTITY(true, ! (! (true)))))))))))))), false, false)))))) ? 1.0 : _GLF_FUZZED(-927.049))), _GLF_IDENTITY(min((_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), clamp(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), _GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), _GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), max(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), _GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))))))) >= 0.0), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), (_GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), min(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), _GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), max(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), _GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))))))) >= 0.0), ! (! ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), min(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), _GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), max(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), _GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))))))) >= 0.0))))) || false), false), bvec2(bvec4(_GLF_IDENTITY(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), _GLF_IDENTITY(float(gl_FragCoord.y), float(float(_GLF_IDENTITY(float(_GLF_IDENTITY(gl_FragCoord.y, max(gl_FragCoord.y, gl_FragCoord.y))), (false ? _GLF_FUZZED(refh) : float(gl_FragCoord.y)))))), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec4(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, max(_GLF_IDENTITY(gl_FragCoord, max(gl_FragCoord, gl_FragCoord)), gl_FragCoord)).y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), true, _GLF_FALSE(false, (gl_FragCoord.x < _GLF_ZERO(0.0, injectionSwitch.x)))))), bvec2(bvec3(bvec2(_GLF_IDENTITY(_GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), _GLF_IDENTITY(float(_GLF_IDENTITY(mat3x4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0, determinant(mat3(1.0, sin(0.0), log(1.0), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0)), 1.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sin(0.0), 1.0, 0.0)), 0.0, 0.0, 1.0, 0.0, sqrt(0.0), 0.0, _GLF_ZERO(0.0, injectionSwitch.x)), (_GLF_IDENTITY(mat3x4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0, determinant(mat3(1.0, sin(0.0), log(1.0), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0)), 1.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sin(0.0), 1.0, 0.0)), 0.0, 0.0, 1.0, 0.0, sqrt(0.0), 0.0, _GLF_ZERO(0.0, injectionSwitch.x)), (mat3x4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0, determinant(mat3(1.0, sin(0.0), log(1.0), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0)), 1.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sin(0.0), 1.0, 0.0)), 0.0, 0.0, 1.0, 0.0, sqrt(0.0), 0.0, _GLF_ZERO(0.0, injectionSwitch.x))) - mat3x4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))) - mat3x4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))), max(float(_GLF_IDENTITY(mat3x4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0, determinant(mat3(1.0, sin(0.0), log(1.0), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0)), 1.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sin(0.0), 1.0, 0.0)), 0.0, 0.0, 1.0, 0.0, sqrt(0.0), 0.0, _GLF_ZERO(0.0, injectionSwitch.x)), (_GLF_IDENTITY(mat3x4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0, determinant(mat3(1.0, sin(0.0), log(1.0), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0)), 1.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sin(0.0), 1.0, 0.0)), 0.0, 0.0, 1.0, 0.0, sqrt(0.0), 0.0, _GLF_ZERO(0.0, injectionSwitch.x)), (mat3x4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0, determinant(mat3(1.0, sin(0.0), log(1.0), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0)), 1.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sin(0.0), 1.0, 0.0)), 0.0, 0.0, 1.0, 0.0, sqrt(0.0), 0.0, _GLF_ZERO(0.0, injectionSwitch.x))) - mat3x4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))) - mat3x4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))), float(_GLF_IDENTITY(mat3x4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0, determinant(mat3(1.0, sin(0.0), log(1.0), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0)), 1.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sin(0.0), 1.0, 0.0)), 0.0, 0.0, 1.0, 0.0, sqrt(0.0), 0.0, _GLF_ZERO(0.0, injectionSwitch.x)), (_GLF_IDENTITY(mat3x4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0, determinant(mat3(1.0, sin(0.0), log(1.0), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0)), 1.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sin(0.0), 1.0, 0.0)), 0.0, 0.0, 1.0, 0.0, sqrt(0.0), 0.0, _GLF_ZERO(0.0, injectionSwitch.x)), (mat3x4(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), 0.0, determinant(mat3(1.0, sin(0.0), log(1.0), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0)), 1.0, determinant(mat4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, sin(0.0), 1.0, 0.0)), 0.0, 0.0, 1.0, 0.0, sqrt(0.0), 0.0, _GLF_ZERO(0.0, injectionSwitch.x))) - mat3x4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))) - mat3x4(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)))))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), (_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, log(1.0) + (gl_FragCoord.y))), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false)) && true), false), true))), false, false)))))) ? 1.0 : _GLF_FUZZED(-927.049)), (_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), _GLF_IDENTITY((_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, (-9.8) - 0.0))), float(_GLF_IDENTITY(gl_FragCoord, (_GLF_IDENTITY(gl_FragCoord, mat4(1.0) * (gl_FragCoord))) - vec4(0.0, 0.0, 0.0, 0.0)).y), bool(true))) >= 0.0), _GLF_TRUE(true, (gl_FragCoord.y >= 0.0)) && (_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ! (! ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))))))), _GLF_IDENTITY(bool(bvec4((_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), _GLF_TRUE(true, (gl_FragCoord.y >= 0.0)) && (_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ! (! ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))))))), true, true, true)), false || (bool(bvec4((_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), _GLF_TRUE(true, (gl_FragCoord.y >= 0.0)) && (_GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, min(gl_FragCoord.y, gl_FragCoord.y)), mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ! (! ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))))))), true, true, true))))) || false), true && (_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), _GLF_IDENTITY((_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, (-9.8) - 0.0))), float(_GLF_IDENTITY(gl_FragCoord, _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord, mat4(1.0) * (gl_FragCoord))), min((_GLF_IDENTITY(gl_FragCoord, mat4(1.0) * (gl_FragCoord))), (_GLF_IDENTITY(gl_FragCoord, mat4(1.0) * (gl_FragCoord))))) - vec4(0.0, 0.0, 0.0, 0.0)).y), bool(true))) >= 0.0), _GLF_IDENTITY(_GLF_TRUE(true, (gl_FragCoord.y >= 0.0)), _GLF_FALSE(false, (injectionSwitch.x > injectionSwitch.y)) || (_GLF_TRUE(true, (gl_FragCoord.y >= 0.0)))) && (_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ! (! ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))))))), _GLF_IDENTITY(bool(bvec4((_GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, max(gl_FragCoord, gl_FragCoord)).y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), _GLF_TRUE(true, (gl_FragCoord.y >= 0.0)) && (_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ! (! ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))))))), true, true, true)), false || (bool(bvec4((_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), _GLF_TRUE(true, (gl_FragCoord.y >= 0.0)) && (_GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, min(gl_FragCoord.y, gl_FragCoord.y)), mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ! (! ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))))))), true, true, true))))) || false))), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, _GLF_IDENTITY(mat4(1.0) * (gl_FragCoord), (true ? mat4(1.0) * (gl_FragCoord) : _GLF_FUZZED(_GLF_color)))).y), bool(true))) >= 0.0), ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), (true ? _GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) : _GLF_FUZZED(h))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED(-523.782)), bool(false))))), float(gl_FragCoord.y), _GLF_IDENTITY(bool(true), _GLF_TRUE(true, (gl_FragCoord.x >= sqrt(0.0))) && (_GLF_IDENTITY(bool(true), ! (! (_GLF_IDENTITY(bool(true), (bool(true)) && true)))))))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), true))), false, false)))))) ? 1.0 : _GLF_FUZZED(-927.049))), mix(float(min((_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, max(gl_FragCoord.y, _GLF_IDENTITY(gl_FragCoord.y, clamp(gl_FragCoord.y, gl_FragCoord.y, gl_FragCoord.y)))), mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, min(-9.8, -9.8)))), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, max(gl_FragCoord.y, gl_FragCoord.y))), bool(true))) >= 0.0)) || false), false), _GLF_IDENTITY(bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, (true ? gl_FragCoord.y : _GLF_FUZZED(slope)))), bool(true))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= _GLF_IDENTITY(0.0, (true ? _GLF_IDENTITY(0.0, min(0.0, _GLF_IDENTITY(0.0, float(mat3x2(0.0, 0.0, 1.0, 0.0, 0.0, 0.0))))) : _GLF_FUZZED(length(h))))), ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), max(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), max(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))))))) >= 0.0, (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, min(_GLF_IDENTITY(gl_FragCoord, (gl_FragCoord) - vec4(0.0, 0.0, 0.0, 0.0)), gl_FragCoord)).y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0) && true))) || false), false), true))), false, false)), bvec2(bvec4(bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), _GLF_IDENTITY(bool(true), false || (bool(true))))) >= 0.0, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0) && true))) || false), false), true))), false, false)), false, true))))))) ? 1.0 : _GLF_IDENTITY(_GLF_FUZZED(-927.049), float(_GLF_IDENTITY(mat2(_GLF_IDENTITY(_GLF_FUZZED(-927.049), float(mat2(_GLF_FUZZED(-927.049), 0.0, 0.0, _GLF_ZERO(0.0, injectionSwitch.x)))), 1.0, 0.0, tan(0.0)), (mat2(_GLF_IDENTITY(_GLF_FUZZED(-927.049), float(mat2(_GLF_FUZZED(-927.049), 0.0, 0.0, _GLF_ZERO(_GLF_IDENTITY(0.0, (0.0) + 0.0), injectionSwitch.x)))), 1.0, 0.0, tan(0.0))) * mat2(1.0))))), (_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED(9.4)), bool(false))))), _GLF_IDENTITY(float(gl_FragCoord.y), _GLF_IDENTITY(max(_GLF_IDENTITY(float(gl_FragCoord.y), 1.0 * (float(gl_FragCoord.y))), float(gl_FragCoord.y)), (true ? max(_GLF_IDENTITY(float(gl_FragCoord.y), 1.0 * (float(gl_FragCoord.y))), float(gl_FragCoord.y)) : _GLF_FUZZED(slope)))), bool(true))) >= 0.0), bool(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(mat4x3(_GLF_IDENTITY(gl_FragCoord, vec4(mat3x2(gl_FragCoord, 0.0, 0.0))), sqrt(1.0), 1.0, 1.0, 0.0, 1.0, _GLF_ONE(1.0, injectionSwitch.y), log(1.0), 1.0))).y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec4(_GLF_IDENTITY(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, max(-9.8, -9.8)))), float(gl_FragCoord.y), bool(true))) >= 0.0)) || false), false), bvec2(bvec3(bvec2(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), min(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), determinant(mat3(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)) + (float(_GLF_FUZZED(-9.8)))), float(_GLF_FUZZED(-9.8)))), float(gl_FragCoord.y), bool(true))) >= 0.0), ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0, true && (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)))) || false), false), true))), _GLF_IDENTITY(false, _GLF_IDENTITY(bool(bvec2(false, _GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.x >= 0.0, false || (gl_FragCoord.x >= 0.0)))))), ! (! (bool(bvec2(false, _GLF_TRUE(true, (gl_FragCoord.x >= 0.0)))))))), _GLF_IDENTITY(false, ! (! (_GLF_IDENTITY(false, _GLF_IDENTITY(bool(bvec4(false, false, false, true)), true && (bool(bvec4(false, false, false, true)))))))))))))) ? 1.0 : _GLF_FUZZED(-927.049)))), float(_GLF_FUZZED(-9.6)), bool(false))))))) / 32.0 : _GLF_FUZZED(slope)), min(_GLF_IDENTITY((true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(_GLF_IDENTITY(true, _GLF_IDENTITY(bool(bvec3(true, false, false)), ! (! (bool(bvec3(true, false, false))))))))) >= 0.0), bool(_GLF_IDENTITY(bvec3((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(_GLF_IDENTITY(true, _GLF_IDENTITY(bool(bvec3(true, false, false)), _GLF_IDENTITY(! (! (bool(bvec3(true, false, false)))), false || (_GLF_IDENTITY(! (! (bool(bvec3(true, false, false)))), bool(bvec3(_GLF_IDENTITY(! (! (bool(bvec3(true, false, false)))), true && (! (! (bool(bvec3(true, false, false)))))), false, true)))))))))) >= 0.0), true, true), bvec3(bvec3(bvec3((_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(_GLF_IDENTITY(true, _GLF_IDENTITY(bool(bvec3(true, false, false)), _GLF_IDENTITY(! (! (bool(bvec3(true, false, false)))), false || (_GLF_IDENTITY(! (! (bool(bvec3(true, false, false)))), bool(bvec3(_GLF_IDENTITY(! (! (bool(bvec3(true, false, false)))), true && (! (! (bool(bvec3(true, false, false)))))), false, true)))))))))) >= 0.0), true, true))))))) ? 1.0 : _GLF_FUZZED(-927.049))) / _GLF_IDENTITY(32.0, max(32.0, _GLF_IDENTITY(32.0, clamp(32.0, 32.0, 32.0)))) : _GLF_FUZZED(slope)), max((true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), mix(float(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0))), ! (_GLF_IDENTITY(! ((_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), _GLF_IDENTITY(float(gl_FragCoord.y), _GLF_IDENTITY(max(_GLF_IDENTITY(float(gl_FragCoord.y), (float(gl_FragCoord.y)) / 1.0), float(gl_FragCoord.y)), (false ? _GLF_FUZZED(faceforward(refh, 2460.4134, 29.84)) : max(_GLF_IDENTITY(float(gl_FragCoord.y), (float(gl_FragCoord.y)) / 1.0), float(gl_FragCoord.y))))), bool(true)), mix(float(mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord.y, (false ? _GLF_FUZZED(slope) : gl_FragCoord.y))), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(_GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0)), (_GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0))) - 0.0))), (_GLF_IDENTITY(! ((_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(mat4x2(gl_FragCoord, tan(0.0), 0.0, 1.0, 1.0))).y), bool(true)), mix(float(mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED((3.0 / 4969.8455))), bool(false))))), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0)), _GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.x >= 0.0, (_GLF_IDENTITY(gl_FragCoord.x >= 0.0, false || (gl_FragCoord.x >= 0.0))) && true))) && _GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(mat4x2(gl_FragCoord, tan(0.0), 0.0, 1.0, 1.0))).y), bool(true)), mix(float(mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED((3.0 / 4969.8455))), bool(false))))), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0))), _GLF_IDENTITY(bool(bvec4(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(mat4x2(gl_FragCoord, tan(0.0), 0.0, 1.0, 1.0))).y), bool(true)), mix(float(mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED((3.0 / 4969.8455))), bool(false))))), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0))), bool(_GLF_IDENTITY(bvec3((_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(mat4x2(gl_FragCoord, tan(0.0), 0.0, 1.0, 1.0))).y), bool(true)), mix(float(mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED((3.0 / 4969.8455))), bool(false))))), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0))), true, false), bvec3(bvec4(bvec3((_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(mat4x2(gl_FragCoord, tan(0.0), 0.0, 1.0, 1.0))).y), bool(true)), mix(float(mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED((3.0 / 4969.8455))), bool(false))))), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0))), true, false), false))))), true, true, false)), (bool(bvec4(_GLF_IDENTITY((_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(mat4x2(gl_FragCoord, tan(0.0), 0.0, 1.0, 1.0))).y), bool(true)), mix(float(mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED((3.0 / 4969.8455))), bool(false))))), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0))), bool(_GLF_IDENTITY(bvec3((_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(mat4x2(gl_FragCoord, tan(0.0), 0.0, 1.0, 1.0))).y), bool(true)), mix(float(mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED((3.0 / 4969.8455))), bool(false))))), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0))), true, false), bvec3(bvec4(bvec3((_GLF_IDENTITY(gl_FragCoord.y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(_GLF_IDENTITY(gl_FragCoord, vec4(mat4x2(gl_FragCoord, tan(0.0), 0.0, 1.0, 1.0))).y), bool(true)), mix(float(mix(float(_GLF_FUZZED(_GLF_IDENTITY(-9.8, mix(float(-9.8), float(_GLF_FUZZED((3.0 / 4969.8455))), bool(false))))), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0))), true, false), false))))), true, true, false))) && true))))), ! (! (! ((_GLF_IDENTITY(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, min(_GLF_IDENTITY(gl_FragCoord, max(gl_FragCoord, gl_FragCoord)), gl_FragCoord)).y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), mix(float(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0)), false || (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, min(_GLF_IDENTITY(gl_FragCoord, max(gl_FragCoord, gl_FragCoord)), gl_FragCoord)).y, _GLF_IDENTITY(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true)), mix(float(mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))), float(_GLF_FUZZED(-5.2)), bool(false)))) >= _GLF_IDENTITY(0.0, max(_GLF_IDENTITY(0.0, min(0.0, 0.0)), 0.0)))))))))) || false)))) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), (true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_IDENTITY(_GLF_FUZZED(-9.8), min(_GLF_FUZZED(-9.8), _GLF_FUZZED(-9.8)))), float(_GLF_IDENTITY(gl_FragCoord.y, float(_GLF_IDENTITY(mat4x3(gl_FragCoord.y, sqrt(0.0), 1.0, 1.0, 1.0, _GLF_IDENTITY(dot(vec3(_GLF_IDENTITY(0.0, (0.0) + 0.0), 1.0, abs(0.0)), vec3(0.0, 1.0, 0.0)), dot(vec3(0.0, 1.0, abs(0.0)), vec3(0.0, 1.0, 0.0))), 1.0, 1.0, 1.0, 0.0, 0.0, exp(0.0)), (true ? mat4x3(gl_FragCoord.y, sqrt(_GLF_IDENTITY(0.0, mix(float(_GLF_IDENTITY(0.0, mix(float(_GLF_FUZZED(5.0)), float(0.0), bool(true)))), float(_GLF_FUZZED(262.566)), bool(false)))), 1.0, 1.0, 1.0, _GLF_IDENTITY(dot(vec3(0.0, 1.0, abs(0.0)), vec3(0.0, 1.0, 0.0)), dot(vec3(0.0, 1.0, abs(0.0)), vec3(0.0, 1.0, 0.0))), 1.0, 1.0, 1.0, 0.0, 0.0, exp(0.0)) : _GLF_FUZZED(mat4x3(-3.3, -552.200, -52.41, 3.9, -292.458, -776.260, 471.206, 213.805, 577.036, 533.115, 5685.1746, 2.0))))))), bool(true))) >= _GLF_IDENTITY(0.0, (false ? _GLF_FUZZED(798.664) : 0.0)))) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)))), _GLF_IDENTITY(_GLF_IDENTITY((_GLF_IDENTITY(true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(_GLF_IDENTITY(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), (float(_GLF_FUZZED(-9.8))) / 1.0), (false ? _GLF_FUZZED(pow(h, refh)) : float(_GLF_FUZZED(-9.8)))), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(_GLF_IDENTITY(slope, (_GLF_IDENTITY(slope, clamp(slope, slope, slope))) * exp(length(vec3(0.0, 0.0, 0.0))))), mix(float(_GLF_FUZZED(-25.38)), float(true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), (false ? _GLF_FUZZED(pow(h, refh)) : float(_GLF_FUZZED(-9.8)))), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), bool(true)))), float(_GLF_IDENTITY(mat2((true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(_GLF_IDENTITY(float(_GLF_IDENTITY(_GLF_FUZZED(-9.8), (_GLF_FUZZED(_GLF_IDENTITY(-9.8, 0.0 + (-9.8)))) / 1.0)), clamp(float(_GLF_IDENTITY(_GLF_FUZZED(-9.8), (_GLF_FUZZED(_GLF_IDENTITY(-9.8, 0.0 + (-9.8)))) / 1.0)), float(_GLF_IDENTITY(_GLF_FUZZED(-9.8), (_GLF_FUZZED(_GLF_IDENTITY(-9.8, 0.0 + (-9.8)))) / 1.0)), float(_GLF_IDENTITY(_GLF_FUZZED(-9.8), (_GLF_FUZZED(_GLF_IDENTITY(-9.8, 0.0 + (-9.8)))) / 1.0)))), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), 0.0, 1.0, exp(0.0)), _GLF_IDENTITY((false ? _GLF_FUZZED(mat2(_GLF_IDENTITY(6351.2627, clamp(6351.2627, 6351.2627, _GLF_IDENTITY(6351.2627, _GLF_IDENTITY(float(mat3(6351.2627, 0.0, 0.0, 0.0, _GLF_ZERO(_GLF_IDENTITY(0.0, min(_GLF_IDENTITY(0.0, (false ? _GLF_FUZZED(844.939) : 0.0)), _GLF_IDENTITY(0.0, 1.0 * (0.0)))), injectionSwitch.x), 0.0, 0.0, 0.0, 0.0)), (float(mat3(6351.2627, 0.0, 0.0, 0.0, _GLF_ZERO(0.0, injectionSwitch.x), 0.0, 0.0, 0.0, 0.0))) / 1.0)))), _GLF_IDENTITY(4.8, clamp(_GLF_IDENTITY(4.8, (4.8) / 1.0), _GLF_IDENTITY(4.8, min(4.8, 4.8)), _GLF_IDENTITY(4.8, max(4.8, _GLF_IDENTITY(4.8, clamp(4.8, 4.8, 4.8)))))), 92.07, 3.9)) : mat2((true ? _GLF_IDENTITY(1.0, (_GLF_IDENTITY(_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)), ! (! (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))))) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), 0.0, 1.0, exp(0.0))), mat2(_GLF_IDENTITY(mat3x4((false ? _GLF_FUZZED(mat2(6351.2627, 4.8, 92.07, 3.9)) : mat2((true ? _GLF_IDENTITY(1.0, (_GLF_IDENTITY(_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)), bool(_GLF_IDENTITY(bool(_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))), true && (bool(_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0))))))) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), 0.0, 1.0, exp(0.0)))), (true ? mat3x4((false ? _GLF_FUZZED(mat2(6351.2627, 4.8, _GLF_IDENTITY(92.07, mix(float(92.07), float(_GLF_FUZZED(-96.73)), bool(false))), 3.9)) : mat2((true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? _GLF_IDENTITY(1.0, mix(float(_GLF_FUZZED((3.6 / -45.80))), float(1.0), bool(true))) : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), 0.0, 1.0, exp(0.0)))) : _GLF_FUZZED(mat3x4(h))))))))), _GLF_IDENTITY(min((true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), _GLF_IDENTITY(float(gl_FragCoord.y), _GLF_IDENTITY(float(vec3(float(gl_FragCoord.y), 1.0, 0.0)), clamp(float(vec3(float(gl_FragCoord.y), 1.0, 0.0)), float(vec3(float(gl_FragCoord.y), 1.0, 0.0)), _GLF_IDENTITY(float(vec3(float(gl_FragCoord.y), 1.0, 0.0)), max(float(vec3(float(gl_FragCoord.y), 1.0, 0.0)), float(vec3(float(gl_FragCoord.y), 1.0, 0.0))))))), bool(true))) >= 0.0)) ? _GLF_IDENTITY(1.0, 0.0 + (1.0)) : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), (true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope))), clamp(min((true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), (true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope))), min((true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), (true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope))), min((true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), max(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), min(_GLF_IDENTITY(float(_GLF_FUZZED(-9.8)), max(float(_GLF_FUZZED(-9.8)), float(_GLF_FUZZED(-9.8)))), float(_GLF_FUZZED(-9.8)))), float(_GLF_FUZZED(-9.8)))), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope)), (true ? _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (_GLF_IDENTITY(gl_FragCoord.y, mix(float(_GLF_FUZZED(-9.8)), float(gl_FragCoord.y), bool(true))) >= 0.0)) ? 1.0 : _GLF_FUZZED(-927.049))) / 32.0 : _GLF_FUZZED(slope))))))))))))), 1.0), (vec4(vec3(float(i) * (_GLF_IDENTITY(_GLF_IDENTITY(_GLF_IDENTITY(1.0 / 32.0, mix(float(_GLF_FUZZED(-59.26)), float(1.0 / 32.0), bool(true))), min(_GLF_IDENTITY(1.0 / 32.0, _GLF_IDENTITY(_GLF_IDENTITY((_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, min(1.0, 1.0)))) / _GLF_IDENTITY(_GLF_IDENTITY(32.0, (false ? _GLF_FUZZED(slope) : 32.0)), min(_GLF_IDENTITY(32.0, (false ? _GLF_FUZZED(slope) : 32.0)), _GLF_IDENTITY(32.0, (false ? _GLF_FUZZED(slope) : 32.0))))))), 1.0 * (_GLF_IDENTITY((_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, _GLF_IDENTITY(min(1.0, 1.0), _GLF_IDENTITY(float(mat3x2(min(1.0, 1.0), 1.0, 1.0, 1.0, 1.0, 1.0)), mix(float(_GLF_FUZZED((-8.8 + -4669.0592))), float(float(mat3x2(min(1.0, 1.0), 1.0, 1.0, 1.0, 1.0, 1.0))), bool(true))))))) / 32.0))), min((_GLF_IDENTITY(_GLF_IDENTITY(1.0 / 32.0, max(1.0 / 32.0, 1.0 / 32.0)), max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, (_GLF_TRUE(true, (gl_FragCoord.x >= 0.0)) ? 1.0 : _GLF_FUZZED(((39890u == 167360u) ? -229.272 : h)))))))) / 32.0))), (_GLF_IDENTITY(_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, max(1.0, 1.0)))))) / 32.0)), float(mat4(_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, max(1.0, 1.0)))))) / 32.0)), 1.0, _GLF_ONE(1.0, _GLF_IDENTITY(injectionSwitch, _GLF_IDENTITY(mat2(1.0) * (injectionSwitch), (mat2(1.0) * (injectionSwitch)) / vec2(1.0, 1.0))).y), 1.0, 1.0, 0.0, abs(1.0), determinant(mat4(1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, determinant(mat3(0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0)), 1.0, 0.0, 1.0, 0.0, 0.0, 1.0)), 1.0, 1.0, _GLF_IDENTITY(dot(vec3(abs(0.0), 0.0, 1.0), vec3(0.0, 0.0, 1.0)), dot(vec3(abs(0.0), 0.0, 1.0), vec3(0.0, 0.0, 1.0))), 1.0, _GLF_ONE(1.0, injectionSwitch.y), sqrt(1.0), 1.0, 1.0)))))))) * _GLF_IDENTITY(1.0, (true ? 1.0 : _GLF_FUZZED(9.3))), mix(float((_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / _GLF_IDENTITY(32.0, (_GLF_IDENTITY(32.0, max(32.0, 32.0))) + determinant(mat2(sqrt(_GLF_IDENTITY(0.0, max(0.0, 0.0))), 0.0, length(vec2(0.0, 0.0)), 0.0))), _GLF_IDENTITY(1.0 / 32.0, max(1.0 / 32.0, 1.0 / 32.0))))) * 1.0), float(_GLF_FUZZED(-2.8)), _GLF_IDENTITY(bool(_GLF_FALSE(false, (_GLF_IDENTITY(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))))))), (_GLF_IDENTITY(true, bool(bvec4(true, true, true, true))) ? _GLF_IDENTITY(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, _GLF_IDENTITY(true, _GLF_FALSE(false, (injectionSwitch.x > injectionSwitch.y)) || (_GLF_IDENTITY(true, bool(bool(true))))), false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))))))), vec4(mat2(_GLF_IDENTITY(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))))))), clamp(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, -9061.6745, -2.7), _GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), mix(vec4((vec4(-44.01, 3165.3878, -9061.6745, -2.7))[0], _GLF_FUZZED(3892.1143), (vec4(-44.01, 3165.3878, -9061.6745, -2.7))[2], _GLF_FUZZED(-4279.4394)), vec4(_GLF_FUZZED(vec2(-11.64, -692.776).y), (vec4(-44.01, 3165.3878, -9061.6745, -2.7))[1], _GLF_FUZZED(-37.38), (vec4(-44.01, 3165.3878, -9061.6745, -2.7))[3]), bvec4(false, true, false, true)))))))))), _GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))))))), _GLF_IDENTITY(_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, mat4(1.0) * (gl_FragCoord)), vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7))))))))))))) : _GLF_FUZZED(vec4(-1.2, 1149.2896, -61.66, 875.290)))).x < 0.0))), _GLF_IDENTITY(bool(bvec2(bool(_GLF_FALSE(false, (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[_GLF_IDENTITY(3, (_GLF_FALSE(false, (gl_FragCoord.x < 0.0)) ? _GLF_FUZZED(10793) : 3))]), vec4((gl_FragCoord)[0], _GLF_IDENTITY((gl_FragCoord), vec4(_GLF_IDENTITY(mat3x4((gl_FragCoord), 1.0, 0.0, 0.0, 0.0, exp(0.0), tan(0.0), 1.0, 1.0), mat3x4(mat4(mat3x4((_GLF_IDENTITY(gl_FragCoord, (false ? _GLF_FUZZED(vec4(-27.48, 499.018, 48.81, -67.12)) : _GLF_IDENTITY(gl_FragCoord, max(gl_FragCoord, gl_FragCoord))))), 1.0, 0.0, 0.0, 0.0, exp(0.0), tan(0.0), 1.0, 1.0))))))[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(_GLF_IDENTITY(-25.07, max(-25.07, -25.07)))), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))))))).x < 0.0))), true)), _GLF_IDENTITY(bool(bvec4(bool(bvec2(bool(_GLF_FALSE(false, (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_IDENTITY(_GLF_FUZZED(-3011.1372), (_GLF_FUZZED(-3011.1372)) / 1.0), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_IDENTITY(_GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, _GLF_IDENTITY(3165.3878, (false ? _GLF_FUZZED(refh) : 3165.3878)), -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))), vec4(vec4(_GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, _GLF_IDENTITY(3165.3878, (false ? _GLF_FUZZED(refh) : 3165.3878)), -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7))))))))))).x < 0.0))), true)), false, false, false)), ! (! (bool(bvec4(bool(bvec2(bool(_GLF_FALSE(false, (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_IDENTITY(_GLF_FUZZED(-3011.1372), (_GLF_FUZZED(-3011.1372)) / 1.0), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_IDENTITY(_GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, _GLF_IDENTITY(3165.3878, (false ? _GLF_FUZZED(refh) : 3165.3878)), -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))), vec4(vec4(_GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, _GLF_IDENTITY(3165.3878, (false ? _GLF_FUZZED(refh) : 3165.3878)), -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7))))))))))).x < 0.0))), true)), false, false, false)))))))))), _GLF_IDENTITY(_GLF_IDENTITY(1.0 / 32.0, min(1.0 / 32.0, 1.0 / 32.0)), max(1.0 / 32.0, 1.0 / 32.0)))), float(mat3x2(_GLF_IDENTITY(_GLF_IDENTITY(1.0 / 32.0, mix(float(_GLF_FUZZED(-59.26)), float(_GLF_IDENTITY(1.0, (1.0) / 1.0) / 32.0), bool(_GLF_IDENTITY(true, ! (! (true)))))), min(_GLF_IDENTITY(1.0 / 32.0, _GLF_IDENTITY(_GLF_IDENTITY((_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, min(1.0, 1.0)))) / _GLF_IDENTITY(32.0, (false ? _GLF_FUZZED(slope) : 32.0))))), 1.0 * (_GLF_IDENTITY((_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, min(1.0, 1.0)))) / 32.0))), min((_GLF_IDENTITY(_GLF_IDENTITY(1.0 / 32.0, max(1.0 / 32.0, 1.0 / 32.0)), max(_GLF_IDENTITY(_GLF_IDENTITY(1.0, _GLF_IDENTITY(float(mat4x3(_GLF_IDENTITY(1.0, max(1.0, 1.0)), 0.0, 0.0, 1.0, 0.0, determinant(mat3(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)), 1.0, 0.0, 1.0, 0.0, 0.0, 0.0)), min(float(mat4x3(_GLF_IDENTITY(1.0, max(1.0, 1.0)), 0.0, 0.0, 1.0, 0.0, determinant(mat3(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)), 1.0, 0.0, 1.0, 0.0, 0.0, 0.0)), float(mat4x3(_GLF_IDENTITY(1.0, max(1.0, 1.0)), 0.0, 0.0, 1.0, 0.0, determinant(mat3(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)), 1.0, 0.0, 1.0, 0.0, 0.0, 0.0))))), max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(_GLF_IDENTITY(1.0, _GLF_IDENTITY(float(_GLF_IDENTITY(mat3(1.0, 0.0, determinant(mat4(1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)), 0.0, 0.0, 1.0, 0.0, 0.0, determinant(mat3(1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0))), (true ? mat3(1.0, 0.0, determinant(mat4(1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)), 0.0, 0.0, 1.0, 0.0, 0.0, determinant(mat3(1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0))) : _GLF_FUZZED(mat3(66.81, -782.674, -4876.3101, -176.728, 7557.9430, 36.63, 0.6, 9.6, 7.9))))), (_GLF_IDENTITY(float(_GLF_IDENTITY(mat3(1.0, 0.0, determinant(mat4(1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)), 0.0, 0.0, 1.0, 0.0, 0.0, determinant(mat3(1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0))), (true ? mat3(1.0, 0.0, determinant(mat4(1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)), 0.0, 0.0, 1.0, 0.0, 0.0, determinant(mat3(1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0))) : _GLF_FUZZED(mat3(66.81, -782.674, -4876.3101, -176.728, 7557.9430, 36.63, 0.6, 9.6, 7.9))))), float(mat3(float(_GLF_IDENTITY(mat3(1.0, 0.0, determinant(mat4(1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)), 0.0, 0.0, 1.0, 0.0, 0.0, determinant(mat3(1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0))), (true ? mat3(1.0, 0.0, determinant(mat4(1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)), 0.0, 0.0, 1.0, 0.0, 0.0, determinant(mat3(1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0))) : _GLF_FUZZED(mat3(66.81, -782.674, -4876.3101, -176.728, 7557.9430, 36.63, 0.6, 9.6, 7.9))))), 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0)))) / 1.0)), _GLF_IDENTITY(1.0, min(1.0, 1.0)))) / 32.0))), (_GLF_IDENTITY(_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, max(1.0, 1.0)))))) / 32.0)), float(mat4(_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / 32.0, _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(_GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, max(1.0, 1.0)))), (false ? _GLF_FUZZED(8.6) : _GLF_IDENTITY(1.0, min(1.0, _GLF_IDENTITY(1.0, max(1.0, 1.0)))))))) / 32.0)), 1.0, _GLF_ONE(1.0, injectionSwitch.y), 1.0, 1.0, 0.0, abs(1.0), determinant(mat4(1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, determinant(mat3(0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0)), 1.0, 0.0, _GLF_IDENTITY(1.0, min(_GLF_IDENTITY(1.0, (true ? 1.0 : _GLF_FUZZED(-6194.3227))), _GLF_IDENTITY(1.0, min(1.0, 1.0)))), 0.0, 0.0, 1.0)), 1.0, 1.0, _GLF_IDENTITY(dot(vec3(abs(0.0), _GLF_IDENTITY(0.0, max(0.0, 0.0)), 1.0), vec3(0.0, 0.0, 1.0)), dot(_GLF_IDENTITY(vec3(abs(0.0), 0.0, 1.0), min(vec3(abs(0.0), 0.0, 1.0), vec3(abs(0.0), 0.0, 1.0))), vec3(0.0, 0.0, 1.0))), 1.0, _GLF_ONE(1.0, injectionSwitch.y), sqrt(1.0), 1.0, 1.0)))))))) * 1.0, mix(float((_GLF_IDENTITY(1.0 / 32.0, max(_GLF_IDENTITY(1.0, max(1.0, 1.0)) / _GLF_IDENTITY(32.0, (_GLF_IDENTITY(32.0, max(32.0, 32.0))) + determinant(mat2(sqrt(0.0), 0.0, length(vec2(0.0, 0.0)), 0.0))), _GLF_IDENTITY(1.0 / 32.0, max(1.0 / 32.0, 1.0 / 32.0))))) * 1.0), float(_GLF_FUZZED(-2.8)), _GLF_IDENTITY(bool(_GLF_FALSE(false, (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, _GLF_IDENTITY(-9061.6745, min(-9061.6745, -9061.6745)), -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))))))).x < 0.0))), _GLF_IDENTITY(bool(bvec2(bool(_GLF_FALSE(false, (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(gl_FragCoord, gl_FragCoord, gl_FragCoord)))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], _GLF_IDENTITY((gl_FragCoord)[3], max(_GLF_IDENTITY((gl_FragCoord)[3], clamp((gl_FragCoord)[3], (gl_FragCoord)[3], (gl_FragCoord)[3])), (gl_FragCoord)[3]))), vec4(_GLF_IDENTITY((gl_FragCoord), vec4(mat3x4((gl_FragCoord), 1.0, 1.0, 1.0, 1.0, 0.0, tan(0.0), _GLF_ZERO(0.0, injectionSwitch.x), 1.0)))[0], (gl_FragCoord)[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), clamp(vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7))), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))))))).x < 0.0))), true)), _GLF_IDENTITY(bool(bvec4(bool(bvec2(bool(_GLF_FALSE(false, (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, _GLF_IDENTITY(vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(_GLF_IDENTITY(gl_FragCoord, vec4(gl_FragCoord[0], gl_FragCoord[1], gl_FragCoord[2], gl_FragCoord[3])), gl_FragCoord, gl_FragCoord))), vec4(1.0, 1.0, 1.0, 1.0) * (vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(_GLF_IDENTITY(gl_FragCoord, vec4(gl_FragCoord[0], gl_FragCoord[1], gl_FragCoord[2], gl_FragCoord[3])), gl_FragCoord, gl_FragCoord)))))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], _GLF_IDENTITY((gl_FragCoord), vec4(mat3((gl_FragCoord), exp(0.0), log(1.0), 0.0, 1.0, 0.0)))[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))))))).x < 0.0))), true)), false, false, false)), (bool(bvec4(bool(bvec2(bool(_GLF_FALSE(false, (_GLF_IDENTITY(_GLF_IDENTITY(gl_FragCoord, _GLF_IDENTITY(vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(_GLF_IDENTITY(gl_FragCoord, vec4(gl_FragCoord[0], gl_FragCoord[1], gl_FragCoord[2], gl_FragCoord[3])), gl_FragCoord, gl_FragCoord))), vec4(1.0, 1.0, 1.0, 1.0) * (vec4(0.0, 0.0, 0.0, 0.0) + (_GLF_IDENTITY(gl_FragCoord, clamp(_GLF_IDENTITY(gl_FragCoord, vec4(gl_FragCoord[0], gl_FragCoord[1], gl_FragCoord[2], gl_FragCoord[3])), gl_FragCoord, gl_FragCoord)))))), max(gl_FragCoord, _GLF_IDENTITY(gl_FragCoord, (true ? _GLF_IDENTITY(gl_FragCoord, mix(vec4(_GLF_FUZZED(-3011.1372), _GLF_FUZZED(0.2), (gl_FragCoord)[2], (gl_FragCoord)[3]), vec4((gl_FragCoord)[0], _GLF_IDENTITY((gl_FragCoord), vec4(mat3((gl_FragCoord), exp(0.0), log(1.0), 0.0, 1.0, 0.0)))[1], _GLF_FUZZED(-0.8), _GLF_FUZZED(-25.07)), bvec4(true, true, false, false))) : _GLF_FUZZED(_GLF_IDENTITY(vec4(-44.01, 3165.3878, -9061.6745, -2.7), min(vec4(-44.01, 3165.3878, -9061.6745, -2.7), vec4(-44.01, 3165.3878, -9061.6745, -2.7)))))))).x < 0.0))), true)), false, false, false))) && true)))))), _GLF_IDENTITY(1.0 / 32.0, max(1.0 / 32.0, 1.0 / 32.0)))), cos(0.0), 0.0, 0.0, 0.0, sin(abs(0.0))))))), 1.0)) - vec4(0.0, 0.0, 0.0, 0.0));
+# }
+SHADER fragment variant_fragment_shader SPIRV-ASM TARGET_ENV spv1.0
+; SPIR-V
+; Version: 1.0
+; Generator: Khronos Glslang Reference Front End; 10
+; Bound: 175
+; Schema: 0
+               OpCapability Shader
+          %1 = OpExtInstImport "GLSL.std.450"
+               OpMemoryModel Logical GLSL450
+               OpEntryPoint Fragment %4 "main" %22 %85
+               OpExecutionMode %4 OriginUpperLeft
+               OpSource ESSL 320
+               OpName %4 "main"
+               OpName %8 "i"
+               OpName %13 "uvstep"
+               OpName %17 "slope"
+               OpName %19 "coord"
+               OpName %22 "gl_FragCoord"
+               OpName %26 "refh"
+               OpName %32 "tex"
+               OpName %46 "h"
+               OpName %85 "_GLF_color"
+               OpName %172 "buf0"
+               OpMemberName %172 0 "injectionSwitch"
+               OpName %174 ""
+               OpDecorate %8 RelaxedPrecision
+               OpDecorate %22 BuiltIn FragCoord
+               OpDecorate %32 RelaxedPrecision
+               OpDecorate %32 DescriptorSet 0
+               OpDecorate %32 Binding 1
+               OpDecorate %33 RelaxedPrecision
+               OpDecorate %35 RelaxedPrecision
+               OpDecorate %36 RelaxedPrecision
+               OpDecorate %39 RelaxedPrecision
+               OpDecorate %47 RelaxedPrecision
+               OpDecorate %49 RelaxedPrecision
+               OpDecorate %50 RelaxedPrecision
+               OpDecorate %60 RelaxedPrecision
+               OpDecorate %77 RelaxedPrecision
+               OpDecorate %79 RelaxedPrecision
+               OpDecorate %80 RelaxedPrecision
+               OpDecorate %81 RelaxedPrecision
+               OpDecorate %83 RelaxedPrecision
+               OpDecorate %85 Location 0
+               OpDecorate %86 RelaxedPrecision
+               OpMemberDecorate %172 0 Offset 0
+               OpDecorate %172 Block
+               OpDecorate %174 DescriptorSet 0
+               OpDecorate %174 Binding 0
+          %2 = OpTypeVoid
+          %3 = OpTypeFunction %2
+          %6 = OpTypeInt 32 1
+          %7 = OpTypePointer Function %6
+          %9 = OpConstant %6 0
+         %10 = OpTypeFloat 32
+         %11 = OpTypeVector %10 2
+         %12 = OpTypePointer Function %11
+         %14 = OpConstant %10 0.00390625
+         %15 = OpConstantComposite %11 %14 %14
+         %16 = OpTypePointer Function %10
+         %18 = OpConstant %10 0.0078125
+         %20 = OpTypeVector %10 4
+         %21 = OpTypePointer Input %20
+         %22 = OpVariable %21 Input
+         %27 = OpConstant %10 0
+         %28 = OpConstantComposite %20 %27 %27 %27 %27
+         %29 = OpTypeImage %10 2D 0 0 0 1 Unknown
+         %30 = OpTypeSampledImage %29
+         %31 = OpTypePointer UniformConstant %30
+         %32 = OpVariable %31 UniformConstant
+         %37 = OpTypeInt 32 0
+         %38 = OpConstant %37 1
+         %58 = OpTypeBool
+         %61 = OpConstant %6 32
+         %70 = OpTypeMatrix %11 2
+         %71 = OpConstant %10 1
+         %72 = OpConstantComposite %11 %71 %27
+         %73 = OpConstantComposite %11 %71 %71
+         %74 = OpConstantComposite %70 %72 %73
+         %82 = OpConstant %6 1
+         %84 = OpTypePointer Output %20
+         %85 = OpVariable %84 Output
+         %88 = OpConstant %10 32
+         %89 = OpConstantComposite %11 %27 %27
+         %90 = OpConstantComposite %70 %89 %89
+         %94 = OpConstant %10 0.03125
+         %97 = OpConstant %10 -2.79999995
+         %99 = OpConstantTrue %58
+        %100 = OpTypePointer Function %20
+        %104 = OpConstant %10 -3011.13721
+        %105 = OpConstant %10 0.200000003
+        %106 = OpConstant %37 2
+        %107 = OpTypePointer Input %10
+        %110 = OpConstant %37 3
+        %114 = OpConstant %37 0
+        %118 = OpTypeVector %10 3
+        %119 = OpTypeMatrix %118 3
+        %134 = OpConstant %10 -0.800000012
+        %135 = OpConstant %10 -25.0699997
+        %137 = OpTypeVector %58 4
+        %138 = OpConstantFalse %58
+        %139 = OpConstantComposite %137 %99 %99 %138 %138
+        %142 = OpConstant %10 -44.0099983
+        %143 = OpConstant %10 3165.3877
+        %144 = OpConstant %10 -9061.6748
+        %145 = OpConstant %10 -2.70000005
+        %146 = OpConstantComposite %20 %142 %143 %144 %145
+        %151 = OpTypeVector %58 2
+        %159 = OpTypeMatrix %11 3
+        %172 = OpTypeStruct %11
+        %173 = OpTypePointer Uniform %172
+        %174 = OpVariable %173 Uniform
+          %4 = OpFunction %2 None %3
+          %5 = OpLabel
+          %8 = OpVariable %7 Function
+         %13 = OpVariable %12 Function
+         %17 = OpVariable %16 Function
+         %19 = OpVariable %12 Function
+         %26 = OpVariable %16 Function
+         %46 = OpVariable %16 Function
+        %101 = OpVariable %100 Function
+               OpStore %8 %9
+               OpStore %13 %15
+               OpStore %17 %18
+         %23 = OpLoad %20 %22
+         %24 = OpVectorShuffle %11 %23 %23 0 1
+         %25 = OpVectorTimesScalar %11 %24 %14
+               OpStore %19 %25
+         %33 = OpLoad %30 %32
+         %34 = OpLoad %11 %19
+         %35 = OpImageSampleImplicitLod %20 %33 %34
+         %36 = OpFAdd %20 %28 %35
+         %39 = OpCompositeExtract %10 %36 1
+               OpStore %26 %39
+         %40 = OpLoad %11 %13
+         %41 = OpLoad %11 %19
+         %42 = OpFSub %11 %41 %40
+               OpStore %19 %42
+         %43 = OpLoad %10 %17
+         %44 = OpLoad %10 %26
+         %45 = OpFAdd %10 %44 %43
+               OpStore %26 %45
+         %47 = OpLoad %30 %32
+         %48 = OpLoad %11 %19
+         %49 = OpImageSampleImplicitLod %20 %47 %48
+         %50 = OpCompositeExtract %10 %49 1
+               OpStore %46 %50
+               OpBranch %51
+         %51 = OpLabel
+               OpLoopMerge %53 %54 None
+               OpBranch %55
+         %55 = OpLabel
+         %56 = OpLoad %10 %46
+         %57 = OpLoad %10 %26
+         %59 = OpFOrdLessThan %58 %56 %57
+         %60 = OpLoad %6 %8
+         %62 = OpSLessThan %58 %60 %61
+         %63 = OpLogicalAnd %58 %59 %62
+               OpBranchConditional %63 %52 %53
+         %52 = OpLabel
+         %64 = OpLoad %11 %13
+         %65 = OpLoad %11 %19
+         %66 = OpFSub %11 %65 %64
+               OpStore %19 %66
+         %67 = OpLoad %10 %17
+         %68 = OpLoad %10 %26
+         %69 = OpFAdd %10 %68 %67
+               OpStore %26 %69
+         %75 = OpExtInst %10 %1 Determinant %74
+         %76 = OpFDiv %10 %69 %75
+         %77 = OpLoad %30 %32
+         %78 = OpLoad %11 %19
+         %79 = OpImageSampleImplicitLod %20 %77 %78
+         %80 = OpCompositeExtract %10 %79 1
+               OpStore %46 %80
+         %81 = OpLoad %6 %8
+         %83 = OpIAdd %6 %81 %82
+               OpStore %8 %83
+               OpBranch %54
+         %54 = OpLabel
+               OpBranch %51
+         %53 = OpLabel
+         %86 = OpLoad %6 %8
+         %87 = OpConvertSToF %10 %86
+         %91 = OpExtInst %10 %1 Determinant %90
+         %92 = OpFAdd %10 %88 %91
+         %93 = OpFDiv %10 %71 %92
+         %95 = OpExtInst %10 %1 FMax %93 %94
+         %96 = OpFMul %10 %95 %71
+         %98 = OpLoad %20 %22
+               OpSelectionMerge %103 None
+               OpBranchConditional %99 %102 %141
+        %102 = OpLabel
+        %108 = OpAccessChain %107 %22 %106
+        %109 = OpLoad %10 %108
+        %111 = OpAccessChain %107 %22 %110
+        %112 = OpLoad %10 %111
+        %113 = OpCompositeConstruct %20 %104 %105 %109 %112
+        %115 = OpAccessChain %107 %22 %114
+        %116 = OpLoad %10 %115
+        %117 = OpLoad %20 %22
+        %120 = OpCompositeExtract %10 %117 0
+        %121 = OpCompositeExtract %10 %117 1
+        %122 = OpCompositeExtract %10 %117 2
+        %123 = OpCompositeExtract %10 %117 3
+        %124 = OpCompositeConstruct %118 %120 %121 %122
+        %125 = OpCompositeConstruct %118 %123 %71 %27
+        %126 = OpCompositeConstruct %118 %27 %71 %27
+        %127 = OpCompositeConstruct %119 %124 %125 %126
+        %128 = OpCompositeExtract %10 %127 0 0
+        %129 = OpCompositeExtract %10 %127 0 1
+        %130 = OpCompositeExtract %10 %127 0 2
+        %131 = OpCompositeExtract %10 %127 1 0
+        %132 = OpCompositeConstruct %20 %128 %129 %130 %131
+        %133 = OpCompositeExtract %10 %132 1
+        %136 = OpCompositeConstruct %20 %116 %133 %134 %135
+        %140 = OpSelect %20 %139 %136 %113
+               OpStore %101 %140
+               OpBranch %103
+        %141 = OpLabel
+               OpStore %101 %146
+               OpBranch %103
+        %103 = OpLabel
+        %147 = OpLoad %20 %101
+        %148 = OpExtInst %20 %1 FMax %98 %147
+        %149 = OpCompositeExtract %10 %148 0
+        %150 = OpFOrdLessThan %58 %149 %27
+        %152 = OpCompositeConstruct %151 %150 %99
+        %153 = OpCompositeExtract %58 %152 0
+        %154 = OpCompositeConstruct %137 %153 %138 %138 %138
+        %155 = OpCompositeExtract %58 %154 0
+        %156 = OpLogicalAnd %58 %155 %99
+        %157 = OpSelect %10 %156 %97 %96
+        %158 = OpExtInst %10 %1 FMin %157 %94
+        %160 = OpCompositeConstruct %11 %158 %71
+        %161 = OpCompositeConstruct %11 %27 %27
+        %162 = OpCompositeConstruct %11 %27 %27
+        %163 = OpCompositeConstruct %159 %160 %161 %162
+        %164 = OpCompositeExtract %10 %163 0 0
+        %165 = OpFMul %10 %87 %164
+        %166 = OpCompositeConstruct %118 %165 %165 %165
+        %167 = OpCompositeExtract %10 %166 0
+        %168 = OpCompositeExtract %10 %166 1
+        %169 = OpCompositeExtract %10 %166 2
+        %170 = OpCompositeConstruct %20 %167 %168 %169 %71
+        %171 = OpFSub %20 %170 %28
+               OpStore %85 %171
+               OpReturn
+               OpFunctionEnd
+END
+
+# uniforms for variant
+
+# tex
+SAMPLER variant_tex
+
+# injectionSwitch
+BUFFER variant_injectionSwitch DATA_TYPE vec2<float> STD140 DATA
+ 0.0 1.0
+END
+
+BUFFER variant_framebuffer FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics variant_pipeline
+  ATTACH variant_vertex_shader
+  ATTACH variant_fragment_shader
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER variant_framebuffer AS color LOCATION 0
+  BIND BUFFER default_texture AS combined_image_sampler SAMPLER variant_tex DESCRIPTOR_SET 0 BINDING 1
+  BIND BUFFER variant_injectionSwitch AS uniform DESCRIPTOR_SET 0 BINDING 0
+END
+CLEAR_COLOR variant_pipeline 0 0 0 255
+
+CLEAR variant_pipeline
+RUN variant_pipeline DRAW_RECT POS 0 0 SIZE 256 256
+
+EXPECT reference_framebuffer EQ_HISTOGRAM_EMD_BUFFER variant_framebuffer TOLERANCE 0.005
