@@ -1,0 +1,72 @@
+{
+  "binaries": [
+    {
+      "name": "glslangValidator",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "6d5916d4a91eb9c3b3be377382e2c1c12443fa11"
+    },
+    {
+      "name": "spirv-dis",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "17ffa89097b26efeb323e6963220326b5ffb2baf"
+    },
+    {
+      "name": "spirv-val",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "17ffa89097b26efeb323e6963220326b5ffb2baf"
+    },
+    {
+      "name": "amber",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "f8a6fdbe4dc9890fa967091f43b5f7669962c403"
+    },
+    {
+      "name": "amber_apk",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "f8a6fdbe4dc9890fa967091f43b5f7669962c403"
+    },
+    {
+      "name": "amber_apk_test",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "f8a6fdbe4dc9890fa967091f43b5f7669962c403"
+    }
+  ],
+  "common_spirv_args": [],
+  "crash_regex_override": "",
+  "crash_signature": "egllibGLES_maliso",
+  "derived_from": "stable_sampler_minimal",
+  "device": {
+    "android": {
+      "build_fingerprint": "samsung/y2sxeea/y2s:10/QP1A.190711.020/G986BXXS5BTJ4:user/release-keys",
+      "model": "SM_G986B",
+      "serial": "R3CNA03DNBX"
+    },
+    "binaries": [],
+    "device_properties": "  apiVersion: 1.1.108\n  driverVersion: 83886080\n  vendorID: 5045\n  deviceID: 2424307729\n  deviceType: integrated gpu\n  deviceName: Mali-G77\n  driverName: Mali-G77\n  driverInfo: v1.r20p0-01rel0.###other-sha0123456789ABCDEF0###\n",
+    "ignored_crash_signatures": [],
+    "name": "SM_G986B_R3CNA03DNBX"
+  },
+  "expected_status": "CRASH",
+  "glsl": {
+    "spirv_opt_args": []
+  },
+  "skip_validation": false
+}

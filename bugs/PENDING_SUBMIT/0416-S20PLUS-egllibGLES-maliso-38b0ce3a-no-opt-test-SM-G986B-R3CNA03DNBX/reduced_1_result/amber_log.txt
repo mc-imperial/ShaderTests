@@ -1,0 +1,846 @@
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'get-state']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'wait-for-device']
+RETURNCODE: 0
+Checking if boot animation has finished.
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'shell', 'getprop init.svc.bootanim']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'shell', 'getprop service.bootanim.exit']
+RETURNCODE: 0
+Boot animation is not running.
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'shell', 'settings get global stay_on_while_plugged_in']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'shell', 'dumpsys nfc']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'shell', 'rm -rf /sdcard/Android/data/com.google.amber/cache/graphicsfuzz && mkdir /sdcard/Android/data/com.google.amber/cache/graphicsfuzz && mkdir /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result']
+RETURNCODE: 0
+Clearing logcat.
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'logcat', '-c']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'logcat', '-d', '-T', '1']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'push', 'reports/crashes/egllibGLES_maliso/38b0ce3a_no_opt_test_SM_G986B_R3CNA03DNBX/summary/reduced_1_result/test.amber', '/sdcard/Android/data/com.google.amber/cache/graphicsfuzz/test.amber']
+RETURNCODE: 0
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'shell', 'am force-stop com.google.amber']
+RETURNCODE: 0
+Exec (verbose):['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'shell', 'am instrument -w -e stdout /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/amber_stdout.txt -e stderr /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/amber_stderr.txt -e arg1 -d -e arg2 /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/test.amber -e arg3 --log-graphics-calls-time -e arg4 --disable-spirv-val -e arg5 -I -e arg6 variant_framebuffer -e arg7 -i -e arg8 /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/variant.png -e arg9 -I -e arg10 reference_framebuffer -e arg11 -i -e arg12 /sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/reference.png com.google.amber.test/androidx.test.runner.AndroidJUnitRunner']
+RETURNCODE: 0
+STDOUT:
+
+com.google.amber.AmberLauncher:INSTRUMENTATION_RESULT: shortMsg=Process crashed.
+INSTRUMENTATION_CODE: 0
+
+
+STDERR:
+
+
+Exec:['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'pull', '/sdcard/Android/data/com.google.amber/cache/graphicsfuzz/result/.', 'reports/crashes/egllibGLES_maliso/38b0ce3a_no_opt_test_SM_G986B_R3CNA03DNBX/summary/reduced_1_result']
+RETURNCODE: 0
+Logging the contents of reports/crashes/egllibGLES_maliso/38b0ce3a_no_opt_test_SM_G986B_R3CNA03DNBX/summary/reduced_1_result/amber_stdout.txt
+Loading Vulkan Pointers
+vkGetPhysicalDeviceProperties
+time vkGetPhysicalDeviceProperties                  57770 ns
+vkGetPhysicalDeviceMemoryProperties
+time vkGetPhysicalDeviceMemoryProperties              154 ns
+vkCreateCommandPool
+time vkCreateCommandPool                            13731 ns
+vkCreateShaderModule
+time vkCreateShaderModule                           20116 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            4462 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties              885 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                       14116 ns
+vkCreateFence
+time vkCreateFence                                  10616 ns
+vkCreateRenderPass
+time vkCreateRenderPass                           3371000 ns
+vkCreateImage
+time vkCreateImage                                   7115 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     385 ns
+vkAllocateMemory
+time vkAllocateMemory                               51461 ns
+vkBindImageMemory
+time vkBindImageMemory                              36346 ns
+vkCreateImageView
+time vkCreateImageView                               2153 ns
+vkCreateBuffer
+time vkCreateBuffer                                  1193 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    385 ns
+vkAllocateMemory
+time vkAllocateMemory                               24731 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               731 ns
+vkMapMemory
+time vkMapMemory                                      615 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                             1077 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            3577 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            2923 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties              231 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                        6077 ns
+vkCreateFence
+time vkCreateFence                                   8077 ns
+vkCreateRenderPass
+time vkCreateRenderPass                             14807 ns
+vkCreateImage
+time vkCreateImage                                   2307 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     154 ns
+vkAllocateMemory
+time vkAllocateMemory                               21692 ns
+vkBindImageMemory
+time vkBindImageMemory                              13500 ns
+vkCreateImageView
+time vkCreateImageView                               1461 ns
+vkCreateBuffer
+time vkCreateBuffer                                   423 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                     77 ns
+vkAllocateMemory
+time vkAllocateMemory                               22577 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               269 ns
+vkMapMemory
+time vkMapMemory                                      270 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                              538 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            3231 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            6154 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties               77 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                        3731 ns
+vkCreateFence
+time vkCreateFence                                   3423 ns
+vkCreateRenderPass
+time vkCreateRenderPass                              9577 ns
+vkCreateImage
+time vkCreateImage                                   1807 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                      77 ns
+vkAllocateMemory
+time vkAllocateMemory                               21846 ns
+vkBindImageMemory
+time vkBindImageMemory                               8038 ns
+vkCreateImageView
+time vkCreateImageView                                808 ns
+vkCreateBuffer
+time vkCreateBuffer                                   500 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                     76 ns
+vkAllocateMemory
+time vkAllocateMemory                               20115 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               653 ns
+vkMapMemory
+time vkMapMemory                                      577 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                              538 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1961 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           33885 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                       1945577 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            2115 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             500 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                           38692 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                        1266423 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                             58538 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1308 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                       1189692 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1615 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                             12615 ns
+vkResetFences
+time vkResetFences                                   4846 ns
+vkQueueSubmit
+time vkQueueSubmit                                  88769 ns
+vkWaitForFences
+time vkWaitForFences                              8705154 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           14039 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1884 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1154 ns
+vkResetFences
+time vkResetFences                                 266153 ns
+vkQueueSubmit
+time vkQueueSubmit                                  80384 ns
+vkWaitForFences
+time vkWaitForFences                               395769 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            3192 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1692 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               962 ns
+vkResetFences
+time vkResetFences                                   7192 ns
+vkQueueSubmit
+time vkQueueSubmit                                  46269 ns
+vkWaitForFences
+time vkWaitForFences                               427808 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            3346 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                         10423 ns
+vkCreateGraphicsPipelines
+time vkCreateGraphicsPipelines                    4994846 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            7731 ns
+vkCreateBuffer
+time vkCreateBuffer                                  1615 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    539 ns
+vkAllocateMemory
+time vkAllocateMemory                                3115 ns
+vkBindBufferMemory
+time vkBindBufferMemory                              1769 ns
+vkMapMemory
+time vkMapMemory                                     1077 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            6961 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1077 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         20115 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             654 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             462 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                           17538 ns
+vkCmdBindPipeline
+time vkCmdBindPipeline                              17692 ns
+vkCmdBindVertexBuffers
+time vkCmdBindVertexBuffers                          1039 ns
+vkCmdDraw
+time vkCmdDraw                                       6385 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              8577 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             654 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          7577 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             654 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                             16846 ns
+vkResetFences
+time vkResetFences                                   9577 ns
+vkQueueSubmit
+time vkQueueSubmit                                 108808 ns
+vkWaitForFences
+time vkWaitForFences                              1624923 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                           14384 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            2615 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1577 ns
+vkResetFences
+time vkResetFences                                  11115 ns
+vkQueueSubmit
+time vkQueueSubmit                                  65000 ns
+vkWaitForFences
+time vkWaitForFences                                46615 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1962 ns
+vkDestroyPipeline
+time vkDestroyPipeline                              25193 ns
+vkDestroyPipelineLayout
+time vkDestroyPipelineLayout                         3230 ns
+vkDestroyBufferView
+time vkDestroyBufferView                              884 ns
+vkUnmapMemory
+time vkUnmapMemory                                   1539 ns
+vkFreeMemory
+time vkFreeMemory                                    2461 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                 2385 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                           12039 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            7385 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         22961 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1847 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1077 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                           22154 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                          10385 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              7808 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1270 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          9269 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1577 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                             24269 ns
+vkResetFences
+time vkResetFences                                   4154 ns
+vkQueueSubmit
+time vkQueueSubmit                                  81847 ns
+vkWaitForFences
+time vkWaitForFences                              1095807 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            3962 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1616 ns
+vkCreateImage
+time vkCreateImage                                   7962 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     692 ns
+vkAllocateMemory
+time vkAllocateMemory                               84385 ns
+vkBindImageMemory
+time vkBindImageMemory                               1385 ns
+vkCreateImageView
+time vkCreateImageView                             103769 ns
+vkCreateBuffer
+time vkCreateBuffer                                  1423 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    307 ns
+vkAllocateMemory
+time vkAllocateMemory                               44038 ns
+vkBindBufferMemory
+time vkBindBufferMemory                              1115 ns
+vkMapMemory
+time vkMapMemory                                      769 ns
+vkCreateSampler
+time vkCreateSampler                                 1731 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               423 ns
+vkResetFences
+time vkResetFences                                   4115 ns
+vkQueueSubmit
+time vkQueueSubmit                                  27231 ns
+vkWaitForFences
+time vkWaitForFences                                80846 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1346 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1193 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            4231 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                          6346 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             692 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             538 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              7539 ns
+vkResetFences
+time vkResetFences                                   5000 ns
+vkQueueSubmit
+time vkQueueSubmit                                  30230 ns
+vkWaitForFences
+time vkWaitForFences                              1059884 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            3770 ns
+vkCreateDescriptorSetLayout
+time vkCreateDescriptorSetLayout                     3038 ns
+vkCreateDescriptorPool
+time vkCreateDescriptorPool                          4808 ns
+vkAllocateDescriptorSets
+time vkAllocateDescriptorSets                       48961 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                          4730 ns
+vkCreateGraphicsPipelines
+time vkCreateGraphicsPipelines                    4423077 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                         33423 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            8731 ns
+vkCreateBuffer
+time vkCreateBuffer                                  1961 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    962 ns
+vkAllocateMemory
+time vkAllocateMemory                                3577 ns
+vkBindBufferMemory
+time vkBindBufferMemory                              1577 ns
+vkMapMemory
+time vkMapMemory                                     1731 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           10423 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1962 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         25231 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            1115 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             654 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                           20231 ns
+vkCmdBindDescriptorSets
+time vkCmdBindDescriptorSets                         2000 ns
+vkCmdBindPipeline
+time vkCmdBindPipeline                               1615 ns
+vkCmdBindVertexBuffers
+time vkCmdBindVertexBuffers                          1385 ns
+vkCmdDraw
+time vkCmdDraw                                       7846 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                             10269 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             962 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          8692 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             693 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                             20538 ns
+vkResetFences
+time vkResetFences                                  12769 ns
+vkQueueSubmit
+time vkQueueSubmit                                 145192 ns
+vkWaitForFences
+time vkWaitForFences                              2094116 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            8808 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1269 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               577 ns
+vkResetFences
+time vkResetFences                                   5693 ns
+vkQueueSubmit
+time vkQueueSubmit                                  31730 ns
+vkWaitForFences
+time vkWaitForFences                               185731 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            2154 ns
+vkDestroyImageView
+time vkDestroyImageView                              5692 ns
+vkDestroyImage
+time vkDestroyImage                                  2885 ns
+vkFreeMemory
+time vkFreeMemory                                    3115 ns
+vkUnmapMemory
+time vkUnmapMemory                                   1307 ns
+vkFreeMemory
+time vkFreeMemory                                     923 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                 1885 ns
+vkDestroyPipeline
+time vkDestroyPipeline                              13770 ns
+vkDestroyPipelineLayout
+time vkDestroyPipelineLayout                         4270 ns
+vkDestroyBufferView
+time vkDestroyBufferView                              423 ns
+vkUnmapMemory
+time vkUnmapMemory                                    385 ns
+vkFreeMemory
+time vkFreeMemory                                    2077 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                 1269 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            9923 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3808 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         13923 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             653 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             384 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                           13692 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                           7654 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                              4808 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             616 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          5654 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             500 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                             13538 ns
+vkResetFences
+time vkResetFences                                   3500 ns
+vkQueueSubmit
+time vkQueueSubmit                                  52423 ns
+vkWaitForFences
+time vkWaitForFences                               944654 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            5808 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1461 ns
+vkCreateImage
+time vkCreateImage                                   9384 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     346 ns
+vkAllocateMemory
+time vkAllocateMemory                                2269 ns
+vkBindImageMemory
+time vkBindImageMemory                               1384 ns
+vkCreateImageView
+time vkCreateImageView                              17385 ns
+vkCreateBuffer
+time vkCreateBuffer                                   923 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    308 ns
+vkAllocateMemory
+time vkAllocateMemory                                1231 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               615 ns
+vkMapMemory
+time vkMapMemory                                      730 ns
+vkCreateSampler
+time vkCreateSampler                                 1731 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               769 ns
+vkResetFences
+time vkResetFences                                   3885 ns
+vkQueueSubmit
+time vkQueueSubmit                                  28654 ns
+vkWaitForFences
+time vkWaitForFences                                23846 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1962 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                             884 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3385 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         10385 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             808 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             346 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              9385 ns
+vkResetFences
+time vkResetFences                                   3077 ns
+vkQueueSubmit
+time vkQueueSubmit                                  27000 ns
+vkWaitForFences
+time vkWaitForFences                               860654 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            5384 ns
+vkCreateDescriptorSetLayout
+time vkCreateDescriptorSetLayout                     3347 ns
+vkCreateDescriptorPool
+time vkCreateDescriptorPool                          5270 ns
+vkAllocateDescriptorSets
+time vkAllocateDescriptorSets                       64692 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                          5346 ns
+vkCreateGraphicsPipelines
+
+Logging the contents of reports/crashes/egllibGLES_maliso/38b0ce3a_no_opt_test_SM_G986B_R3CNA03DNBX/summary/reduced_1_result/amber_stderr.txt
+
+Exec (verbose):['/usr/bin/adb', '-s', 'R3CNA03DNBX', 'logcat', '-d']
+RETURNCODE: 0
+STDOUT:
+--------- beginning of main
+01-05 08:01:19.136   590   590 E audit   : type=1400 audit(1609826479.128:5484): avc:  denied  { search } for  pid=7766 comm=73796E6320737663203138 name="oem" dev="dm-4" ino=56 scontext=u:r:adbd:s0 tcontext=u:object_r:oemfs:s0 tclass=dir permissive=0 SEPF_SM-G986B_10_0023 audit_filtered
+01-05 08:01:19.136   590   590 E audit   : type=1300 audit(1609826479.128:5484): arch=c00000b7 syscall=56 success=no exit=-13 a0=ffffff9c a1=7cc3618615 a2=0 a3=0 items=0 ppid=1 pid=7766 auid=4294967295 uid=2000 gid=2000 euid=2000 suid=2000 fsuid=2000 egid=2000 sgid=2000 fsgid=2000 tty=(none) ses=4294967295 comm=73796E6320737663203138 exe="/system/bin/adbd" subj=u:r:adbd:s0 key=(null)
+01-05 08:01:19.136   590   590 E audit   : type=1327 audit(1609826479.128:5484): proctitle=2F73797374656D2F62696E2F61646264002D2D726F6F745F7365636C6162656C3D753A723A73753A7330
+--------- beginning of system
+01-05 08:01:19.185  1078  1664 I ActivityManager: Force stopping com.google.amber appid=10293 user=0: from pid 19229
+01-05 08:01:19.192  1078  1078 D SamsungAlarmManager: Remove alarm for next reason : android.intent.action.PACKAGE_RESTARTED : package: com.google.amber
+01-05 08:01:19.194  1769  1769 D RegisteredServicesCache: invalidateCache
+01-05 08:01:19.196  1078  1148 D LauncherAppsService: onReceive: Intent { act=android.intent.action.PACKAGE_RESTARTED dat=package:com.google.amber flg=0x10 (has extras) }
+01-05 08:01:19.197  1504  1504 E PhoneInterfaceManager: [PhoneIntfMgr] getCarrierPackageNamesForIntent: No UICC
+01-05 08:01:19.198  1504  1504 D CarrierSvcBindHelper: No carrier app for: 0
+01-05 08:01:19.199  1078  1149 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_RESTARTED dat=package:com.google.amber flg=0x10 (has extras) } to android/com.kddi.android.CpaNotiReceiver
+01-05 08:01:19.200  1504  1504 D CarrierSvcBindHelper: No carrier app for: 1
+01-05 08:01:19.201  1769  1769 E ApduServiceInfo: Not adding <aid-group> with empty or invalid AIDs
+01-05 08:01:19.201  1769  1769 D RegisteredOtherServicesCache: invalidate
+01-05 08:01:19.203  1769  1769 I RegisteredAidCache: aidInfo: 0
+01-05 08:01:19.203  1769  1769 I chatty  : uid=1027(nfc) com.android.nfc identical 21 lines
+01-05 08:01:19.203  1769  1769 I RegisteredAidCache: aidInfo: 0
+01-05 08:01:19.203  1769  1769 D AidRoutingManager: support iso7816 protocol route
+01-05 08:01:19.204  1769  1769 D AidRoutingManager: getRouteForNfcExecutionEnvironment : SIM1
+01-05 08:01:19.204  1769  1769 D AidRoutingManager: defaultRoute(this) : 0x83, defaultRoute(Cache) : 0x83
+01-05 08:01:19.204  1769  1769 D AidRoutingManager: [seList] - add default route : 0x83
+01-05 08:01:19.204  1769  1769 D AidRoutingManager: [seList] - add route : 0x0
+01-05 08:01:19.204  1769  1769 D AidRoutingManager: entry is not changed
+01-05 08:01:19.206  1769  1769 D RegisteredNfcFServicesCache: Service unchanged, not updating
+01-05 08:01:19.225  1769  1781 W com.android.nf: Reducing the number of considered missed Gc histogram windows from 120 to 100
+01-05 08:01:19.329 19232 19232 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+01-05 08:01:19.332 19232 19232 I AndroidRuntime: Using default boot image
+01-05 08:01:19.332 19232 19232 I AndroidRuntime: Leaving lock profiling enabled
+01-05 08:01:19.332 19232 19232 D SecNativeFeatureCppIf: encoded
+01-05 08:01:19.332 19232 19232 D SecNativeFeatureCppIf: decoding and unzip finish
+01-05 08:01:19.332 19232 19232 D SecNativeFeatureCppIf: use unCompDataBuff. encoded
+01-05 08:01:19.332 19232 19232 D SecNativeFeatureCppIf: Free unCompDataBuff
+01-05 08:01:19.332 19232 19232 D SecNativeFeatureCppIf: encoded
+01-05 08:01:19.332 19232 19232 D SecNativeFeatureCppIf: decoding and unzip finish
+01-05 08:01:19.332 19232 19232 D SecNativeFeatureCppIf: use unCompDataBuff. encoded
+01-05 08:01:19.332 19232 19232 D SecNativeFeatureCppIf: Free unCompDataBuff
+01-05 08:01:19.332 19232 19232 D SecNativeFeatureCppIf: encoded
+01-05 08:01:19.333 19232 19232 D SecNativeFeatureCppIf: decoding and unzip finish
+01-05 08:01:19.333 19232 19232 D SecNativeFeatureCppIf: use unCompDataBuff. encoded
+01-05 08:01:19.333 19232 19232 D SecNativeFeatureCppIf: Free unCompDataBuff
+01-05 08:01:19.333 19232 19232 D SecNativeFeatureCppIf: encoded
+01-05 08:01:19.333 19232 19232 D SecNativeFeatureCppIf: decoding and unzip finish
+01-05 08:01:19.333 19232 19232 D SecNativeFeatureCppIf: use unCompDataBuff. encoded
+01-05 08:01:19.333 19232 19232 D SecNativeFeatureCppIf: Free unCompDataBuff
+01-05 08:01:19.333 19232 19232 D AndroidRuntime: addProductProperty
+01-05 08:01:19.333 19232 19232 D AndroidRuntime: addProductProperty: pBrand1 != NULL
+01-05 08:01:19.333 19232 19232 D AndroidRuntime: addProductProperty: else
+01-05 08:01:19.394 19232 19232 D ICU     : Time zone APEX file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+01-05 08:01:19.401 19232 19232 I app_process: The ClassLoaderContext is a special shared library.
+01-05 08:01:19.411 19232 19232 W app_process: JNI RegisterNativeMethods: attempt to register 0 native methods for android.media.AudioAttributes
+01-05 08:01:19.411 19232 19232 E SemAffinityControl: SemAffinityControl: registerfunction enter
+01-05 08:01:19.414 19232 19232 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+01-05 08:01:19.419  1078  1664 I ActivityManager: Force stopping com.google.amber appid=10293 user=0: start instr
+01-05 08:01:19.421  1078  1664 I ApplicationPolicy: isApplicationExternalStorageWhitelisted:com.google.amber user:0
+01-05 08:01:19.421  1078  1664 D ApplicationPolicy: isApplicationExternalStorageWhitelisted: DO is not enabled on user 0. Allowed.
+01-05 08:01:19.421  1078  1664 D ActivityManager: package  com.google.amber, user - 0 is SDcard whitelisted
+01-05 08:01:19.421  1078  1664 I ApplicationPolicy: isApplicationExternalStorageBlacklisted:com.google.amber user:0
+01-05 08:01:19.421  1078  1664 D ApplicationPolicy: isApplicationExternalStorageBlacklisted: DO is not enabled on user 0. Allowed.
+01-05 08:01:19.421  1078  1664 I ApplicationPolicy: isApplicationExternalStorageBlacklisted:com.google.amber user:0
+01-05 08:01:19.421  1078  1664 D ApplicationPolicy: isApplicationExternalStorageBlacklisted: DO is not enabled on user 0. Allowed.
+01-05 08:01:19.441   604   604 D Zygote  : Forked child process 19246
+01-05 08:01:19.443  1078  1152 I ActivityManager: Start proc 19246:com.google.amber/u0a293 for added application com.google.amber
+01-05 08:01:19.444 19246 19246 E Zygote  : isWhitelistProcess - Process is Whitelisted
+01-05 08:01:19.444 19246 19246 E Zygote  : accessInfo : 1
+01-05 08:01:19.450 19246 19246 I om.google.ambe: Late-enabling -Xcheck:jni
+01-05 08:01:19.466 19246 19246 E om.google.ambe: Unknown bits set in runtime_flags: 0x8000
+01-05 08:01:19.473 19246 19246 D ActivityThread: setConscryptValidator
+01-05 08:01:19.473 19246 19246 D ActivityThread: setConscryptValidator - put
+01-05 08:01:19.475  1078  1664 I ActivityManager: DSS OFF for com.google.amber
+01-05 08:01:19.488 19246 19246 W ActivityThread: Package uses different ABI(s) than its instrumentation: package[com.google.amber]: arm64-v8a, null instrumentation[com.google.amber.test]: null, null
+01-05 08:01:19.490 19246 19246 I om.google.ambe: The ClassLoaderContext is a special shared library.
+01-05 08:01:19.526  2765  2765 I io_stats: !@   8,0 r 104425 7435820 w 153333 4625604 d 139710 112963512 f 92868 117410 iot 168416 108252 th 102400 0 0 pt 0 inp 0 0 69679.646
+01-05 08:01:19.555 19246 19246 I chatty  : uid=10293(com.google.amber) identical 2 lines
+01-05 08:01:19.556 19246 19246 I om.google.ambe: The ClassLoaderContext is a special shared library.
+01-05 08:01:19.600 19246 19246 W om.google.ambe: Accessing hidden method Landroid/app/Instrumentation;->execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Landroid/app/Activity;Landroid/content/Intent;ILandroid/os/Bundle;)Landroid/app/Instrumentation$ActivityResult; (greylist, linking, allowed)
+01-05 08:01:19.600 19246 19246 W om.google.ambe: Accessing hidden method Landroid/app/Instrumentation;->execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Ljava/lang/String;Landroid/content/Intent;ILandroid/os/Bundle;)Landroid/app/Instrumentation$ActivityResult; (greylist, linking, allowed)
+01-05 08:01:19.606 19246 19246 I MonitoringInstr: Instrumentation started!
+01-05 08:01:19.607 19246 19246 I MonitoringInstr: Setting context classloader to 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk", zip file "/data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk"],nativeLibraryDirectories=[/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/lib/arm64, /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/lib/arm64, /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk!/lib/arm64-v8a, /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!/lib/arm64-v8a, /system/lib64, /product/lib64]]]', Original: 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk", zip file "/data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk"],nativeLibraryDirectories=[/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/lib/arm64, /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/lib/arm64, /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk!/lib/arm64-v8a, /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!/lib/arm64-v8a, /system/lib64, /product/lib64]]]'
+01-05 08:01:19.609 19246 19246 I MonitoringInstr: No JSBridge.
+01-05 08:01:19.611 19246 19269 I MonitoringInstr: Setting context classloader to 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk", zip file "/data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk"],nativeLibraryDirectories=[/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/lib/arm64, /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/lib/arm64, /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk!/lib/arm64-v8a, /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!/lib/arm64-v8a, /system/lib64, /product/lib64]]]', Original: 'dalvik.system.PathClassLoader[DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk", zip file "/data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk"],nativeLibraryDirectories=[/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/lib/arm64, /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/lib/arm64, /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk!/lib/arm64-v8a, /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!/lib/arm64-v8a, /system/lib64, /product/lib64]]]'
+01-05 08:01:19.623 19246 19269 D InfraTrack: Tracking disabled due to lack of internet permissions
+01-05 08:01:19.623 19246 19269 I UsageTrackerFacilitator: Usage tracking disabled
+01-05 08:01:19.625 19246 19269 I TestRequestBuilder: Scanning classpath to find tests in paths [/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk]
+01-05 08:01:19.626 19246 19269 W om.google.ambe: Opening an oat file without a class loader. Are you using the deprecated DexFile APIs?
+01-05 08:01:19.713 19246 19269 D TestExecutor: Adding listener androidx.test.internal.runner.listener.LogRunListener
+01-05 08:01:19.713 19246 19269 D TestExecutor: Adding listener androidx.test.internal.runner.listener.InstrumentationResultPrinter
+01-05 08:01:19.713 19246 19269 D TestExecutor: Adding listener androidx.test.internal.runner.listener.ActivityFinisherRunListener
+01-05 08:01:19.714 19246 19269 I TestRunner: run started: 1 tests
+01-05 08:01:19.714 19246 19269 I TestRunner: started: LaunchAmber(com.google.amber.AmberLauncher)
+01-05 08:01:19.716 19246 19246 I MonitoringInstr: Activities that are still in CREATED to STOPPED: 0
+01-05 08:01:19.726 19246 19269 D vulkan  : searching for layers in '/data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/lib/arm64'
+01-05 08:01:19.726 19246 19269 D vulkan  : searching for layers in '/data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk!/lib/arm64-v8a'
+01-05 08:01:19.726 19246 19269 D vulkan  : searching for layers in '/data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!/lib/arm64-v8a'
+01-05 08:01:19.846 19246 19269 W om.google.ambe: 0xebadde09 skipped times: 0
+--------- beginning of crash
+01-05 08:01:19.846 19246 19269 F libc    : Fatal signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x30 in tid 19269 (roidJUnitRunner), pid 19246 (om.google.amber)
+01-05 08:01:19.880 19287 19287 E crash_dump64: unknown process state: t
+01-05 08:01:19.897 19287 19287 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdTombstone
+01-05 08:01:19.897   744   744 I /system/bin/tombstoned: received crash request for pid 19269
+01-05 08:01:19.898 19287 19287 I crash_dump64: performing dump of process 19246 (target tid = 19269)
+01-05 08:01:19.902 19287 19287 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+01-05 08:01:19.902 19287 19287 F DEBUG   : Build fingerprint: 'samsung/y2sxeea/y2s:10/QP1A.190711.020/G986BXXS5BTJ4:user/release-keys'
+01-05 08:01:19.902 19287 19287 F DEBUG   : Revision: '22'
+01-05 08:01:19.902 19287 19287 F DEBUG   : ABI: 'arm64'
+01-05 08:01:19.903 19287 19287 F DEBUG   : Timestamp: 2021-01-05 08:01:19+0200
+01-05 08:01:19.903 19287 19287 F DEBUG   : pid: 19246, tid: 19269, name: roidJUnitRunner  >>> com.google.amber <<<
+01-05 08:01:19.903 19287 19287 F DEBUG   : uid: 10293
+01-05 08:01:19.903 19287 19287 F DEBUG   : signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x30
+01-05 08:01:19.903 19287 19287 F DEBUG   : Cause: null pointer dereference
+01-05 08:01:19.903 19287 19287 F DEBUG   :     x0  000000796ce4ae40  x1  0000000000000000  x2  0000000000000005  x3  0000000000000000
+01-05 08:01:19.903 19287 19287 F DEBUG   :     x4  000000796d02f420  x5  0000000000000000  x6  0000007972cf3724  x7  000000000007c000
+01-05 08:01:19.903 19287 19287 F DEBUG   :     x8  000000796cf1e510  x9  0000000000000001  x10 0000000000000000  x11 000000796cf1e694
+01-05 08:01:19.903 19287 19287 F DEBUG   :     x12 0000000000000005  x13 0000000007fffffe  x14 000000796d028130  x15 0000000000000000
+01-05 08:01:19.903 19287 19287 F DEBUG   :     x16 000000796fae0650  x17 0000007a078a5340  x18 0000007917000000  x19 0000000000000000
+01-05 08:01:19.903 19287 19287 F DEBUG   :     x20 0000000000000000  x21 0000000000000000  x22 0000000000000000  x23 0000007972cf38d8
+01-05 08:01:19.903 19287 19287 F DEBUG   :     x24 0000000000000000  x25 000000796d0248b0  x26 0000000000000000  x27 0000000000000001
+01-05 08:01:19.903 19287 19287 F DEBUG   :     x28 0000007972cf3b90  x29 0000007972cf37c0
+01-05 08:01:19.903 19287 19287 F DEBUG   :     sp  0000007972cf3790  lr  000000796e14a354  pc  000000796e170c34
+01-05 08:01:19.961 19287 19287 F DEBUG   : 
+01-05 08:01:19.961 19287 19287 F DEBUG   : backtrace:
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #00 pc 0000000000defc34  /vendor/lib64/egl/libGLES_mali.so (BuildId: b045c6346c0b1182f9fea5bc87752548)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #01 pc 0000000000dc9350  /vendor/lib64/egl/libGLES_mali.so (BuildId: b045c6346c0b1182f9fea5bc87752548)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #02 pc 0000000000ddb238  /vendor/lib64/egl/libGLES_mali.so (BuildId: b045c6346c0b1182f9fea5bc87752548)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #03 pc 0000000000ddb3f8  /vendor/lib64/egl/libGLES_mali.so (BuildId: b045c6346c0b1182f9fea5bc87752548)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #04 pc 0000000000cf5ba0  /vendor/lib64/egl/libGLES_mali.so (BuildId: b045c6346c0b1182f9fea5bc87752548)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #05 pc 0000000000d1a7e8  /vendor/lib64/egl/libGLES_mali.so (BuildId: b045c6346c0b1182f9fea5bc87752548)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #06 pc 0000000000c46bb0  /vendor/lib64/egl/libGLES_mali.so (BuildId: b045c6346c0b1182f9fea5bc87752548)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #07 pc 0000000000a49f4c  /vendor/lib64/egl/libGLES_mali.so (BuildId: b045c6346c0b1182f9fea5bc87752548)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #08 pc 0000000000a48718  /vendor/lib64/egl/libGLES_mali.so (vkCreateGraphicsPipelines+840) (BuildId: b045c6346c0b1182f9fea5bc87752548)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #09 pc 000000000001ee80  /system/lib64/libvulkan.so (vulkan::api::(anonymous namespace)::CreateGraphicsPipelines(VkDevice_T*, VkPipelineCache_T*, unsigned int, VkGraphicsPipelineCreateInfo const*, VkAllocationCallbacks const*, VkPipeline_T**)+224) (BuildId: 4103f10840ce3b1e069a9962c4b161bf)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #10 pc 000000000021384c  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #11 pc 00000000001e6fe0  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (amber::vulkan::GraphicsPipeline::CreateVkGraphicsPipeline(amber::PipelineData const*, VkPrimitiveTopology, amber::vulkan::VertexBuffer const*, VkPipelineLayout_T* const&, VkPipeline_T**)+1244) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #12 pc 00000000001e7eb8  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (amber::vulkan::GraphicsPipeline::Draw(amber::DrawArraysCommand const*, amber::vulkan::VertexBuffer*)+284) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #13 pc 00000000001e3c28  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (amber::vulkan::EngineVulkan::DoDrawRect(amber::DrawRectCommand const*)+1028) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #14 pc 00000000001c483c  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (amber::Executor::ExecuteCommand(amber::Engine*, amber::Command*)+332) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #15 pc 00000000001c45c8  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (amber::Executor::Execute(amber::Engine*, amber::Script const*, std::__ndk1::map<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, std::__ndk1::vector<unsigned int, std::__ndk1::allocator<unsigned int>>, std::__ndk1::less<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>>, std::__ndk1::allocator<std::__ndk1::pair<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const, std::__ndk1::vector<unsigned int, std::__ndk1::allocator<unsigned int>>>>> const&, amber::Options*, amber::Delegate*)+1556) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #16 pc 0000000000199f0c  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (amber::Amber::ExecuteWithShaderData(amber::Recipe const*, amber::Options*, std::__ndk1::map<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, std::__ndk1::vector<unsigned int, std::__ndk1::allocator<unsigned int>>, std::__ndk1::less<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>>, std::__ndk1::allocator<std::__ndk1::pair<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const, std::__ndk1::vector<unsigned int, std::__ndk1::allocator<unsigned int>>>>> const&)+188) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #17 pc 0000000000199e1c  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (amber::Amber::Execute(amber::Recipe const*, amber::Options*)+48) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #18 pc 000000000018c96c  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (main+9352) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #19 pc 00000000001919b8  /data/app/com.google.amber-RH2xMrgvIKYMGVNMt4tCDQ==/base.apk!libamber_ndk.so (offset 0x1720000) (Java_com_google_amber_Amber_androidMain+1124) (BuildId: 0c649b4ea56fd15e15e2f91013e8a722a1571ee0)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #20 pc 0000000000140350  /apex/com.android.runtime/lib64/libart.so (art_quick_generic_jni_trampoline+144) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #21 pc 00000000001375b8  /apex/com.android.runtime/lib64/libart.so (art_quick_invoke_static_stub+568) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #22 pc 000000000014608c  /apex/com.android.runtime/lib64/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+276) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #23 pc 00000000002dfde8  /apex/com.android.runtime/lib64/libart.so (art::interpreter::ArtInterpreterToCompiledCodeBridge(art::Thread*, art::ArtMethod*, art::ShadowFrame*, unsigned short, art::JValue*)+384) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #24 pc 00000000002db0c8  /apex/com.android.runtime/lib64/libart.so (bool art::interpreter::DoCall<false, false>(art::ArtMethod*, art::Thread*, art::ShadowFrame&, art::Instruction const*, unsigned short, art::JValue*)+912) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #25 pc 000000000059bf24  /apex/com.android.runtime/lib64/libart.so (MterpInvokeStatic+368) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #26 pc 0000000000131994  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_static+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #27 pc 000000000000063c  [anon:dalvik-classes2.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk!classes2.dex] (com.google.amber.AmberLauncher.LaunchAmber+196)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #28 pc 00000000002b0a34  /apex/com.android.runtime/lib64/libart.so (_ZN3art11interpreterL7ExecuteEPNS_6ThreadERKNS_20CodeItemDataAccessorERNS_11ShadowFrameENS_6JValueEbb.llvm.3311504000011073373+240) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #29 pc 000000000058a980  /apex/com.android.runtime/lib64/libart.so (artQuickToInterpreterBridge+1012) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #30 pc 0000000000140468  /apex/com.android.runtime/lib64/libart.so (art_quick_to_interpreter_bridge+88) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #31 pc 0000000000137334  /apex/com.android.runtime/lib64/libart.so (art_quick_invoke_stub+548) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #32 pc 000000000014606c  /apex/com.android.runtime/lib64/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+244) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #33 pc 00000000004aa944  /apex/com.android.runtime/lib64/libart.so (art::(anonymous namespace)::InvokeWithArgArray(art::ScopedObjectAccessAlreadyRunnable const&, art::ArtMethod*, art::(anonymous namespace)::ArgArray*, art::JValue*, char const*)+104) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #34 pc 00000000004ac36c  /apex/com.android.runtime/lib64/libart.so (art::InvokeMethod(art::ScopedObjectAccessAlreadyRunnable const&, _jobject*, _jobject*, _jobject*, unsigned long)+1476) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #35 pc 0000000000438764  /apex/com.android.runtime/lib64/libart.so (art::Method_invoke(_JNIEnv*, _jobject*, _jobject*, _jobjectArray*)+52) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #36 pc 00000000000c8d34  /system/framework/arm64/boot.oat (art_jni_trampoline+180) (BuildId: b81e3cc6dbe52d32c89442593ef460ee640191f4)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #37 pc 0000000000137334  /apex/com.android.runtime/lib64/libart.so (art_quick_invoke_stub+548) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #38 pc 000000000014606c  /apex/com.android.runtime/lib64/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+244) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.962 19287 19287 F DEBUG   :       #39 pc 00000000002dfde8  /apex/com.android.runtime/lib64/libart.so (art::interpreter::ArtInterpreterToCompiledCodeBridge(art::Thread*, art::ArtMethod*, art::ShadowFrame*, unsigned short, art::JValue*)+384) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #40 pc 00000000002db0c8  /apex/com.android.runtime/lib64/libart.so (bool art::interpreter::DoCall<false, false>(art::ArtMethod*, art::Thread*, art::ShadowFrame&, art::Instruction const*, unsigned short, art::JValue*)+912) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #41 pc 0000000000599378  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+648) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #42 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #43 pc 000000000008d304  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.model.FrameworkMethod$1.runReflectiveCall+20)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #44 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #45 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #46 pc 0000000000086d1c  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.internal.runners.model.ReflectiveCallable.run)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #47 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #48 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #49 pc 000000000008d53e  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.model.FrameworkMethod.invokeExplosively+10)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #50 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #51 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #52 pc 0000000000087ce2  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.internal.runners.statements.InvokeMethod.evaluate+14)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #53 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #54 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #55 pc 000000000008cd1c  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner.runLeaf+16)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #56 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #57 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #58 pc 000000000008bf34  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.BlockJUnit4ClassRunner.runChild+36)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #59 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #60 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #61 pc 000000000008bef6  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.BlockJUnit4ClassRunner.runChild+6)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #62 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #63 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #64 pc 000000000008c6ac  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner$3.run+12)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #65 pc 000000000059ae7c  /apex/com.android.runtime/lib64/libart.so (MterpInvokeInterface+1740) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #66 pc 0000000000131a14  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_interface+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #67 pc 000000000008c624  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner$1.schedule)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #68 pc 000000000059ae7c  /apex/com.android.runtime/lib64/libart.so (MterpInvokeInterface+1740) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #69 pc 0000000000131a14  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_interface+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #70 pc 000000000008ccd2  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner.runChildren+50)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #71 pc 000000000059ba18  /apex/com.android.runtime/lib64/libart.so (MterpInvokeDirect+1168) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #72 pc 0000000000131914  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_direct+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #73 pc 000000000008cad4  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner.access$000)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #74 pc 000000000059c224  /apex/com.android.runtime/lib64/libart.so (MterpInvokeStatic+1136) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #75 pc 0000000000131994  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_static+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #76 pc 000000000008c664  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner$2.evaluate+8)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #77 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #78 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #79 pc 000000000008cc5a  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner.run+26)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #80 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #81 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #82 pc 000000000008d098  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.Suite.runChild)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #83 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #84 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #85 pc 000000000008d07e  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.Suite.runChild+6)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #86 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #87 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #88 pc 000000000008c6ac  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner$3.run+12)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #89 pc 000000000059ae7c  /apex/com.android.runtime/lib64/libart.so (MterpInvokeInterface+1740) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #90 pc 0000000000131a14  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_interface+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #91 pc 000000000008c624  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner$1.schedule)
+01-05 08:01:19.963 19287 19287 F DEBUG   :       #92 pc 000000000059ae7c  /apex/com.android.runtime/lib64/libart.so (MterpInvokeInterface+1740) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #93 pc 0000000000131a14  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_interface+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #94 pc 000000000008ccd2  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner.runChildren+50)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #95 pc 000000000059ba18  /apex/com.android.runtime/lib64/libart.so (MterpInvokeDirect+1168) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #96 pc 0000000000131914  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_direct+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #97 pc 000000000008cad4  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner.access$000)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #98 pc 000000000059c224  /apex/com.android.runtime/lib64/libart.so (MterpInvokeStatic+1136) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #99 pc 0000000000131994  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_static+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #100 pc 000000000008c664  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner$2.evaluate+8)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #101 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #102 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #103 pc 000000000008cc5a  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runners.ParentRunner.run+26)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #104 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #105 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #106 pc 000000000008a2ae  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runner.JUnitCore.run+50)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #107 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #108 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #109 pc 000000000008a260  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (org.junit.runner.JUnitCore.run+8)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #110 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #111 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #112 pc 0000000000063288  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (androidx.test.internal.runner.TestExecutor.execute+52)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #113 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #114 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #115 pc 0000000000070446  [anon:dalvik-classes.dex extracted in memory from /data/app/com.google.amber.test-lGtwntzJgEn-kYjFVxZKLQ==/base.apk] (androidx.test.runner.AndroidJUnitRunner.onStart+250)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #116 pc 0000000000599688  /apex/com.android.runtime/lib64/libart.so (MterpInvokeVirtual+1432) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #117 pc 0000000000131814  /apex/com.android.runtime/lib64/libart.so (mterp_op_invoke_virtual+20) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #118 pc 0000000000220b6a  /system/framework/framework.jar (android.app.Instrumentation$InstrumentationThread.run+94)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #119 pc 00000000002b0a34  /apex/com.android.runtime/lib64/libart.so (_ZN3art11interpreterL7ExecuteEPNS_6ThreadERKNS_20CodeItemDataAccessorERNS_11ShadowFrameENS_6JValueEbb.llvm.3311504000011073373+240) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #120 pc 000000000058a980  /apex/com.android.runtime/lib64/libart.so (artQuickToInterpreterBridge+1012) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #121 pc 0000000000140468  /apex/com.android.runtime/lib64/libart.so (art_quick_to_interpreter_bridge+88) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #122 pc 0000000000137334  /apex/com.android.runtime/lib64/libart.so (art_quick_invoke_stub+548) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #123 pc 000000000014606c  /apex/com.android.runtime/lib64/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+244) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #124 pc 00000000004aa944  /apex/com.android.runtime/lib64/libart.so (art::(anonymous namespace)::InvokeWithArgArray(art::ScopedObjectAccessAlreadyRunnable const&, art::ArtMethod*, art::(anonymous namespace)::ArgArray*, art::JValue*, char const*)+104) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #125 pc 00000000004ab9d8  /apex/com.android.runtime/lib64/libart.so (art::InvokeVirtualOrInterfaceWithJValues(art::ScopedObjectAccessAlreadyRunnable const&, _jobject*, _jmethodID*, jvalue const*)+416) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #126 pc 00000000004ebd6c  /apex/com.android.runtime/lib64/libart.so (art::Thread::CreateCallback(void*)+1176) (BuildId: 0047dba9f44c48ca90a0c13150a581c7)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #127 pc 00000000000e28e0  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+36) (BuildId: 2e5014b39c80fbfdd68b1554b60542e2)
+01-05 08:01:19.964 19287 19287 F DEBUG   :       #128 pc 000000000008503c  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+64) (BuildId: 2e5014b39c80fbfdd68b1554b60542e2)
+01-05 08:01:20.222   744   744 E /system/bin/tombstoned: Tombstone written to: /data/tombstones/tombstone_08
+01-05 08:01:20.223  1078 19292 I DropBoxManagerService: add tag=data_app_native_crash isTagEnabled=true flags=0x2
+01-05 08:01:20.225  1078  1163 I BootReceiver: Copying /data/tombstones/tombstone_08 to DropBox (SYSTEM_TOMBSTONE)
+01-05 08:01:20.226  1078  1163 I DropBoxManagerService: add tag=SYSTEM_TOMBSTONE isTagEnabled=true flags=0x2
+01-05 08:01:20.237   590   590 E audit   : type=1701 audit(1609826480.232:5485): auid=4294967295 uid=10293 gid=10293 ses=4294967295 subj=u:r:untrusted_app:s0:c37,c257,c512,c768 pid=19246 comm="roidJUnitRunner" exe="/system/bin/app_process64" sig=11 res=1
+01-05 08:01:20.242  1078  1149 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver
+01-05 08:01:20.243  1078  1149 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+01-05 08:01:20.245  1078  1307 W ActivityManager: Missing app error report, app = com.google.amber crashing = true notResponding = false
+01-05 08:01:20.245  1078  1307 I HqmInfo::c: checkAppError: list is null
+01-05 08:01:20.246  1078  1149 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver
+01-05 08:01:20.247  1078  1149 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+01-05 08:01:20.288   604   604 I Zygote  : Process 19246 exited due to signal 11 (Segmentation fault)
+01-05 08:01:20.288  1078  4031 I ActivityManager: Process com.google.amber (pid 19246) has died: fore FGS (2715,4636)
+01-05 08:01:20.288  1078  1153 I libprocessgroup: Successfully killed process cgroup uid 10293 pid 19246 in 0ms
+01-05 08:01:20.289  1078  4031 W ActivityManager: Crash of app com.google.amber running instrumentation ComponentInfo{com.google.amber.test/androidx.test.runner.AndroidJUnitRunner}
+01-05 08:01:20.289  1078  4031 I ActivityManager: Force stopping com.google.amber appid=10293 user=0: finished inst
+01-05 08:01:20.289  1078 19196 W Binder  : Outgoing transactions from this process must be FLAG_ONEWAY
+01-05 08:01:20.289  1078 19196 W Binder  : java.lang.Throwable
+01-05 08:01:20.289  1078 19196 W Binder  : 	at android.os.BinderProxy.transact(BinderProxy.java:494)
+01-05 08:01:20.289  1078 19196 W Binder  : 	at android.app.IInstrumentationWatcher$Stub$Proxy.instrumentationFinished(IInstrumentationWatcher.java:205)
+01-05 08:01:20.289  1078 19196 W Binder  : 	at com.android.server.am.InstrumentationReporter$MyThread.run(InstrumentationReporter.java:86)
+01-05 08:01:20.291 19232 19232 D AndroidRuntime: Shutting down VM
+01-05 08:01:20.291   703  1688 I CameraService: UidPolicy: No processes running for a uid=10293 disabled=0
+
+
+STDERR:
+
+
+
+STATUS CRASH
+

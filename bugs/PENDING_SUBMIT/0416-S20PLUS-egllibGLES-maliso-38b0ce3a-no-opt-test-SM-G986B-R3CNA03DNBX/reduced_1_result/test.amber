@@ -1,0 +1,271 @@
+#!amber
+
+SET ENGINE_DATA fence_timeout_ms 60000
+
+SHADER vertex texgen_vert PASSTHROUGH
+
+SHADER fragment texgen_frag GLSL
+#version 430
+precision highp float;
+
+layout(location = 0) out vec4 _GLF_color;
+
+void main()
+{
+ _GLF_color = vec4(
+ gl_FragCoord.x * (1.0 / 256.0),
+ (int(gl_FragCoord.x) ^ int(gl_FragCoord.y)) * (1.0 / 256.0),
+ gl_FragCoord.y * (1.0 / 256.0),
+ 1.0);
+}
+END
+BUFFER default_texture FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics texgen_pipeline
+  ATTACH texgen_vert
+  ATTACH texgen_frag
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER default_texture AS color LOCATION 0
+END
+
+CLEAR_COLOR texgen_pipeline 0 0 0 255
+CLEAR texgen_pipeline
+RUN texgen_pipeline DRAW_RECT POS 0 0  SIZE 256 256
+
+SHADER vertex reference_vertex_shader PASSTHROUGH
+
+# reference_fragment_shader is derived from the following GLSL:
+# #version 320 es
+# precision highp float;
+#
+# layout(location = 0) out vec4 _GLF_color;
+#
+# layout(set = 0, binding = 0) uniform sampler2D tex;
+#
+# void main()
+# {
+#  _GLF_color = texture(tex, gl_FragCoord.xy * (1.0 / 256.0));
+# }
+SHADER fragment reference_fragment_shader SPIRV-ASM TARGET_ENV spv1.0
+; SPIR-V
+; Version: 1.0
+; Generator: Khronos Glslang Reference Front End; 10
+; Bound: 23
+; Schema: 0
+               OpCapability Shader
+          %1 = OpExtInstImport "GLSL.std.450"
+               OpMemoryModel Logical GLSL450
+               OpEntryPoint Fragment %4 "main" %9 %16
+               OpExecutionMode %4 OriginUpperLeft
+               OpSource ESSL 320
+               OpName %4 "main"
+               OpName %9 "_GLF_color"
+               OpName %13 "tex"
+               OpName %16 "gl_FragCoord"
+               OpDecorate %9 Location 0
+               OpDecorate %13 RelaxedPrecision
+               OpDecorate %13 DescriptorSet 0
+               OpDecorate %13 Binding 0
+               OpDecorate %14 RelaxedPrecision
+               OpDecorate %16 BuiltIn FragCoord
+               OpDecorate %22 RelaxedPrecision
+          %2 = OpTypeVoid
+          %3 = OpTypeFunction %2
+          %6 = OpTypeFloat 32
+          %7 = OpTypeVector %6 4
+          %8 = OpTypePointer Output %7
+          %9 = OpVariable %8 Output
+         %10 = OpTypeImage %6 2D 0 0 0 1 Unknown
+         %11 = OpTypeSampledImage %10
+         %12 = OpTypePointer UniformConstant %11
+         %13 = OpVariable %12 UniformConstant
+         %15 = OpTypePointer Input %7
+         %16 = OpVariable %15 Input
+         %17 = OpTypeVector %6 2
+         %20 = OpConstant %6 0.00390625
+          %4 = OpFunction %2 None %3
+          %5 = OpLabel
+         %14 = OpLoad %11 %13
+         %18 = OpLoad %7 %16
+         %19 = OpVectorShuffle %17 %18 %18 0 1
+         %21 = OpVectorTimesScalar %17 %19 %20
+         %22 = OpImageSampleImplicitLod %7 %14 %21
+               OpStore %9 %22
+               OpReturn
+               OpFunctionEnd
+END
+
+# uniforms for reference
+
+# tex
+SAMPLER reference_tex
+
+
+BUFFER reference_framebuffer FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics reference_pipeline
+  ATTACH reference_vertex_shader
+  ATTACH reference_fragment_shader
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER reference_framebuffer AS color LOCATION 0
+  BIND BUFFER default_texture AS combined_image_sampler SAMPLER reference_tex DESCRIPTOR_SET 0 BINDING 0
+END
+CLEAR_COLOR reference_pipeline 0 0 0 255
+
+CLEAR reference_pipeline
+RUN reference_pipeline DRAW_RECT POS 0 0 SIZE 256 256
+
+
+SHADER vertex variant_vertex_shader PASSTHROUGH
+
+# variant_fragment_shader is derived from the following GLSL:
+# #version 320 es
+#
+# precision highp float;
+#
+# layout(set = 0, binding = 0) uniform sampler2D tex;
+#
+# precision highp int;
+#
+# precision highp float;
+#
+# layout(location = 0) out vec4 _GLF_color;
+#
+# void main()
+# {
+#  _GLF_color = texture(tex, gl_FragCoord.xy * (1.0 / 256.0));
+#  uint GLF_live11uselessOutVariable = 1u;
+#  uint(1) < uaddCarry(uint(1), 1u, GLF_live11uselessOutVariable);
+#  int GLF_live19_looplimiter5 = 0;
+#  int GLF_live19i = 10;
+#  do
+#   {
+#    if(GLF_live19_looplimiter5 >= 5)
+#     {
+#      break;
+#     }
+#    GLF_live19_looplimiter5 ++;
+#    GLF_live19i ++;
+#   }
+#  while(GLF_live19i < 10);
+# }
+SHADER fragment variant_fragment_shader SPIRV-ASM TARGET_ENV spv1.0
+; SPIR-V
+; Version: 1.0
+; Generator: Khronos Glslang Reference Front End; 10
+; Bound: 56
+; Schema: 0
+               OpCapability Shader
+          %1 = OpExtInstImport "GLSL.std.450"
+               OpMemoryModel Logical GLSL450
+               OpEntryPoint Fragment %4 "main" %9 %16
+               OpExecutionMode %4 OriginUpperLeft
+               OpSource ESSL 320
+               OpName %4 "main"
+               OpName %9 "_GLF_color"
+               OpName %13 "tex"
+               OpName %16 "gl_FragCoord"
+               OpName %25 "GLF_live11uselessOutVariable"
+               OpName %27 "ResType"
+               OpName %35 "GLF_live19_looplimiter5"
+               OpName %37 "GLF_live19i"
+               OpDecorate %9 Location 0
+               OpDecorate %13 RelaxedPrecision
+               OpDecorate %13 DescriptorSet 0
+               OpDecorate %13 Binding 0
+               OpDecorate %14 RelaxedPrecision
+               OpDecorate %16 BuiltIn FragCoord
+               OpDecorate %22 RelaxedPrecision
+          %2 = OpTypeVoid
+          %3 = OpTypeFunction %2
+          %6 = OpTypeFloat 32
+          %7 = OpTypeVector %6 4
+          %8 = OpTypePointer Output %7
+          %9 = OpVariable %8 Output
+         %10 = OpTypeImage %6 2D 0 0 0 1 Unknown
+         %11 = OpTypeSampledImage %10
+         %12 = OpTypePointer UniformConstant %11
+         %13 = OpVariable %12 UniformConstant
+         %15 = OpTypePointer Input %7
+         %16 = OpVariable %15 Input
+         %17 = OpTypeVector %6 2
+         %20 = OpConstant %6 0.00390625
+         %23 = OpTypeInt 32 0
+         %24 = OpTypePointer Function %23
+         %26 = OpConstant %23 1
+         %27 = OpTypeStruct %23 %23
+         %31 = OpTypeBool
+         %33 = OpTypeInt 32 1
+         %34 = OpTypePointer Function %33
+         %36 = OpConstant %33 0
+         %38 = OpConstant %33 10
+         %44 = OpConstant %33 5
+         %50 = OpConstant %33 1
+          %4 = OpFunction %2 None %3
+          %5 = OpLabel
+         %25 = OpVariable %24 Function
+         %35 = OpVariable %34 Function
+         %37 = OpVariable %34 Function
+         %14 = OpLoad %11 %13
+         %18 = OpLoad %7 %16
+         %19 = OpVectorShuffle %17 %18 %18 0 1
+         %21 = OpVectorTimesScalar %17 %19 %20
+         %22 = OpImageSampleImplicitLod %7 %14 %21
+               OpStore %9 %22
+               OpStore %25 %26
+         %28 = OpIAddCarry %27 %26 %26
+         %29 = OpCompositeExtract %23 %28 1
+               OpStore %25 %29
+         %30 = OpCompositeExtract %23 %28 0
+         %32 = OpULessThan %31 %26 %30
+               OpStore %35 %36
+               OpStore %37 %38
+               OpBranch %39
+         %39 = OpLabel
+               OpLoopMerge %41 %42 None
+               OpBranch %40
+         %40 = OpLabel
+         %43 = OpLoad %33 %35
+         %45 = OpSGreaterThanEqual %31 %43 %44
+               OpSelectionMerge %47 None
+               OpBranchConditional %45 %46 %47
+         %46 = OpLabel
+               OpBranch %41
+         %47 = OpLabel
+         %49 = OpLoad %33 %35
+         %51 = OpIAdd %33 %49 %50
+               OpStore %35 %51
+         %52 = OpLoad %33 %37
+         %53 = OpIAdd %33 %52 %50
+               OpStore %37 %53
+               OpBranch %42
+         %42 = OpLabel
+         %54 = OpLoad %33 %37
+         %55 = OpSLessThan %31 %54 %38
+               OpBranchConditional %55 %39 %41
+         %41 = OpLabel
+               OpReturn
+               OpFunctionEnd
+END
+
+# uniforms for variant
+
+# tex
+SAMPLER variant_tex
+
+
+BUFFER variant_framebuffer FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics variant_pipeline
+  ATTACH variant_vertex_shader
+  ATTACH variant_fragment_shader
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER variant_framebuffer AS color LOCATION 0
+  BIND BUFFER default_texture AS combined_image_sampler SAMPLER variant_tex DESCRIPTOR_SET 0 BINDING 0
+END
+CLEAR_COLOR variant_pipeline 0 0 0 255
+
+CLEAR variant_pipeline
+RUN variant_pipeline DRAW_RECT POS 0 0 SIZE 256 256
+
+EXPECT reference_framebuffer EQ_HISTOGRAM_EMD_BUFFER variant_framebuffer TOLERANCE 0.005

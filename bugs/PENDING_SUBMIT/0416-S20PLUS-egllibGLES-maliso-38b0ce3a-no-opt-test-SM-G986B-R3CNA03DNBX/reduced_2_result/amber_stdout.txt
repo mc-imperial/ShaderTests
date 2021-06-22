@@ -1,0 +1,100 @@
+Loading Vulkan Pointers
+vkGetPhysicalDeviceProperties
+time vkGetPhysicalDeviceProperties                  54846 ns
+vkGetPhysicalDeviceMemoryProperties
+time vkGetPhysicalDeviceMemoryProperties              230 ns
+vkCreateCommandPool
+time vkCreateCommandPool                             8885 ns
+vkCreateShaderModule
+time vkCreateShaderModule                           14500 ns
+vkCreateShaderModule
+time vkCreateShaderModule                            2846 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties              654 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                       14654 ns
+vkCreateFence
+time vkCreateFence                                   4885 ns
+vkCreateRenderPass
+time vkCreateRenderPass                           3740846 ns
+vkCreateImage
+time vkCreateImage                                   8769 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     539 ns
+vkAllocateMemory
+time vkAllocateMemory                               59500 ns
+vkBindImageMemory
+time vkBindImageMemory                              48654 ns
+vkCreateImageView
+time vkCreateImageView                               2692 ns
+vkCreateBuffer
+time vkCreateBuffer                                   961 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    462 ns
+vkAllocateMemory
+time vkAllocateMemory                               23307 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               500 ns
+vkMapMemory
+time vkMapMemory                                     1000 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                             1077 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            4038 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           45500 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                       2162000 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            2961 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                             461 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                           17884 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                        1728307 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                             90384 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            2462 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                       1901654 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            2961 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                             18000 ns
+vkResetFences
+time vkResetFences                                   6500 ns
+vkQueueSubmit
+time vkQueueSubmit                                 122846 ns
+vkWaitForFences
+time vkWaitForFences                              2096461 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            8346 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            1500 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               538 ns
+vkResetFences
+time vkResetFences                                   3192 ns
+vkQueueSubmit
+time vkQueueSubmit                                  25269 ns
+vkWaitForFences
+time vkWaitForFences                                16846 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1192 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                             500 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               308 ns
+vkResetFences
+time vkResetFences                                   1885 ns
+vkQueueSubmit
+time vkQueueSubmit                                  15115 ns
+vkWaitForFences
+time vkWaitForFences                                16692 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                             962 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                          6846 ns
+vkCreateGraphicsPipelines
