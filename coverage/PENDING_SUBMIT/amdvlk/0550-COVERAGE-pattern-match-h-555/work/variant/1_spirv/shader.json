@@ -1,0 +1,21 @@
+{
+  "two": {
+    "func": "glUniform1i",
+    "args": [
+      2
+    ],
+    "push_constant": true
+  },
+  "_GLF_uniform_int_values": {
+    "func": "glUniform1iv",
+    "args": [
+      0,
+      5,
+      30,
+      1,
+      6
+    ],
+    "count": 0,
+    "binding": 0
+  }
+}
