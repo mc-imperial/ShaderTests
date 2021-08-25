@@ -1,0 +1,10 @@
+{
+  "injectionSwitch": {
+    "func": "glUniform2f",
+    "args": [
+      0.0,
+      1.0
+    ],
+    "push_constant": true
+  }
+}
