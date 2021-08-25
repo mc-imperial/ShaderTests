@@ -1,0 +1,9 @@
+{
+  "GLF_live7time": {
+    "func": "glUniform1f",
+    "args": [
+      0.9874064
+    ],
+    "binding": 0
+  }
+}
