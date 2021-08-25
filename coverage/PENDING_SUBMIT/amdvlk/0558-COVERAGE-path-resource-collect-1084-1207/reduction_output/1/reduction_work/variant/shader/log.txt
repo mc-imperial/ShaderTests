@@ -1,0 +1,38 @@
+Running test on device:
+host
+Copying reduction_output/1/reduction_work/variant/shader.json to reduction_output/1/reduction_work/variant/shader/variant/0_glsl/shader.json
+Copying reduction_output/1/reduction_work/variant/shader.frag to reduction_output/1/reduction_work/variant/shader/variant/0_glsl/shader.frag
+Finding path of binary:
+name: "glslangValidator"
+tags: "Debug"
+version: "c0bcfaf3bae917c57bca49897eb7430cdf256c70"
+
+Copying reduction_output/1/reduction_work/variant/shader/variant/0_glsl/shader.json to reduction_output/1/reduction_work/variant/shader/variant/1_spirv/shader.json
+Exec:['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-glslang-c0bcfaf3bae917c57bca49897eb7430cdf256c70-Linux_x64_Debug/glslang/bin/glslangValidator', '-V', '-o', 'reduction_output/1/reduction_work/variant/shader/variant/1_spirv/shader.frag.spv', 'reduction_output/1/reduction_work/variant/shader/variant/0_glsl/shader.frag']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+Finding path of binary:
+name: "spirv-dis"
+tags: "Debug"
+version: "a0370efd589be33d5d9a85cfde2f85841b3755af"
+
+Copying reduction_output/1/reduction_work/variant/shader/variant/1_spirv/shader.json to reduction_output/1/reduction_work/variant/shader/variant/1_spirv_asm/shader.json
+Exec:['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-SPIRV-Tools-a0370efd589be33d5d9a85cfde2f85841b3755af-Linux_x64_Debug/SPIRV-Tools/bin/spirv-dis', 'reduction_output/1/reduction_work/variant/shader/variant/1_spirv/shader.frag.spv', '-o', 'reduction_output/1/reduction_work/variant/shader/variant/1_spirv_asm/shader.frag.asm', '--raw-id']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+Finding path of binary:
+name: "spirv-val"
+tags: "Debug"
+version: "a0370efd589be33d5d9a85cfde2f85841b3755af"
+
+Exec:['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-SPIRV-Tools-a0370efd589be33d5d9a85cfde2f85841b3755af-Linux_x64_Debug/SPIRV-Tools/bin/spirv-val', 'reduction_output/1/reduction_work/variant/shader/variant/1_spirv/shader.frag.spv']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+Finding path of binary:
+name: "spirv-opt"
+tags: "Debug"
+version: "a0370efd589be33d5d9a85cfde2f85841b3755af"
+
+Copying reduction_output/1/reduction_work/variant/shader/variant/1_spirv/shader.json to reduction_output/1/reduction_work/variant/shader/variant/2_spirv_opt/shader.json
+Exec:['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-SPIRV-Tools-a0370efd589be33d5d9a85cfde2f85841b3755af-Linux_x64_Debug/SPIRV-Tools/bin/spirv-opt', 'reduction_output/1/reduction_work/variant/shader/variant/1_spirv/shader.frag.spv', '-o', 'reduction_output/1/reduction_work/variant/shader/variant/2_spirv_opt/shader.frag.spv', '--validate-after-all', '-O']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
