@@ -1,0 +1,18 @@
+{
+  "resolution": {
+    "func": "glUniform1f",
+    "args": [
+      256.0
+    ],
+    "push_constant": true
+  },
+  "_GLF_uniform_int_values": {
+    "func": "glUniform1iv",
+    "args": [
+      1,
+      0
+    ],
+    "count": 0,
+    "binding": 0
+  }
+}
