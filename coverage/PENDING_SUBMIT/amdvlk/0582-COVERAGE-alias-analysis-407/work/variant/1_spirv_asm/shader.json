@@ -1,0 +1,7 @@
+{
+  "GLF_dead3tex": {
+    "func": "sampler2D",
+    "texture": "DEFAULT",
+    "binding": 0
+  }
+}
