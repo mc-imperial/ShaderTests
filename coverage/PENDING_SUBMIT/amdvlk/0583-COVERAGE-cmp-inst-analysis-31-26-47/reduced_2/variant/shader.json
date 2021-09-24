@@ -1,0 +1,10 @@
+{
+  "GLF_dead9resolution": {
+    "func": "glUniform2f",
+    "args": [
+      0.48885244,
+      0.6971687
+    ],
+    "binding": 0
+  }
+}
