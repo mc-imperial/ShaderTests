@@ -1,0 +1,124 @@
+#!amber
+
+SET ENGINE_DATA fence_timeout_ms 60000
+
+SHADER vertex variant_vertex_shader PASSTHROUGH
+
+# variant_fragment_shader is derived from the following GLSL:
+# #version 320 es
+#
+# precision highp float;
+#
+# precision highp int;
+#
+# // Contents of one: 1
+# layout(set = 0, binding = 0) uniform buf0 {
+#  int one;
+# };
+# layout(location = 0) out vec4 _GLF_color;
+#
+# void main()
+# {
+#  int a = 0xffffffff >> one;
+#  float f = clamp(5.0, 1.0, a == 0xffffffff ? 2.0 : 3.0);
+#  if(f == 2.0)
+#   _GLF_color = vec4(1, 0, 0, 1);
+#  else
+#   _GLF_color = vec4(0);
+# }
+SHADER fragment variant_fragment_shader SPIRV-ASM TARGET_ENV spv1.0
+; SPIR-V
+; Version: 1.0
+; Generator: Khronos Glslang Reference Front End; 10
+; Bound: 41
+; Schema: 0
+               OpCapability Shader
+          %1 = OpExtInstImport "GLSL.std.450"
+               OpMemoryModel Logical GLSL450
+               OpEntryPoint Fragment %4 "main" %36
+               OpExecutionMode %4 OriginUpperLeft
+               OpSource ESSL 320
+               OpName %4 "main"
+               OpName %8 "a"
+               OpName %10 "buf0"
+               OpMemberName %10 0 "one"
+               OpName %12 ""
+               OpName %20 "f"
+               OpName %36 "_GLF_color"
+               OpMemberDecorate %10 0 Offset 0
+               OpDecorate %10 Block
+               OpDecorate %12 DescriptorSet 0
+               OpDecorate %12 Binding 0
+               OpDecorate %36 Location 0
+          %2 = OpTypeVoid
+          %3 = OpTypeFunction %2
+          %6 = OpTypeInt 32 1
+          %7 = OpTypePointer Function %6
+          %9 = OpConstant %6 -1
+         %10 = OpTypeStruct %6
+         %11 = OpTypePointer Uniform %10
+         %12 = OpVariable %11 Uniform
+         %13 = OpConstant %6 0
+         %14 = OpTypePointer Uniform %6
+         %18 = OpTypeFloat 32
+         %19 = OpTypePointer Function %18
+         %21 = OpConstant %18 5
+         %22 = OpConstant %18 1
+         %24 = OpTypeBool
+         %26 = OpConstant %18 2
+         %27 = OpConstant %18 3
+         %34 = OpTypeVector %18 4
+         %35 = OpTypePointer Output %34
+         %36 = OpVariable %35 Output
+         %37 = OpConstant %18 0
+         %38 = OpConstantComposite %34 %22 %37 %37 %22
+         %40 = OpConstantComposite %34 %37 %37 %37 %37
+          %4 = OpFunction %2 None %3
+          %5 = OpLabel
+          %8 = OpVariable %7 Function
+         %20 = OpVariable %19 Function
+         %15 = OpAccessChain %14 %12 %13
+         %16 = OpLoad %6 %15
+         %17 = OpShiftRightArithmetic %6 %9 %16
+               OpStore %8 %17
+         %23 = OpLoad %6 %8
+         %25 = OpIEqual %24 %23 %9
+         %28 = OpSelect %18 %25 %26 %27
+         %29 = OpExtInst %18 %1 FClamp %21 %22 %28
+               OpStore %20 %29
+         %30 = OpLoad %18 %20
+         %31 = OpFOrdEqual %24 %30 %26
+               OpSelectionMerge %33 None
+               OpBranchConditional %31 %32 %39
+         %32 = OpLabel
+               OpStore %36 %38
+               OpBranch %33
+         %39 = OpLabel
+               OpStore %36 %40
+               OpBranch %33
+         %33 = OpLabel
+               OpReturn
+               OpFunctionEnd
+END
+
+# uniforms for variant
+
+# one
+BUFFER variant_one DATA_TYPE int32 STD140 DATA
+ 1
+END
+
+BUFFER variant_framebuffer FORMAT B8G8R8A8_UNORM
+
+PIPELINE graphics variant_pipeline
+  ATTACH variant_vertex_shader
+  ATTACH variant_fragment_shader
+  FRAMEBUFFER_SIZE 256 256
+  BIND BUFFER variant_framebuffer AS color LOCATION 0
+  BIND BUFFER variant_one AS uniform DESCRIPTOR_SET 0 BINDING 0
+END
+CLEAR_COLOR variant_pipeline 0 0 0 255
+
+CLEAR variant_pipeline
+RUN variant_pipeline DRAW_RECT POS 0 0 SIZE 256 256
+
