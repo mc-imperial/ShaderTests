@@ -1,0 +1,9 @@
+java.lang.AssertionError
+	at com.graphicsfuzz.common.transformreduce.GlslShaderJob.makeUniformBindings(GlslShaderJob.java:128)
+	at com.graphicsfuzz.reducer.ReductionDriver.writeState(ReductionDriver.java:440)
+	at com.graphicsfuzz.reducer.ReductionDriver.isInteresting(ReductionDriver.java:391)
+	at com.graphicsfuzz.reducer.ReductionDriver.isInterestingNoCache(ReductionDriver.java:427)
+	at com.graphicsfuzz.reducer.ReductionDriver.doReduction(ReductionDriver.java:210)
+	at com.graphicsfuzz.reducer.tool.GlslReduce.doReductionHelper(GlslReduce.java:537)
+	at com.graphicsfuzz.reducer.tool.GlslReduce.mainHelper(GlslReduce.java:460)
+	at com.graphicsfuzz.reducer.tool.GlslReduce.main(GlslReduce.java:229)
