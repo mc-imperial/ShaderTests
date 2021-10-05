@@ -1,0 +1,9 @@
+{
+  "one": {
+    "func": "glUniform1f",
+    "args": [
+      1.0
+    ],
+    "binding": 0
+  }
+}
