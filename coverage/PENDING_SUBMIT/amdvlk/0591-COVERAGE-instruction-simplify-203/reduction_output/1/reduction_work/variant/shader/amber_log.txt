@@ -1,0 +1,314 @@
+Exec (verbose):['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-amber-5100b1dc183052ea0ad7bc3db1d0121743b63f37-Linux_x64_Debug/amber/bin/amber', 'reduction_output/1/reduction_work/variant/shader/test.amber', '--log-graphics-calls-time', '--disable-spirv-val', '-d', '-I', 'variant_framebuffer', '-i', 'reduction_output/1/reduction_work/variant/shader/variant.png', '-I', 'reference_framebuffer', '-i', 'reduction_output/1/reduction_work/variant/shader/reference.png']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+STDOUT:
+Loading Vulkan Pointers
+vkGetPhysicalDeviceProperties
+time vkGetPhysicalDeviceProperties                    911 ns
+vkGetPhysicalDeviceMemoryProperties
+time vkGetPhysicalDeviceMemoryProperties              195 ns
+vkCreateCommandPool
+time vkCreateCommandPool                             4913 ns
+vkCreateShaderModule
+time vkCreateShaderModule                           19205 ns
+vkCreateShaderModule
+time vkCreateShaderModule                           31695 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties              178 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                        9624 ns
+vkCreateFence
+time vkCreateFence                                   3948 ns
+vkCreateRenderPass
+time vkCreateRenderPass                              4908 ns
+vkCreateImage
+time vkCreateImage                                  28985 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     727 ns
+vkAllocateMemory
+time vkAllocateMemory                               28314 ns
+vkBindImageMemory
+time vkBindImageMemory                               1461 ns
+vkCreateImageView
+time vkCreateImageView                               5140 ns
+vkCreateBuffer
+time vkCreateBuffer                                   927 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    630 ns
+vkAllocateMemory
+time vkAllocateMemory                                7269 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               238 ns
+vkMapMemory
+time vkMapMemory                                     3480 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                              517 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                           47151 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           39905 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                          5113 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            4776 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            4820 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            4392 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                          23273 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                               322 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           13476 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          3360 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3839 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1443 ns
+vkResetFences
+time vkResetFences                                   3063 ns
+vkQueueSubmit
+time vkQueueSubmit                                  59917 ns
+vkWaitForFences
+time vkWaitForFences                               404144 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1216 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3678 ns
+vkCreateBuffer
+time vkCreateBuffer                                   995 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    215 ns
+vkAllocateMemory
+time vkAllocateMemory                               11823 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               200 ns
+vkMapMemory
+time vkMapMemory                                     3028 ns
+vkCreateBuffer
+time vkCreateBuffer                                   428 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                     75 ns
+vkAllocateMemory
+time vkAllocateMemory                                7324 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               144 ns
+vkMapMemory
+time vkMapMemory                                     1996 ns
+vkCreateBuffer
+time vkCreateBuffer                                   312 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                     62 ns
+vkAllocateMemory
+time vkAllocateMemory                                7799 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               101 ns
+vkMapMemory
+time vkMapMemory                                     1790 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1168 ns
+vkResetFences
+time vkResetFences                                   1190 ns
+vkQueueSubmit
+time vkQueueSubmit                                  10858 ns
+vkWaitForFences
+time vkWaitForFences                               290040 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1065 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3345 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            5298 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3689 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3505 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1036 ns
+vkResetFences
+time vkResetFences                                   1786 ns
+vkQueueSubmit
+time vkQueueSubmit                                  10101 ns
+vkWaitForFences
+time vkWaitForFences                               131699 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1037 ns
+vkCreateDescriptorSetLayout
+time vkCreateDescriptorSetLayout                     1407 ns
+vkCreateDescriptorPool
+time vkCreateDescriptorPool                         46053 ns
+vkAllocateDescriptorSets
+time vkAllocateDescriptorSets                         468 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                           773 ns
+vkCreateGraphicsPipelines
+COV: InstructionSimplify203
+time vkCreateGraphicsPipelines                  145932630 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                          5282 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                           137 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                            44 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            7617 ns
+vkCreateBuffer
+time vkCreateBuffer                                  2706 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    620 ns
+vkAllocateMemory
+time vkAllocateMemory                               11041 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               256 ns
+vkMapMemory
+time vkMapMemory                                     3213 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            8536 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            6040 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                          9563 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3847 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            4485 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            4072 ns
+vkCmdBindDescriptorSets
+time vkCmdBindDescriptorSets                          529 ns
+vkCmdBindPipeline
+time vkCmdBindPipeline                               4271 ns
+vkCmdBindVertexBuffers
+time vkCmdBindVertexBuffers                           391 ns
+vkCmdDraw
+time vkCmdDraw                                       8258 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                               397 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           17423 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          3863 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3741 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1536 ns
+vkResetFences
+time vkResetFences                                   1973 ns
+vkQueueSubmit
+time vkQueueSubmit                                  15658 ns
+vkWaitForFences
+time vkWaitForFences                               230529 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1758 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3349 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            5153 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3542 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3428 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                               972 ns
+vkResetFences
+time vkResetFences                                   1781 ns
+vkQueueSubmit
+time vkQueueSubmit                                  10408 ns
+vkWaitForFences
+time vkWaitForFences                               136383 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1023 ns
+vkDestroyBufferView
+time vkDestroyBufferView                              245 ns
+vkUnmapMemory
+time vkUnmapMemory                                   5775 ns
+vkFreeMemory
+time vkFreeMemory                                   12197 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  374 ns
+vkDestroyBufferView
+time vkDestroyBufferView                               86 ns
+vkUnmapMemory
+time vkUnmapMemory                                   1599 ns
+vkFreeMemory
+time vkFreeMemory                                    6308 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  194 ns
+vkDestroyBufferView
+time vkDestroyBufferView                               65 ns
+vkUnmapMemory
+time vkUnmapMemory                                   1250 ns
+vkFreeMemory
+time vkFreeMemory                                    4076 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  147 ns
+vkDestroyPipeline
+time vkDestroyPipeline                               9403 ns
+vkDestroyPipelineLayout
+time vkDestroyPipelineLayout                          317 ns
+vkDestroyBufferView
+time vkDestroyBufferView                               67 ns
+vkUnmapMemory
+time vkUnmapMemory                                   1599 ns
+vkFreeMemory
+time vkFreeMemory                                    6090 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  125 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                           1097 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                             95 ns
+vkDestroyRenderPass
+time vkDestroyRenderPass                              247 ns
+vkDestroyFramebuffer
+time vkDestroyFramebuffer                             264 ns
+vkDestroyImageView
+time vkDestroyImageView                               313 ns
+vkDestroyImage
+time vkDestroyImage                                  1742 ns
+vkFreeMemory
+time vkFreeMemory                                    7359 ns
+vkUnmapMemory
+time vkUnmapMemory                                   3662 ns
+vkFreeMemory
+time vkFreeMemory                                    4823 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  206 ns
+vkDestroyFence
+time vkDestroyFence                                   963 ns
+vkFreeCommandBuffers
+time vkFreeCommandBuffers                            3278 ns
+vkDestroyDescriptorSetLayout
+time vkDestroyDescriptorSetLayout                     168 ns
+vkDestroyDescriptorPool
+time vkDestroyDescriptorPool                         4741 ns
+vkDestroyCommandPool
+time vkDestroyCommandPool                           28214 ns
+
+Summary: 1 pass, 0 fail
+
+
+STDERR:
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_cs_create_sem (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_cs_signal_sem (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_cs_wait_sem (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_cs_export_sem (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_cs_import_sem (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_cs_destroy_sem (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_create_bo_from_phys_mem (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_bo_remap_secure (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_query_private_aperture (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_query_shared_aperture (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_bo_get_phys_address (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_cs_reserved_vmid (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_cs_unreserved_vmid (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Unconditional Alert | Reason: Failed to get function pointer for: amdgpu_cs_ctx_create3 (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palLibrary.h:84:GetFunction)
+AMD-PAL: Warn: Alert triggered: sizeof(Key) > sizeof(void*) | Reason: Usage of DefaultHashFunc for non-pointer types! (/home/ari/amdvlk-20210518/vulkandriver/drivers/pal/inc/util/palHashBase.h:77:Init)
+Framebuffer (reference_framebuffer) empty or non-existent.
+
+
+
+STATUS SUCCESS
+
