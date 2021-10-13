@@ -1,0 +1,20 @@
+{
+  "injectionSwitch": {
+    "func": "glUniform2f",
+    "args": [
+      0.0,
+      1.0
+    ],
+    "binding": 1
+  },
+  "_GLF_uniform_int_values": {
+    "func": "glUniform1iv",
+    "args": [
+      0,
+      1,
+      64
+    ],
+    "count": 0,
+    "binding": 0
+  }
+}
