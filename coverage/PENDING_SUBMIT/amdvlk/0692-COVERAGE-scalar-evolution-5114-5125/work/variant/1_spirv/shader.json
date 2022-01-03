@@ -1,0 +1,25 @@
+{
+  "_GLF_uniform_float_values": {
+    "func": "glUniform1fv",
+    "args": [
+      9967.043,
+      5.4,
+      214.06,
+      63.98,
+      9966.043,
+      6.4
+    ],
+    "count": 0,
+    "binding": 1
+  },
+  "_GLF_uniform_int_values": {
+    "func": "glUniform1iv",
+    "args": [
+      1,
+      0,
+      2
+    ],
+    "count": 0,
+    "binding": 0
+  }
+}
