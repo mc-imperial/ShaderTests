@@ -1,0 +1,36 @@
+#version 320 es
+#define _int_1 _GLF_uniform_int_values[0]
+#define _int_0 _GLF_uniform_int_values[1]
+#define _int_10 _GLF_uniform_int_values[2]
+
+precision highp int;
+precision highp float;
+
+// Contents of _GLF_uniform_int_values: [1, 0, 10]
+layout(set = 0, binding = 0) uniform buf0
+{
+    int _GLF_uniform_int_values[3];
+};
+
+layout(location = 0) out vec4 _GLF_color;
+
+void main()
+{
+    int a = _int_0;
+
+    // Iterates once: min(2, findMSB(1)) = min(2, 0) = 0.
+    for(int i = 0; i <= min(2, findMSB(1)) && a < _int_10; i++)
+    {
+        a++;
+    }
+
+    // Always true.
+    if(a == _int_1)
+    {
+        _GLF_color = vec4(_int_1, _int_0, _int_0, _int_1);
+    }
+    else
+    {
+        _GLF_color = vec4(_int_0);
+    }
+}
