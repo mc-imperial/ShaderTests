@@ -1,0 +1,336 @@
+Running test on device:
+host
+Copying reduction_output/1/reduction_work/variant/shader_reduced_0001.json to reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.json
+Copying reduction_output/1/reduction_work/variant/shader_reduced_0001.frag to reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.frag
+Finding path of binary:
+name: "glslangValidator"
+tags: "Debug"
+version: "c0bcfaf3bae917c57bca49897eb7430cdf256c70"
+
+Copying reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.json to reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv/shader_reduced_0001.json
+Exec:['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-glslang-c0bcfaf3bae917c57bca49897eb7430cdf256c70-Linux_x64_Debug/glslang/bin/glslangValidator', '-V', '-o', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv/shader_reduced_0001.frag.spv', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/0_glsl/shader_reduced_0001.frag']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+Finding path of binary:
+name: "spirv-dis"
+tags: "Debug"
+version: "a0370efd589be33d5d9a85cfde2f85841b3755af"
+
+Copying reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv/shader_reduced_0001.json to reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv_asm/shader_reduced_0001.json
+Exec:['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-SPIRV-Tools-a0370efd589be33d5d9a85cfde2f85841b3755af-Linux_x64_Debug/SPIRV-Tools/bin/spirv-dis', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv/shader_reduced_0001.frag.spv', '-o', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv_asm/shader_reduced_0001.frag.asm', '--raw-id']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+Finding path of binary:
+name: "spirv-val"
+tags: "Debug"
+version: "a0370efd589be33d5d9a85cfde2f85841b3755af"
+
+Exec:['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-SPIRV-Tools-a0370efd589be33d5d9a85cfde2f85841b3755af-Linux_x64_Debug/SPIRV-Tools/bin/spirv-val', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv/shader_reduced_0001.frag.spv']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+Amberfy: ['reduction_output/1/reduction_work/variant/shader_reduced_0001/variant/1_spirv_asm/shader_reduced_0001.json'] to reduction_output/1/reduction_work/variant/shader_reduced_0001/test.amber
+Finding path of binary:
+name: "amber"
+tags: "Debug"
+version: "5100b1dc183052ea0ad7bc3db1d0121743b63f37"
+
+Exec (verbose):['/usr/bin/catchsegv', '/home/ari/git/google-siru/bugs/binaries/built_in/gfbuild-amber-5100b1dc183052ea0ad7bc3db1d0121743b63f37-Linux_x64_Debug/amber/bin/amber', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/test.amber', '--log-graphics-calls-time', '--disable-spirv-val', '-d', '-I', 'variant_framebuffer', '-i', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/variant.png', '-I', 'reference_framebuffer', '-i', 'reduction_output/1/reduction_work/variant/shader_reduced_0001/reference.png']
+Extra environment variables are: {'SEGFAULT_SIGNALS': 'SEGV ABRT'}
+RETURNCODE: 0
+STDOUT:
+Loading Vulkan Pointers
+vkGetPhysicalDeviceProperties
+time vkGetPhysicalDeviceProperties                    658 ns
+vkGetPhysicalDeviceMemoryProperties
+time vkGetPhysicalDeviceMemoryProperties              168 ns
+vkCreateCommandPool
+time vkCreateCommandPool                             4617 ns
+vkCreateShaderModule
+time vkCreateShaderModule                           19218 ns
+vkCreateShaderModule
+time vkCreateShaderModule                           36139 ns
+vkGetPhysicalDeviceFormatProperties
+time vkGetPhysicalDeviceFormatProperties              172 ns
+vkAllocateCommandBuffers
+time vkAllocateCommandBuffers                        9407 ns
+vkCreateFence
+time vkCreateFence                                   3454 ns
+vkCreateRenderPass
+time vkCreateRenderPass                              4656 ns
+vkCreateImage
+time vkCreateImage                                  29652 ns
+vkGetImageMemoryRequirements
+time vkGetImageMemoryRequirements                     695 ns
+vkAllocateMemory
+time vkAllocateMemory                               29215 ns
+vkBindImageMemory
+time vkBindImageMemory                               1207 ns
+vkCreateImageView
+time vkCreateImageView                               5180 ns
+vkCreateBuffer
+time vkCreateBuffer                                   938 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    304 ns
+vkAllocateMemory
+time vkAllocateMemory                                7013 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               374 ns
+vkMapMemory
+time vkMapMemory                                     3324 ns
+vkCreateFramebuffer
+time vkCreateFramebuffer                              513 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                           45600 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           38616 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                          7913 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            6682 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            4864 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            4094 ns
+vkCmdClearAttachments
+time vkCmdClearAttachments                          23053 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                               280 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           13290 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          3397 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3890 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1496 ns
+vkResetFences
+time vkResetFences                                   2912 ns
+vkQueueSubmit
+time vkQueueSubmit                                  70407 ns
+vkWaitForFences
+time vkWaitForFences                               520579 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1253 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3606 ns
+vkCreateBuffer
+time vkCreateBuffer                                  1018 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    201 ns
+vkAllocateMemory
+time vkAllocateMemory                               11692 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               224 ns
+vkMapMemory
+time vkMapMemory                                     3208 ns
+vkCreateBuffer
+time vkCreateBuffer                                   492 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                     91 ns
+vkAllocateMemory
+time vkAllocateMemory                                5603 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               132 ns
+vkMapMemory
+time vkMapMemory                                     1931 ns
+vkCreateBuffer
+time vkCreateBuffer                                   421 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                     74 ns
+vkAllocateMemory
+time vkAllocateMemory                                8634 ns
+vkBindBufferMemory
+time vkBindBufferMemory                                92 ns
+vkMapMemory
+time vkMapMemory                                     1774 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1276 ns
+vkResetFences
+time vkResetFences                                   1124 ns
+vkQueueSubmit
+time vkQueueSubmit                                  10347 ns
+vkWaitForFences
+time vkWaitForFences                               344929 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1021 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3619 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            5353 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3707 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3516 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1064 ns
+vkResetFences
+time vkResetFences                                   1760 ns
+vkQueueSubmit
+time vkQueueSubmit                                   9556 ns
+vkWaitForFences
+time vkWaitForFences                               117372 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1023 ns
+vkCreateDescriptorSetLayout
+time vkCreateDescriptorSetLayout                     1865 ns
+vkCreateDescriptorPool
+time vkCreateDescriptorPool                         57219 ns
+vkAllocateDescriptorSets
+time vkAllocateDescriptorSets                         480 ns
+vkCreatePipelineLayout
+time vkCreatePipelineLayout                           762 ns
+vkCreateGraphicsPipelines
+COV: AliasAnalysisH924
+COV: BasicAliasAnalysis1337
+time vkCreateGraphicsPipelines                  182788380 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                          5376 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                            92 ns
+vkUpdateDescriptorSets
+time vkUpdateDescriptorSets                            62 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            7356 ns
+vkCreateBuffer
+time vkCreateBuffer                                  2890 ns
+vkGetBufferMemoryRequirements
+time vkGetBufferMemoryRequirements                    587 ns
+vkAllocateMemory
+time vkAllocateMemory                               11388 ns
+vkBindBufferMemory
+time vkBindBufferMemory                               255 ns
+vkMapMemory
+time vkMapMemory                                     3454 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            8966 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            6293 ns
+vkCmdCopyBufferToImage
+time vkCmdCopyBufferToImage                         10004 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3818 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            4367 ns
+vkCmdBeginRenderPass
+time vkCmdBeginRenderPass                            4647 ns
+vkCmdBindDescriptorSets
+time vkCmdBindDescriptorSets                          891 ns
+vkCmdBindPipeline
+time vkCmdBindPipeline                              18184 ns
+vkCmdBindVertexBuffers
+time vkCmdBindVertexBuffers                           327 ns
+vkCmdDraw
+time vkCmdDraw                                       8733 ns
+vkCmdEndRenderPass
+time vkCmdEndRenderPass                               398 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                           17095 ns
+vkCmdCopyImageToBuffer
+time vkCmdCopyImageToBuffer                          3429 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3730 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1354 ns
+vkResetFences
+time vkResetFences                                   2245 ns
+vkQueueSubmit
+time vkQueueSubmit                                  93574 ns
+vkWaitForFences
+time vkWaitForFences                               323202 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1279 ns
+vkBeginCommandBuffer
+time vkBeginCommandBuffer                            3413 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            5220 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3581 ns
+vkCmdPipelineBarrier
+time vkCmdPipelineBarrier                            3439 ns
+vkEndCommandBuffer
+time vkEndCommandBuffer                              1054 ns
+vkResetFences
+time vkResetFences                                   1843 ns
+vkQueueSubmit
+time vkQueueSubmit                                   9757 ns
+vkWaitForFences
+time vkWaitForFences                               131955 ns
+vkResetCommandBuffer
+time vkResetCommandBuffer                            1050 ns
+vkDestroyBufferView
+time vkDestroyBufferView                              178 ns
+vkUnmapMemory
+time vkUnmapMemory                                   3245 ns
+vkFreeMemory
+time vkFreeMemory                                   11625 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  378 ns
+vkDestroyBufferView
+time vkDestroyBufferView                               49 ns
+vkUnmapMemory
+time vkUnmapMemory                                   1550 ns
+vkFreeMemory
+time vkFreeMemory                                    4542 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  217 ns
+vkDestroyBufferView
+time vkDestroyBufferView                               44 ns
+vkUnmapMemory
+time vkUnmapMemory                                   1165 ns
+vkFreeMemory
+time vkFreeMemory                                    4243 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  185 ns
+vkDestroyPipeline
+time vkDestroyPipeline                               9392 ns
+vkDestroyPipelineLayout
+time vkDestroyPipelineLayout                          321 ns
+vkDestroyBufferView
+time vkDestroyBufferView                               52 ns
+vkUnmapMemory
+time vkUnmapMemory                                   1519 ns
+vkFreeMemory
+time vkFreeMemory                                    5050 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  208 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                            872 ns
+vkDestroyShaderModule
+time vkDestroyShaderModule                            208 ns
+vkDestroyRenderPass
+time vkDestroyRenderPass                              264 ns
+vkDestroyFramebuffer
+time vkDestroyFramebuffer                             267 ns
+vkDestroyImageView
+time vkDestroyImageView                               241 ns
+vkDestroyImage
+time vkDestroyImage                                  1583 ns
+vkFreeMemory
+time vkFreeMemory                                    7752 ns
+vkUnmapMemory
+time vkUnmapMemory                                   3373 ns
+vkFreeMemory
+time vkFreeMemory                                    3788 ns
+vkDestroyBuffer
+time vkDestroyBuffer                                  212 ns
+vkDestroyFence
+time vkDestroyFence                                  1107 ns
+vkFreeCommandBuffers
+time vkFreeCommandBuffers                            3255 ns
+vkDestroyDescriptorSetLayout
+time vkDestroyDescriptorSetLayout                     174 ns
+vkDestroyDescriptorPool
+time vkDestroyDescriptorPool                         4584 ns
+vkDestroyCommandPool
+time vkDestroyCommandPool                           26578 ns
+
+Summary: 1 pass, 0 fail
+
+
+STDERR:
+Framebuffer (reference_framebuffer) empty or non-existent.
+
+
+
+STATUS SUCCESS
+
