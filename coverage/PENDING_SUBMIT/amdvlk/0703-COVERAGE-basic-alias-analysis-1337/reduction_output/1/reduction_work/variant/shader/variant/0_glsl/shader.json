@@ -1,0 +1,18 @@
+{
+  "v0": {
+    "func": "glUniform2i",
+    "args": [
+      0,
+      1
+    ],
+    "binding": 0
+  },
+  "v1": {
+    "func": "glUniform2i",
+    "args": [
+      2,
+      3
+    ],
+    "binding": 1
+  }
+}
