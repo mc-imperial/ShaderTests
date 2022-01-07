@@ -1,0 +1,9 @@
+{
+  "one": {
+    "func": "glUniform1i",
+    "args": [
+      1
+    ],
+    "push_constant": true
+  }
+}
