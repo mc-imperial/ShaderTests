@@ -1,0 +1,10 @@
+{
+  "GLF_live12resolution": {
+    "func": "glUniform2f",
+    "args": [
+      0.2501191,
+      0.1597625
+    ],
+    "binding": 0
+  }
+}
