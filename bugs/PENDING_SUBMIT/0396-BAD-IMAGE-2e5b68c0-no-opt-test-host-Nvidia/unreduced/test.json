@@ -1,0 +1,70 @@
+{
+  "binaries": [
+    {
+      "name": "glslangValidator",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "7f6559d2802d0653541060f0909e33d137b9c8ba"
+    },
+    {
+      "name": "spirv-dis",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "1f2fcddd3963b9c29bf360daf7656c5977c2aadd"
+    },
+    {
+      "name": "spirv-val",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "1f2fcddd3963b9c29bf360daf7656c5977c2aadd"
+    },
+    {
+      "name": "amber",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "404e43281bed513ab74f054bfdee57accb527ac2"
+    },
+    {
+      "name": "amber_apk",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "404e43281bed513ab74f054bfdee57accb527ac2"
+    },
+    {
+      "name": "amber_apk_test",
+      "path": "",
+      "tags": [
+        "Debug"
+      ],
+      "version": "404e43281bed513ab74f054bfdee57accb527ac2"
+    }
+  ],
+  "common_spirv_args": [],
+  "crash_regex_override": "",
+  "crash_signature": "bad_image",
+  "derived_from": "stable_sampler_minimal",
+  "device": {
+    "binaries": [],
+    "device_properties": "  apiVersion: 1.2.133\n  driverVersion: 1888518144\n  vendorID: 4318\n  deviceID: 7809\n  deviceType: discrete gpu\n  deviceName: GeForce RTX 2080 SUPER\n  driverName: NVIDIA\n  driverInfo: 450.66\n  minSubgroupSize: 32\n  maxSubgroupSize: 32\n  maxComputeWorkgroupSubgroups: 2097152\n  requiredSubgroupSizeStages: vert, tessc, tesse, geom, frag, comp\n",
+    "host": {
+      "custom_launcher": []
+    },
+    "ignored_crash_signatures": [],
+    "name": "host"
+  },
+  "expected_status": "CRASH",
+  "glsl": {
+    "spirv_opt_args": []
+  },
+  "skip_validation": false
+}
