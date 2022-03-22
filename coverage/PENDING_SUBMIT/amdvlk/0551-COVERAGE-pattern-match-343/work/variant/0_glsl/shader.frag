@@ -31,24 +31,24 @@ void main()
     // a becomes 1.
     a = arr[a].data;
 
-    // v = ((3, 3) & a) % (-1) 
-    //   = ((3, 3) & 1) % (-1)
-    //   = (1, 1) % (-1)
-    //   = (0, 0)
-    ivec2 v = (ivec2(_int_3) & a) % (-1);
-
-    // Iterated once.
-    do
+    // Always false.
+    if (gl_FragCoord.x < 0.0)
     {
-        a++;
+        // Negative modulus is undefined, but this is never executed.
+        ivec2 v = (ivec2(_int_3) & a) % (-1);
+
+        do
+        {
+            a++;
+        }
+        while(v.y != _int_0);
     }
-    while(v.y != _int_0);
 
     // Does nothing.
     func(arr[_int_1]);
 
     // Always true.
-    if(a == _int_2)
+    if(a == _int_1)
     {
         _GLF_color = vec4(_int_1, _int_0, _int_0, _int_1);
     }
