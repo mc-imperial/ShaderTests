@@ -41,7 +41,7 @@ def main() -> None:
 
     tool.glsl_shader_job_crash_to_amber_script_for_google_cts(
         source_dir=bug_dir / "reduced_manual",
-        output_amber=bug_dir / "cov-loop-condition-divide-by-uniform-alwayts-false.amber",
+        output_amber=bug_dir / "cov-loop-condition-divide-by-uniform-always-false.amber",
         work_dir=bug_dir / "work",
         # One sentence, 58 characters max., no period, no line breaks.
         short_description="A fragment shader that covers specific LLVM code paths",
