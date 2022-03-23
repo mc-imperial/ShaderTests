@@ -1,0 +1,10 @@
+{
+  "GLF_live4injectionSwitch": {
+    "func": "glUniform2f",
+    "args": [
+      0.5042646,
+      0.96283615
+    ],
+    "binding": 0
+  }
+}
