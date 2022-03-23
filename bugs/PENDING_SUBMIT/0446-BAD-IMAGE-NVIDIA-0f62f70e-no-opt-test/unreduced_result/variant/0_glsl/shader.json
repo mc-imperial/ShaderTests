@@ -1,0 +1,61 @@
+{
+  "tex": {
+    "func": "sampler2D",
+    "texture": "DEFAULT",
+    "binding": 8
+  },
+  "injectionSwitch": {
+    "func": "glUniform2f",
+    "args": [
+      0.0,
+      1.0
+    ],
+    "binding": 0
+  },
+  "GLF_live16tex": {
+    "func": "sampler2D",
+    "texture": "DEFAULT",
+    "binding": 1
+  },
+  "GLF_live18tex": {
+    "func": "sampler2D",
+    "texture": "DEFAULT",
+    "binding": 2
+  },
+  "GLF_live13tex": {
+    "func": "sampler2D",
+    "texture": "DEFAULT",
+    "binding": 3
+  },
+  "GLF_live14tex": {
+    "func": "sampler2D",
+    "texture": "DEFAULT",
+    "binding": 4
+  },
+  "GLF_live12resolution": {
+    "func": "glUniform2f",
+    "args": [
+      0.84728235,
+      0.48559433
+    ],
+    "binding": 5
+  },
+  "GLF_live9tex": {
+    "func": "sampler2D",
+    "texture": "DEFAULT",
+    "binding": 6
+  },
+  "GLF_live6tex": {
+    "func": "sampler2D",
+    "texture": "DEFAULT",
+    "binding": 7
+  },
+  "GLF_live0resolution": {
+    "func": "glUniform2f",
+    "args": [
+      0.008674204,
+      0.0660823
+    ],
+    "push_constant": true
+  }
+}
